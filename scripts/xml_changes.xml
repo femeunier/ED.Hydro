@@ -1,0 +1,21 @@
+  <pfts>
+    <pft>
+      <name>ED_tropical_hydro</name> 
+      <ed2_pft_number>3</ed2_pft_number>
+      <constants>
+        <b1Bl_small>0.45</b1Bl_small>
+        <b1Bl_large>0.45</b1Bl_large>
+      </constants>
+    </pft>
+  </pfts>
+
+
+  <sensitivity.analysis>
+    <quantiles>
+      <sigma>-2</sigma>
+      <sigma>-1</sigma>
+      <sigma>1</sigma>
+      <sigma>2</sigma>
+    </quantiles>
+    <variable>NPP</variable>
+  </sensitivity.analysis>

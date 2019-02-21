@@ -1,0 +1,22 @@
+input.id  = 1000025159
+outfolder  = "/fs/data1/pecan.data/dbfiles/ForestGEO_site_1-5005"
+formatname  = "ED2.cohort"
+mimetype  = "text/plain"
+site.id  = 1000005005
+start_date  = structure(353156400, class = c("POSIXct", "POSIXt"), tzone = "")
+end_date  = structure(428403600, class = c("POSIXct", "POSIXt"), tzone = "")
+pkg  = "PEcAn.data.land"
+fcn  = "write_ic"
+con  = new("PostgreSQLConnection" , Id = c(192722L, 0L))
+host  = structure(list(name = "localhost", user = "ecowdery", folder = "/projectnb/dietzelab/ecowdery/ED_Tropics/outputs", prerun = "module load udunits/2.2.20 R/3.5.0", qsub = "qsub -l h_rt=24:00:00 -pe omp 8 -q 'geo*' -V -v OMP_NUM_THREADS=8 -N @NAME@ -o @STDOUT@ -e @STDERR@ -S /bin/bash", qsub.jobid = "Your job ([0-9]+) .*", qstat = "qstat -j @JOBID@ || echo DONE", tunnel = "/fs/data3/ecowdery/ED_Tropics/tunnel/tunnel", rundir = "/projectnb/dietzelab/ecowdery/ED_Tropics/outputs/run", outdir = "/projectnb/dietzelab/ecowdery/ED_Tropics/outputs/out"), .Names = c("name", "user", "folder", "prerun", "qsub", "qsub.jobid", "qstat", "tunnel", "rundir", "outdir"))
+browndog  = NULL
+write  = TRUE
+overwrite  = TRUE
+exact.dates  = FALSE
+allow.conflicting.dates  = TRUE
+insert.new.file  = FALSE
+pattern  = NULL
+forecast  = FALSE
+ensemble  = FALSE
+ensemble_name  = NULL
+input.args  = structure(list(in.path = "/fs/data1/pecan.data/dbfiles/ForestGEO_site_1-5005", in.name = "ForestGEO.1981.veg.rds", model_info = structure(list( modeltype_id = 1, modeltype_name = "ED2", format_id = 11, tag = "css", name = "ED2.cohort", mimetype_id = 1073, type_string = "text/plain"), .Names = c("modeltype_id", "modeltype_name", "format_id", "tag", "name", "mimetype_id", "type_string"), row.names = 1L, class = c("tbl_df", "tbl", "data.frame")), new_site = structure(list(id = 1000005005, lat = 9.1543, lon = -79.8461), .Names = c("id", "lat", "lon"), row.names = c(NA, -1L), class = "data.frame"), pfts = structure(list( pft = structure(list(name = "broadleaf_evergreen_tropical_tree", constants = structure(list(num = "1"), .Names = "num")), .Names = c("name", "constants"))), .Names = "pft"), source = "ForestGEO"), .Names = c("in.path", "in.name", "model_info", "new_site", "pfts", "source"))

@@ -1,0 +1,7 @@
+sudo rm -rf /fs/data2/output/PEcAn_1000009968/out
+sudo rm -rf /fs/data2/output/PEcAn_1000009966/out
+sudo rm -rf /fs/data2/output/PEcAn_1000009965/out
+sudo rm -rf /fs/data2/output/PEcAn_1000009962/out
+sudo rm -rf /fs/data2/output/PEcAn_1000009961/out
+sudo rm -rf /fs/data2/output/PEcAn_1000009958/out
+sudo rm -rf /fs/data2/output/PEcAn_1000009956/out

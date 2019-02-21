@@ -1,0 +1,14 @@
+getveg.id  = structure(list(input.id = 1000025159, dbfile.id = 1000156072), .Names = c("input.id", "dbfile.id"))
+dbparms  = structure(list(bety = structure(list(user = "bety", password = "bety", host = "128.197.168.114", dbname = "bety", driver = "PostgreSQL", write = "true"), .Names = c("user", "password", "host", "dbname", "driver", "write")), dbfiles = "/fs/data1/pecan.data/dbfiles"), .Names = c("bety", "dbfiles"))
+input_veg  = structure(list(source = "ForestGEO", output = "css", username = "pecan", id = "1000011170", useic = "TRUE", metadata = structure(list( trk = "1", age = "500", area = "500000"), .Names = c("trk", "age", "area"))), .Names = c("source", "output", "username", "id", "useic", "metadata"))
+pfts  = structure(list(pft = structure(list(name = "broadleaf_evergreen_tropical_tree", constants = structure(list(num = "1"), .Names = "num")), .Names = c("name", "constants"))), .Names = "pft")
+outfolder  = "/fs/data1/pecan.data/dbfiles/ForestGEO_site_1-5005"
+n.ensemble  = 6L
+dir  = "/fs/data1/pecan.data/dbfiles"
+machine  = structure(list(id = 11, hostname = "test-pecan.bu.edu", created_at = structure(1397833372.16937, class = c("POSIXct", "POSIXt"), tzone = ""), updated_at = structure(1397833372.16937, class = c("POSIXct", "POSIXt"), tzone = ""), sync_host_id = NA_real_, sync_url = NA_character_, sync_contact = NA_character_, sync_start = NA_real_, sync_end = NA_real_), .Names = c("id", "hostname", "created_at", "updated_at", "sync_host_id", "sync_url", "sync_contact", "sync_start", "sync_end"), row.names = 1L, class = "data.frame")
+model  = "ED2"
+start_date  = structure(353156400, class = c("POSIXct", "POSIXt"), tzone = "")
+end_date  = structure(428403600, class = c("POSIXct", "POSIXt"), tzone = "")
+new_site  = structure(list(id = 1000005005, lat = 9.1543, lon = -79.8461), .Names = c("id", "lat", "lon"), row.names = c(NA, -1L), class = "data.frame")
+host  = structure(list(name = "localhost", user = "ecowdery", folder = "/projectnb/dietzelab/ecowdery/ED_Tropics/outputs", prerun = "module load udunits/2.2.20 R/3.5.0", qsub = "qsub -l h_rt=24:00:00 -pe omp 8 -q 'geo*' -V -v OMP_NUM_THREADS=8 -N @NAME@ -o @STDOUT@ -e @STDERR@ -S /bin/bash", qsub.jobid = "Your job ([0-9]+) .*", qstat = "qstat -j @JOBID@ || echo DONE", tunnel = "/fs/data3/ecowdery/ED_Tropics/tunnel/tunnel", rundir = "/projectnb/dietzelab/ecowdery/ED_Tropics/outputs/run", outdir = "/projectnb/dietzelab/ecowdery/ED_Tropics/outputs/out"), .Names = c("name", "user", "folder", "prerun", "qsub", "qsub.jobid", "qstat", "tunnel", "rundir", "outdir"))
+overwrite  = TRUE
