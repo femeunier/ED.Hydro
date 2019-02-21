@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pecan>
+   <info>
+      <notes></notes>
+      <userid>1000000003</userid>
+      <username>Elizabeth Cowdery</username>
+      <date>2018/11/12 17:27:43 +0000</date>
+   </info>
+   <outdir>/fs/data3/ecowdery/ED_Tropics</outdir>
+   <database>
+      <bety>
+         <user>bety</user>
+         <password>bety</password>
+         <host>128.197.168.114</host>
+         <dbname>bety</dbname>
+         <driver>PostgreSQL</driver>
+         <write>false</write>
+      </bety>
+      <dbfiles>/fs/data1/pecan.data/dbfiles</dbfiles>
+   </database>
+   <pfts>
+      <pft>
+         <name>broadleaf_evergreen_tropical_tree</name>
+         <constants>
+            <num>1</num>
+         </constants>
+      </pft>
+   </pfts>
+   <meta.analysis>
+      <iter>3000</iter>
+      <random.effects>FALSE</random.effects>
+   </meta.analysis>
+   <ensemble>
+      <size>1</size>
+      <variable>NPP</variable>
+      <samplingspace>
+         <parameters>
+            <method>uniform</method>
+         </parameters>
+         <met>
+            <method>sampling</method>
+         </met>
+      </samplingspace>
+   </ensemble>
+   <model>
+      <id>1000000025</id>
+      <edin>ED2IN.rgit_bcow</edin>
+      <config.header>
+         <radiation>
+            <lai_min>0.01</lai_min>
+         </radiation>
+         <ed_misc>
+            <output_month>12</output_month>
+         </ed_misc>
+      </config.header>
+      <phenol.scheme>0</phenol.scheme>
+      <prerun>module purge; module load gcc/7.2.0 openmpi/3.1.2_gcc-7.2.0 hdf5/1.8.16</prerun>
+   </model>
+   <workflow></workflow>
+   <run>
+      <site>
+         <id>1000005005</id>
+         <met.start>2003-01-01 05:00:00</met.start>
+         <met.end>2017-01-01 04:59:00</met.end>
+      </site>
+      <inputs>
+         <css>
+            <id>1000025286</id>
+         </css>
+         <pss>
+            <id>1000025287</id>
+         </pss>
+         <site>
+            <id>1000025351</id>
+         </site>
+         <met>
+            <id>1000024297</id>
+         </met>
+         <lu>
+            <id>294</id>
+         </lu>
+         <soil>
+            <id>297</id>
+         </soil>
+         <thsum>
+            <id>295</id>
+         </thsum>
+         <veg>
+            <id>296</id>
+         </veg>
+      </inputs>
+      <start.date>1981/01/01</start.date>
+      <end.date>1982/12/31</end.date>
+   </run>
+   <host>
+      <name>geo.bu.edu</name>
+      <user>ecowdery</user>
+      <folder>/projectnb/dietzelab/ecowdery/ED_Tropics/outputs</folder>
+      <prerun>module load udunits/2.2.20 R/3.5.0</prerun>
+      <qsub>qsub -l h_rt=24:00:00 -pe omp 8 -q 'geo*' -V -v OMP_NUM_THREADS=8 -N @NAME@ -o @STDOUT@ -e @STDERR@ -S /bin/bash</qsub>
+      <qsub.jobid>Your job ([0-9]+) .*</qsub.jobid>
+      <qstat>qstat -j @JOBID@ || echo DONE</qstat>
+      <tunnel>/fs/data3/ecowdery/ED_Tropics/tunnel/tunnel</tunnel>
+      <rundir>/projectnb/dietzelab/ecowdery/ED_Tropics/outputs/run</rundir>
+      <outdir>/projectnb/dietzelab/ecowdery/ED_Tropics/outputs/out</outdir>
+   </host>
+</pecan>
