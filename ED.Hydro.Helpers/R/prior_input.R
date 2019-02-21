@@ -6,6 +6,7 @@
 #' @param phylogeny.in BETY phylogeny
 #' @param distn.in BETY distribution
 #' @return BETY prior id
+#' @export
 
 prior_input <- function(bety, myfit, variable_id.in, phylogeny.in, distn.in){
   # I don't like hardcoding this, but I don't trust the function to return

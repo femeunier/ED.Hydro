@@ -2,6 +2,7 @@
 #'
 #' @param download option to re-download the data from google drive
 #' @return priors dataframe
+#' @export
 
 prior_load_data <- function(download = FALSE){
 

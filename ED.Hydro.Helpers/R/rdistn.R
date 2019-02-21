@@ -2,6 +2,7 @@
 #'
 #' @param fit results from query to BETY priors table
 #' @return distribution sample
+#' @export
 
 
 rdistn <- function(fit){

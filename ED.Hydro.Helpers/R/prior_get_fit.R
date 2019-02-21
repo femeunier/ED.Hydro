@@ -4,6 +4,7 @@
 #' @param i row of dataframe to be used
 #' @param plot option to plot the fits
 #' @return fit object
+#' @export
 
 prior_get_fit <- function(priors, i, plot = FALSE){
 
