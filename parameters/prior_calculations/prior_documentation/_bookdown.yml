@@ -1,0 +1,4 @@
+book_filename: "Hydro_Parameter_Priors"
+chapter_name: "Chapter "
+rmd_files: ["index.Rmd", "ED_Hydro_Parameters.Rmd"]
+clean: [packages.bib, bookdown.bbl]

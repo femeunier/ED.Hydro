@@ -1,0 +1,13 @@
+Christoffersen_name,ED_name,Tissue,Christoffersen_units
+avuln_node,wood_Kexp,stem,unitless
+epsil_node,leaf_elastic_mod,leaf,MPa
+epsil_node,wood_elastic_mod,stem,MPa
+kmax_node,wood_Kmax,stem,kg m-1 s-1 MPa-1
+p50_node,wood_psi50,stem,MPa
+pinot_node,leaf_psi_osmotic,leaf,MPa
+pinot_node,wood_psi_osmotic,stem,MPa
+pitlp_node,leaf_psi_tlp,leaf,MPa
+pitlp_node,wood_psi_tlp,stem,MPa
+rwctlp_node,rwc_tlp_wood,stem,unitless
+thetas_node,leaf_water_sat,leaf,kg kg-1
+thetas_node,wood_water_sat,stem,kg kg-1
