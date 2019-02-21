@@ -1,0 +1,130 @@
+---
+title: "1000009937 Summary"
+output: html_notebook
+---
+
+
+```{r, echo=FALSE}
+library(PEcAn.all)
+library(dygraphs)
+library(xts)
+library(tidyverse)
+library(lubridate)
+library(dygraphs)
+library(htmltools)
+library(gridExtra)
+library(magrittr)
+
+
+dy_plot <- function(out, var){
+  out_xts <- xts(x = out[,var], order.by = out$posix)
+  
+  dygraph(out_xts, main = var, group = "all") %>%
+    dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE) %>%
+    dyRangeSelector() %>%
+    dyCrosshair(direction = "vertical") %>%dfispl
+  dyHighlight(highlightCircleSize = 5, 
+              highlightSeriesBackgroundAlpha = 0.2, hideOnMouseOut = FALSE)  %>%
+    dyRoller(rollPeriod = 1)
+}
+
+```
+
+```{r}
+settings_9937 <- read.settings("/fs/data2/output/PEcAn_1000009937/pecan.CHECKED.xml")
+
+start.year_9937 = year(settings_9937$run$start.date)
+end.year_9937 = year(settings_9937$run$end.date)
+
+
+out_9937 <- read.output(runid = 1002444116, 
+                        outdir = "/fs/data2/output/PEcAn_1000009937/out/1002444116/", 
+                        start.year = start.year_9937, end.year = end.year_9937, 
+                        variables = c("AbvGrndWood", "GPP", "LAI", "NPP", "NEE", 
+                                      "Rainf", "Tair", "SWdown", "LWdown"), 
+                        dataframe = TRUE)
+
+grid.arrange(nrow = 6,
+  ggplot(out_9937) + geom_line(aes(x=posix, y=Tair)) + ggtitle("Tair"),
+  ggplot(out_9937) + geom_line(aes(x=posix, y=SWdown)) + ggtitle("SWdown"),
+  ggplot(out_9937) + geom_line(aes(x=posix, y=LWdown)) + ggtitle("LWdown"),
+  ggplot(out_9937) + geom_line(aes(x=posix, y=Rainf)) + ggtitle("Rainf"),
+  ggplot(out_9937) + geom_line(aes(x=posix, y=LAI)) + ggtitle("LAI"),
+  ggplot(out_9937) + geom_line(aes(x=posix, y=NPP)) + ggtitle("NPP")
+)
+```
+```{r}
+settings_9940 <- read.settings("/fs/data2/output/PEcAn_1000009940/pecan.CHECKED.xml")
+
+start.year_9940 = year(settings_9940$run$start.date)
+end.year_9940 = year(settings_9940$run$end.date)
+
+
+out_9940 <- read.output(runid = 1002444359, 
+                        outdir = "/fs/data2/output/PEcAn_1000009940/out/1002444359/", 
+                        start.year = 2005, end.year = 2005, 
+                        variables = c("AbvGrndWood", "GPP", "LAI", "NPP", "NEE", 
+                                      "Rainf", "Tair", "SWdown", "LWdown"), 
+                        dataframe = TRUE)
+
+grid.arrange(
+  ggplot(out_9940) + geom_line(aes(x=posix, y=NPP)) + ggtitle("NPP"),
+  ggplot(out_9940) + geom_line(aes(x=posix, y=Rainf)) + ggtitle("Rainf"),
+  ggplot(out_9940) + geom_line(aes(x=posix, y=LAI)) + ggtitle("LAI")
+)
+
+```
+
+```{r}
+out.Tair_9937  <- xts(x = out$Tair, order.by = out$posix)
+out.Rainf_9937 <- xts(x = out$Rainf, order.by = out$posix)
+out.NPP_9937   <- xts(x = out$NPP, order.by = out$posix)
+out.LAI_9937   <- xts(x = out$LAI, order.by = out$posix)
+out.SWdown_9937  <- xts(x = out$SWdown, order.by = out$posix)
+out.LWdown_9937  <- xts(x = out$LWdown, order.by = out$posix)
+
+dygraph(
+  out.Tair, main = "Tair", group = "sync", height = 200 , width = "100%") %>%
+  tagList(
+    dygraph(out.SWdown, main = "SWdown", group = "sync", height = 200, width = "100%"),
+    dygraph(out.LWdown, main = "LWdown", group = "sync", height = 200, width = "100%"),
+    dygraph(out.Rainf, main = "Rainf", group = "sync", height = 200, width = "100%"),
+    
+    dygraph(out.LAI, main = "LAI", group = "sync", height = 200 , width = "100%"),
+    dygraph(out.NPP, main = "NPP", group = "sync", height = 300, width = "100%") %>% dyRangeSelector
+  ) %>%
+  dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE) %>%
+  dyRangeSelector() %>%
+  dyCrosshair(direction = "vertical") %>%
+  dyHighlight(highlightCircleSize = 5, 
+              highlightSeriesBackgroundAlpha = 0.2, hideOnMouseOut = FALSE)  %>%
+  dyRoller(rollPeriod = 1) %>%
+  browsable()
+
+```
+
+
+```{r}
+
+
+settings_9940 <- read.settings("/fs/data2/output/PEcAn_1000009940/pecan.CHECKED.xml")
+
+start.year_9940 = year(settings$run$start.date)
+end.year_9940 = year(settings$run$end.date)
+
+
+out_9940 <- read.output(runid = 1002444116, 
+                        outdir = "/fs/data2/output/PEcAn_1000009937/out/1002444116/", 
+                        start.year = start.year_9940, end.year = end.year_9940, 
+                        variables = c("AbvGrndWood", "GPP", "LAI", "NPP", "NEE", 
+                                      "Rainf", "Tair", "SWdown", "LWdown"), 
+                        dataframe = TRUE)
+
+out.Tair_9937  <- xts(x = out$Tair, order.by = out$posix)
+out.Rainf_9937 <- xts(x = out$Rainf, order.by = out$posix)
+out.NPP_9937   <- xts(x = out$NPP, order.by = out$posix)
+out.LAI_9937   <- xts(x = out$LAI, order.by = out$posix)
+out.SWdown_9937  <- xts(x = out$SWdown, order.by = out$posix)
+out.LWdown_9937  <- xts(x = out$LWdown, order.by = out$posix)
+
+```
