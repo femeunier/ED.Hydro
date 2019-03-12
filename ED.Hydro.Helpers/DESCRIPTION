@@ -8,10 +8,14 @@ Description: Ok this isn't that fancy.
 Encoding: UTF-8
 LazyLoad: yes
 LazyData: TRUE
+Depends:
+  PEcAn.DB,
+  tidyverse
 Imports:
   googledrive,
-  PEcAn.DB,
+  googlesheets4,
+  gridExtra,
+  readr,
   SHELF,
-  tidyverse,
   XML
 RoxygenNote: 6.1.1

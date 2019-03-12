@@ -4,10 +4,7 @@
 \alias{prior_load_data}
 \title{Load all the data that is used to calculate priors}
 \usage{
-prior_load_data(download = FALSE)
-}
-\arguments{
-\item{download}{option to re-download the data from google drive}
+prior_load_data(download = FALSE, subset = TRUE)
 }
 \value{
 priors dataframe

@@ -1,0 +1,819 @@
+---
+title: "ED Hydro Parameters"
+---
+
+```{r, echo = FALSE}
+knitr::include_graphics("ED_HYDRO.png")
+```
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE, results='hide'}
+library(knitr)
+library(PEcAn.DB)
+library(PEcAn.utils)
+library(PEcAn.settings)
+library(tidyverse)
+
+for(script in dir("/fs/data3/ecowdery/ED_Tropics/parameters/prior_calculations/prior_scripts/", full.names = TRUE)){
+  source(file = script)
+}
+
+
+bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
+
+```
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE, results='hide'}
+
+```
+
+```{r}
+################################################################################
+# Setup the variables we are interested in
+
+priors <- prior_load_data(download = FALSE)
+
+variables <- c(
+  "leaf_elastic_mod", "wood_elastic_mod",
+  "leaf_psi_osmotic", "wood_psi_osmotic",
+  "rwc_tlp_wood", 
+  "leaf_water_sat", "wood_water_sat",
+  "leaf_water_cap", "wood_water_cap",
+  "leaf_psi_min", "wood_psi_min",
+  "wood_Kmax",
+  "wood_psi50",
+  "wood_Kexp"
+)
+
+priors <- priors %>% filter(ED_name %in% variables)
+
+names(priors)[names(priors) == "low0.25"] <- "low.25"
+
+stats <- c("theor.min",
+           "low.025", 
+           "low.25", 
+           "mean",
+           "upp.75",
+           "upp.975",
+           "theor.max")
+
+priors <- priors %>% dplyr::select(one_of(
+  c("ED_name",
+    "Christoffersen_name",
+    "BETY_variable_id",
+    "BETY_prior_id",
+    "ED_units",
+    "Christoffersen_units",
+    stats)
+))
+
+kable(priors)
+
+priors_converted <- priors
+```
+
+--------------------------------------------------------------------------------
+
+# Starting Parameters
+
+## Liquid water density
+- ED variable name : `wdns`
+```{r}
+wdns <- 1.000e3    # Liquid water density [kg/m3]
+```
+
+## Gravity
+- ED variable name : `grav`
+```{r}
+grav <- 9.80665    # Gravity acceleration  [m/s2]
+```
+
+## Conversion from MPa to m
+- ED variable name : `MPa2m`
+```{r}
+MPa2m <- wdns / grav
+```
+
+## Wood density
+
+- ED variable name : `rho`
+- ED units: `g cm-3` Note! Leaf density is calculated in `kg cm-3` because that makes perfect sense ... 
+- FATES varaiable name: `WD`
+
+In the database, wood_density is unitless. 
+So I'm assuming it can be directly mapped to our `wood_density` as such:
+
+$$\frac{WD (gcm^{-2})}{\rho_w(gcm^{-2})} * \rho_w(gcm^{-2}) =  \frac{WD (gcm^{-2})}{1(gcm^{-2})} * 1(gcm^{-2})$$
+
+```{r}
+
+wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == 1000000055) %>% filter(id == 1000000281) %>% collect()
+wood_density_prior <- rdistn(wood_density_fit)
+default_wood_density <- get_ED_default(PFT3_defaults_history, "rho") 
+
+plot(density(wood_density_prior), main = "Wood density prior")
+abline(v = default_wood_density, col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default","Data"), col=c("black", "blue", "green"), lwd=2)
+
+```
+
+## Specific Leaf Area (SLA)
+And subsequently $LMA = (1/SLA)$
+
+- ED variable name : `SLA`
+- ED variable id: 15
+
+```{r}
+SLA_fit <- tbl(bety, "priors") %>% filter(variable_id == 15) %>% filter(id == 142) %>% collect()
+# In this case, we are using prior_id = 142, this was chosen by someone else and maybe we'll revisit
+SLA_prior <- rdistn(SLA_fit)
+plot(density(SLA_prior), main = "SLA prior")
+abline(v = get_ED_default(PFT3_defaults_history, "SLA"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default","Data"), col=c("black", "blue", "green"), lwd=2)
+```
+
+--------------------------------------------------------------------------------
+
+# Key Leaf Traits
+
+## Leaf turgor loss point
+
+- ED variable name : `leaf_psi_osmotic`
+- FATES varaiable name: `pinot_node (leaf)` 
+
+### Prior data provided by Brad Christoffersen: YES
+
+### Conversion
+`MPa to m`
+
+Additional thoughts: All psi variables must be negative. 
+This is difficult for the function that fits the distributions 
+and thus I've experimented with flipping the data to be positive, fitting a distribution
+and then flipping it back. It didn't really result in a better fitting distribution, 
+so I chose not to change the normal distribution that I had already calculated. 
+
+```{r}
+i <- which(priors$ED_name == "leaf_psi_osmotic")
+
+priors_converted[i, stats] <- priors[i, stats] * MPa2m
+myfit <- get_fit(priors_converted, i, plot = FALSE)
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors_converted$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+leaf_psi_osmotic_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+```{r}
+leaf_psi_osmotic_fit <- tbl(bety, "priors") %>% filter(id == leaf_psi_osmotic_prior_id) %>% collect()
+leaf_psi_osmotic_prior <- rdistn(leaf_psi_osmotic_fit)
+
+plot(density(leaf_psi_osmotic_prior), main = "leaf_psi_osmotic prior")
+abline(v = get_ED_default(PFT3_defaults_history, "leaf_psi_osmotic"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+```{r}
+#######################################################
+# Experimenting with flipping things around 
+
+new.theor.min <- ifelse(!is.na(priors_converted[i,]$theor.max), -priors_converted[i,]$theor.max, NA)
+new.low.025   <- ifelse(!is.na(priors_converted[i,]$upp.975), -priors_converted[i,]$upp.975, NA)
+new.low.25    <- ifelse(!is.na(priors_converted[i,]$upp.75), -priors_converted[i,]$upp.75, NA)
+new.mean      <- ifelse(!is.na(priors_converted[i,]$mean), -priors_converted[i,]$mean, NA)
+new.upp.75    <- ifelse(!is.na(priors_converted[i,]$low.25), -priors_converted[i,]$low.25, NA)
+new.upp.975   <- ifelse(!is.na(priors_converted[i,]$low.025), -priors_converted[i,]$low.025, NA)
+new.theor.max <- ifelse(!is.na(priors_converted[i,]$theor.min), -priors_converted[i,]$theor.min, NA)
+
+new <- priors_converted[i, ]
+new[1,stats] <- c(new.theor.min, new.low.025, new.low.25, new.mean, new.upp.75, new.upp.975, new.theor.max)
+
+
+myfit <- get_fit(new, 1, plot = TRUE) # Now there are more options
+
+# plot(density(rnorm(1000000, myfit$Normal$mean, myfit$Normal$sd)), col = "red")
+# lines(density(rgamma(1000000, myfit$Gamma$shape, myfit$Gamma$rate)), col = "green")
+# abline(v = -get_ED_default(PFT3_defaults_history, "leaf_psi_osmotic"), col = "blue", lwd = 2)
+
+plot(density(rnorm(1000000, -myfit$Normal$mean, myfit$Normal$sd)), col = "red", main = "Attempt at calculating a negative gammma dist")
+lines(density(-rgamma(1000000, myfit$Gamma$shape, myfit$Gamma$rate)), col = "green")
+abline(v = get_ED_default(PFT3_defaults_history, "leaf_psi_osmotic"), col = "blue", lwd = 2)
+```
+At the end of the day, the negative Gamma distribution doesn't seem to make a large improvement, 
+though the fact that samples from this distribution can be positive may cause problems 
+further down the road... we'll see. 
+
+## Leaf bulk elastic modulus
+
+- ED variable name : `leaf_elastic_mod`
+- ED variable units: `MPa` Note! This is the only case in which MPa is used instead of m!
+- FATES varaiable name: `epsil_node (leaf)` 
+
+### Prior data provided by Brad Christoffersen: YES
+
+### Conversion
+
+None!
+
+```{r}
+i <- which(priors$ED_name == "leaf_elastic_mod")
+
+myfit <- get_fit(priors, i, plot = TRUE)
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+leaf_elastic_mod_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+
+```{r}
+leaf_elastic_mod_fit <- tbl(bety, "priors") %>% filter(id == leaf_elastic_mod_prior_id) %>% collect()
+leaf_elastic_mod_prior <- rdistn(leaf_elastic_mod_fit)
+
+plot(density(leaf_elastic_mod_prior), main = "leaf_elastic_mod prior")
+abline(v = get_ED_default(PFT3_defaults_history, "leaf_elastic_mod"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## Density of leaf tissue
+
+- ED variable name : `leaf_density`
+- ED units: `kg m-3`
+
+```{r}
+leaf_density_sample <- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3
+
+leaf_density_sample_test <- leaf_density_sample
+leaf_density_sample_test[leaf_density_sample < 100] <- NA
+qs_test <- quantile(leaf_density_sample_test, c(.025,.25,.5,.75,.975), na.rm = TRUE)
+myfit_test <- fitdist(vals = qs_test, probs =c(.025,.25,.5,.75,.975), lower = 100)
+
+qs <- quantile(leaf_density_sample, c(.025,.25,.5,.75,.975), na.rm = TRUE)
+myfit <- fitdist(vals = qs, probs =c(.025,.25,.5,.75,.975))
+
+variable_id.in <- 1000000304
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+leaf_density_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+```{r}
+leaf_density_prior_1 <- rgamma(1000000, myfit_test$Gamma$shape, myfit_test$Gamma$rate)
+leaf_density_prior_2 <- rdistn(tbl(bety, "priors") %>% filter(id == 1000000396) %>% collect())
+default_leaf_density <- (get_ED_default(PFT3_defaults_history, "leaf_elastic_mod") - 2.03) / 25.4 * 1.e3
+
+plot(density(leaf_density_prior_1), main = "leaf_density prior")
+lines(density(leaf_density_prior_2), col = "red")
+abline(v = default_leaf_density, col = "blue", lwd = 2)
+legend("topright",legend=c("Gamma", "Normal", "ED PFT 3 Default"), col=c("black", "red", "blue"), lwd=2)
+```
+Once again, an attempt at making a Gamma distribution that is bound at the lower
+limit doesn't seem to have improved things much. Spoiler alert: I decide not to 
+use it after experimenting with calculating leaf water content. 
+
+NOTE: I should probably remove the leaf_density Gamma dist from BETY!
+
+## Leaf water content at saturation
+
+- ED variable name : `leaf_water_sat`
+- FATES varaiable name: `thetas_node (leaf)`
+
+### Prior data provided by Brad Christoffersen: YES
+
+### Conversion 
+There are a couple ways to approach this:
+
+Either build a prior completely from other priors 
+(ie using a prior for LMA and leaf_density) 
+or try to do some sort of combination where we use the data from Brad 
+and the prior for leaf_density. 
+
+I am going to try doing both just to see how they differ.
+
+### Conversion 
+
+The equations between the two are identical except that to get from 
+Christoffersen to ED, must multiply by (water density)/(leaf density)
+
+```{r}
+i <- which(priors$ED_name == "leaf_water_sat")
+
+# Following the equation in ED
+
+default_SLA <-  get_ED_default(PFT3_defaults_history, "SLA")
+default_LMA <- 1e3 * 2 / default_SLA # 1.e3 * C2B / SLA(ipft)
+
+default_leaf_water_sat <- get_ED_default(PFT3_defaults_history, "leaf_water_sat")
+
+(-2.32e4 / default_LMA + 782.) * (1. / (-0.21 * log(1.e4 / default_LMA) + 1.43) - 1.) / default_leaf_density
+
+LMA_prior <- 1e3 * 2 / SLA_prior
+
+# Should be analogous to Christoffersen because I'm dividing by wdns instead of leaf_density
+leaf_water_sat_samp_1_1 <- (-2.32e4 / LMA_prior + 782.) * (1. / (-0.21 * log(1.e4 / LMA_prior) + 1.43) - 1.) / leaf_density_prior_1
+leaf_water_sat_samp_1_2 <- (-2.32e4 / LMA_prior + 782.) * (1. / (-0.21 * log(1.e4 / LMA_prior) + 1.43) - 1.) / leaf_density_prior_2
+
+qs_1_1 <- quantile(leaf_water_sat_samp_1_1, c(.025,.25,.5,.75,.975), na.rm = TRUE)
+qs_1_2 <- quantile(leaf_water_sat_samp_1_2, c(.025,.25,.5,.75,.975), na.rm = TRUE)
+
+myfit_1_1 <- fitdist(vals = qs_1_1, probs = c(.025,.25,.5,.75,.975))
+myfit_1_2 <- fitdist(vals = qs_1_2, probs = c(.025,.25,.5,.75,.975))
+
+leaf_water_sat_prior_1_1 <- rnorm(100000, myfit_1_1$Normal$mean, myfit_1_1$Normal$sd)
+leaf_water_sat_prior_1_2 <- rnorm(100000, myfit_1_2$Normal$mean, myfit_1_2$Normal$sd)
+
+
+ggplot(data = data.frame(leaf_water_sat_prior_1_1, leaf_water_sat_prior_1_2)) + 
+  geom_density(aes(x = leaf_water_sat_prior_1_1), color = "red") + 
+  geom_density(aes(x = leaf_water_sat_prior_1_2), color = "blue") + 
+  geom_vline(aes(xintercept = default_leaf_water_sat))
+
+myfit_2 <- get_fit(priors, i, plot = TRUE) 
+leaf_water_sat_prior_2 <- rnorm(100000, myfit_2$Normal$mean, myfit_2$Normal$sd)
+
+qs_2_1 <- quantile(leaf_water_sat_prior_2 * (wdns/(leaf_density_prior_1)), c(.025,.25,.5,.75,.975))
+qs_2_2 <- quantile(leaf_water_sat_prior_2 * (wdns/(leaf_density_prior_2)), c(.025,.25,.5,.75,.975))
+
+
+myfit_2_1 <- fitdist(vals = qs_2_1, probs = c(.025,.25,.5,.75,.975))
+myfit_2_2 <- fitdist(vals = qs_2_2, probs = c(.025,.25,.5,.75,.975))
+
+leaf_water_sat_prior_2_1 <- rnorm(100000, myfit_2_1$Normal$mean, myfit_2_1$Normal$sd)
+leaf_water_sat_prior_2_2 <- rnorm(100000, myfit_2_2$Normal$mean, myfit_2_2$Normal$sd)
+
+df <- data.frame(leaf_water_sat_prior_1_1, leaf_water_sat_prior_1_2, 
+                 # leaf_water_sat_prior_2,
+                 leaf_water_sat_prior_2_1, leaf_water_sat_prior_2_2)
+
+df2 <- df %>% 
+  gather(key = "prior") %>% 
+  mutate(leaf_dens_dist = case_when(
+    prior == "leaf_water_sat_prior_1_1" ~ "Gamma",
+    prior == "leaf_water_sat_prior_1_2" ~ "Normal",
+    prior == "leaf_water_sat_prior_2_1" ~ "Gamma",
+    prior == "leaf_water_sat_prior_2_2" ~ "Normal"
+  )) %>% 
+  mutate(prior_or_data = case_when(
+    prior == "leaf_water_sat_prior_1_1" ~ "LMA_prior",
+    prior == "leaf_water_sat_prior_1_2" ~ "LMA_prior",
+    prior == "leaf_water_sat_prior_2_1" ~ "leaf_water_sat_prior_data",
+    prior == "leaf_water_sat_prior_2_2" ~ "leaf_water_sat_prior_data"
+  ))
+  
+  ggplot(data = df2) + 
+  geom_density(aes(x = value, color = prior_or_data, linetype = leaf_dens_dist)) + 
+  geom_vline(aes(xintercept = default_leaf_water_sat)) +
+  geom_point(aes(x = .03, y = 0)) + geom_point(aes(x = 1.5, y = 0)) + geom_point(aes(x = 2, y = 0))
+
+```
+
+I think from all of this, I can see how the default is calculated 
+when only the LMA prior is used, but this doesn't take in to account the data from Brad. 
+The gamma distrubtion seems to push things too far to the right.
+So I think I'll stick to the non-Gaussian fit for the leaf density. 
+That wasn't the best fit anyway, but I thought that maybe it would make things better
+because it was bound at 100. But in the end, it doesn't seem necessary. 
+And by incorporating the uncertainty around leaf density, the distribution spans 
+all the values that Felicien specified. 
+
+In short: I choose `leaf_water_sat_prior_2_2`
+
+```{r}
+leaf_density_prior <- rdistn(tbl(bety, "priors") %>% filter(id == 1000000396) %>% collect())
+
+i <- which(priors$ED_name == "leaf_water_sat")
+
+myfit_0 <- get_fit(priors, i, plot = TRUE)  # Ok I'm skipping an automation step here and just looking at it to see that Normal is the best fit
+leaf_water_sat_prior_0 <- rnorm(1000000, myfit_0$Normal$mean, myfit_0$Normal$sd)
+
+qs <- quantile(leaf_water_sat_prior_0 * (wdns/(leaf_density_prior)), c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs = c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+leaf_water_sat_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+```{r}
+leaf_water_sat_fit <- tbl(bety, "priors") %>% filter(id == leaf_water_sat_prior_id) %>% collect()
+leaf_water_sat_prior <- rdistn(leaf_water_sat_fit)
+
+plot(density(leaf_water_sat_prior), main = "leaf_water_sat prior")
+abline(v = get_ED_default(PFT3_defaults_history, "leaf_water_sat"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## leaf_psi_tlp
+
+- ED variable name : `leaf_psi_tlp`
+
+### Calculation and conversion 
+
+This one is calculated purely from other parameters: `leaf_psi_osmotic` and `leaf_elastic_mod`
+
+Remember that `leaf_elastic_mod` is `MPa`, where everything else is `m`! 
+
+```{r}
+
+leaf_psi_tlp_samp <- 
+  (leaf_psi_osmotic_prior*leaf_elastic_mod_prior*MPa2m)/
+  (leaf_psi_osmotic_prior+leaf_elastic_mod_prior*MPa2m)
+
+qs <- quantile(leaf_psi_tlp_samp, c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs =c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety, "variables") %>% filter(name == "leaf_psi_tlp") %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+leaf_psi_tlp_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+
+```
+```{r}
+leaf_psi_tlp_fit <- tbl(bety, "priors") %>% filter(id == leaf_psi_tlp_prior_id) %>% collect()
+leaf_psi_tlp_prior <- rdistn(leaf_psi_tlp_fit)
+
+plot(density(leaf_psi_tlp_prior), main = "leaf_psi_tlp prior")
+abline(v = get_ED_default(PFT3_defaults_history, "leaf_psi_tlp"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+## leaf_water_cap
+
+- ED variable name : `leaf_water_cap`
+
+### Calculation
+
+Calculated entirely from priors
+
+```{r}
+leaf_water_cap_samp <- 
+  (1 - leaf_psi_osmotic_prior / (4 * leaf_psi_tlp_prior)) * 
+  (leaf_water_sat_prior / (4 * abs(leaf_psi_tlp_prior)))
+
+qs <- quantile(leaf_water_cap_samp, c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs =c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety, "variables") %>% filter(name == "leaf_water_cap") %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+leaf_water_cap_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+```{r}
+leaf_water_cap_fit <- tbl(bety, "priors") %>% filter(id == leaf_water_cap_prior_id) %>% collect()
+leaf_water_cap_prior <- rdistn(leaf_water_cap_fit)
+
+plot(density(leaf_water_cap_prior), main = "leaf_water_cap prior")
+abline(v = get_ED_default(PFT3_defaults_history, "leaf_water_cap"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## leaf_psi_min 
+
+- ED variable name : `leaf_psi_min`
+
+### Calculation 
+
+Should I put rwc_min in the database too?
+
+```{r}
+leaf_rwc_min_samp = 0.01 * leaf_elastic_mod_prior + 0.17
+leaf_psi_min_samp = (leaf_rwc_min_samp - 1.) * leaf_water_sat_prior / leaf_water_cap_prior
+
+qs <- quantile(leaf_psi_min_samp, c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs =c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety, "variables") %>% filter(name == "leaf_psi_min") %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+leaf_psi_min_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+
+```
+
+```{r}
+leaf_psi_min_fit <- tbl(bety, "priors") %>% filter(id == leaf_psi_min_prior_id) %>% collect()
+leaf_psi_min_prior <- rdistn(leaf_psi_min_fit)
+
+plot(density(leaf_psi_min_prior), main = "leaf_psi_min prior")
+abline(v = get_ED_default(PFT3_defaults_history, "leaf_psi_min"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+# Key Wood Traits
+
+## Wood turgor loss point
+
+- ED variable name : `wood_psi_osmotic`
+- FATES varaiable name: `pinot_node (stem)` 
+
+### Prior data provided by Brad Christoffersen: YES
+
+### Conversion
+`MPa to m`
+
+```{r}
+i <- which(priors$ED_name == "wood_psi_osmotic")
+priors[i, stats] <- priors[i, stats] * MPa2m
+
+myfit <- get_fit(priors, i, plot = TRUE)
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_psi_osmotic_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+```{r}
+wood_psi_osmotic_fit <- tbl(bety, "priors") %>% filter(id == wood_psi_osmotic_prior_id) %>% collect()
+wood_psi_osmotic_prior <- rdistn(wood_psi_osmotic_fit)
+
+plot(density(wood_psi_osmotic_prior), main = "wood_psi_osmotic prior")
+abline(v = get_ED_default(PFT3_defaults_history, "wood_psi_osmotic"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## wood_elastic_mod
+
+- ED variable name : `wood_elastic_mod`
+- ED variable units: `MPa` Note! This is the only case in which MPa is used instead of m!
+- FATES varaiable name: `epsil_node (stem)` 
+
+### Prior data provided by Brad Christoffersen: YES
+
+### Conversion
+
+None
+
+```{r}
+i <- which(priors$ED_name == "wood_elastic_mod")
+
+myfit <- get_fit(priors, i, plot = TRUE)
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_elastic_mod_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+```{r}
+wood_elastic_mod_fit <- tbl(bety, "priors") %>% filter(id == wood_elastic_mod_prior_id) %>% collect()
+wood_elastic_mod_prior <- rdistn(wood_elastic_mod_fit)
+
+plot(density(wood_elastic_mod_prior), main = "wood_elastic_mod prior")
+abline(v = get_ED_default(PFT3_defaults_history, "wood_elastic_mod"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## Sapwood water content at saturation
+
+- ED variable name : `wood_water_sat`
+- FATES varaiable name: `thetas_node (stem)`
+
+### Prior data provided by Brad Christoffersen: YES
+
+### Conversion 
+
+This is the version cousin of leaf water content at saturation. 
+
+```{r}
+i <- which(priors$ED_name == "wood_water_sat")
+
+myfit_0 <- get_fit(priors, i, plot = TRUE)  # Ok I'm skipping an automation step here and just looking at it to see that Normal is the best fit
+wood_water_sat_prior_0 <- rnorm(1000000, myfit_0$Normal$mean, myfit_0$Normal$sd)
+
+wdns/mean(wood_density_prior* 1e3)
+
+
+qs <- quantile(wood_water_sat_prior_0 * (wdns/(wood_density_prior * 1e3)), c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs = c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+wood_water_sat_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+```{r}
+wood_water_sat_fit <- tbl(bety, "priors") %>% filter(id == wood_water_sat_prior_id) %>% collect()
+wood_water_sat_prior <- rdistn(wood_water_sat_fit)
+
+plot(density(wood_water_sat_prior), main = "wood_water_sat prior")
+abline(v = get_ED_default(PFT3_defaults_history, "wood_water_sat"), col = "blue", lwd = 2)
+legend("topright",legend = c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd = 2)
+```
+
+## wood_psi_tlp
+
+- ED variable name : `wood_psi_tlp`
+
+### Calculation and conversion 
+
+This one is calculated purely from other parameters: `wood_psi_osmotic` and `wood_elastic_mod`
+
+Remember that `wood_elastic_mod` is `MPa`, where everything else is `m`! 
+
+```{r}
+
+wood_psi_tlp_samp <- 
+  (wood_psi_osmotic_prior*wood_elastic_mod_prior*MPa2m)/
+  (wood_psi_osmotic_prior+wood_elastic_mod_prior*MPa2m)
+
+qs <- quantile(wood_psi_tlp_samp, c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs =c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety, "variables") %>% filter(name == "wood_psi_tlp") %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_psi_tlp_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+
+```
+```{r}
+wood_psi_tlp_fit <- tbl(bety, "priors") %>% filter(id == wood_psi_tlp_prior_id) %>% collect()
+wood_psi_tlp_prior <- rdistn(wood_psi_tlp_fit)
+
+plot(density(wood_psi_tlp_prior), main = "wood_psi_tlp prior")
+abline(v = get_ED_default(PFT3_defaults_history, "wood_psi_tlp"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## wood_water_cap
+
+- ED variable name : `wood_water_cap`
+
+### Calculation
+
+Calculated entirely from priors
+
+```{r}
+wood_water_cap_samp <- 
+  (1 - wood_psi_osmotic_prior / (4 * wood_psi_tlp_prior)) * 
+  (wood_water_sat_prior / (4 * abs(wood_psi_tlp_prior)))
+
+qs <- quantile(wood_water_cap_samp, c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs =c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety, "variables") %>% filter(name == "wood_water_cap") %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_water_cap_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+
+```{r}
+wood_water_cap_fit <- tbl(bety, "priors") %>% filter(id == wood_water_cap_prior_id) %>% collect()
+wood_water_cap_prior <- rdistn(wood_water_cap_fit)
+
+plot(density(wood_water_cap_prior), main = "wood_water_cap prior")
+abline(v = get_ED_default(PFT3_defaults_history, "wood_water_cap"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## Kmax
+
+I'm still pretty sure I need to multiply by the density of water 
+It sure looks a lot better
+
+```{r}
+i <- which(priors$ED_name == "wood_Kmax")
+
+priors_converted[i, stats] <- priors[i, stats] * wdns / MPa2m
+# priors_converted[i, stats] <- priors[i, stats] * 1 / MPa2m
+myfit <- get_fit(priors_converted, i, plot = FALSE)
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_Kmax_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+
+```{r}
+wood_Kmax_fit <- tbl(bety, "priors") %>% filter(id == wood_Kmax_prior_id) %>% collect()
+wood_Kmax_prior <- rdistn(wood_Kmax_fit)
+
+plot(density(wood_Kmax_prior), main = "wood_Kmax prior")
+abline(v = get_ED_default(PFT3_defaults_history, "wood_Kmax"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+
+plot(density(wood_Kmax_prior), main = "wood_Kmax prior", xlim = c(0, 20))
+abline(v = get_ED_default(PFT3_defaults_history, "wood_Kmax"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+## psi50
+
+```{r}
+i <- which(priors$ED_name == "wood_psi50")
+
+priors_converted[i, stats] <- priors[i, stats] * MPa2m
+myfit <- get_fit(priors_converted, i, plot = FALSE)
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_psi50_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+
+```{r}
+wood_psi50_fit <- tbl(bety, "priors") %>% filter(id == wood_psi50_prior_id) %>% collect()
+wood_psi50_prior <- rdistn(wood_psi50_fit)
+
+# Calculating this by hand because it is calculated wrong in ED! 
+default_wood_psi50 <- (-1.09 - (3.57 * default_wood_density ^ 1.73)) * MPa2m
+wrong_default_wood_psi50 <- get_ED_default(PFT3_defaults_history, "wood_psi50")
+  
+plot(density(wood_psi50_prior), main = "wood_psi50 prior")
+abline(v = default_wood_psi50, col = "blue", lwd = 2)
+abline(v = wrong_default_wood_psi50, col = "blue", lwd = 1, lty = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```
+
+
+## Kexp
+
+```{r}
+i <- which(priors$ED_name == "wood_Kexp")
+
+myfit <- get_fit(priors, i, plot = FALSE)
+variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_Kexp_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+```
+
+```{r}
+wood_Kexp_fit <- tbl(bety, "priors") %>% filter(id == wood_Kexp_prior_id) %>% collect()
+wood_Kexp_prior <- rdistn(wood_Kexp_fit)
+
+# Calculating this by hand psi50 is calculated wrong in ED!
+default_wood_Kexp <- 0.544 * 4. * (-default_wood_psi50 / MPa2m) ^ (-0.17)
+wrong_default_wood_Kexp <- get_ED_default(PFT3_defaults_history, "wood_Kexp")
+
+
+plot(density(wood_Kexp_prior), main = "wood_Kexp prior")
+abline(v = default_wood_Kexp, col = "blue", lwd = 2)
+abline(v = wrong_default_wood_Kexp, col = "blue", lwd = 1, lty = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+
+plot(density(wood_Kexp_prior), main = "wood_Kexp prior", xlim = c(0, 100))
+abline(v = default_wood_Kexp, col = "blue", lwd = 2)
+abline(v = wrong_default_wood_Kexp, col = "blue", lwd = 1, lty = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+
+```
+
+## Wood psi min
+
+- ED variable name : `wood_psi_min`
+
+### Calculation 
+
+Should I put wood_rwc_min and rwc_tlp_wood in the database too
+
+
+leaf_rwc_min_samp = 0.01 * leaf_elastic_mod_prior + 0.17
+leaf_psi_min_samp = (leaf_rwc_min_samp - 1.) * leaf_water_sat_prior / leaf_water_cap_prior
+
+```{r}
+rwc_tlp_wood_samp <- 1. - (1. - 0.75 * wood_density_prior) / (2.74 + 2.01 * wood_density_prior) 
+wood_rwc_min_samp = wood_elastic_mod_prior * (1. - rwc_tlp_wood_samp) / (wood_psi_osmotic_prior / MPa2m) + 1.
+wood_psi_min_samp = (wood_rwc_min_samp - 1.) * wood_water_sat_prior / wood_water_cap_prior
+
+qs <- quantile(wood_psi_min_samp, c(.025,.25,.5,.75,.975))
+myfit <- fitdist(vals = qs, probs =c(.025,.25,.5,.75,.975))
+
+variable_id.in <- tbl(bety, "variables") %>% filter(name == "wood_psi_min") %>% pull(id)
+phylogeny.in <- "plants"
+distn.in <- myfit$ssq %>% dplyr::select(one_of("Normal", "Gamma", "Log normal", "Beta")) %>%
+  which.min %>% names
+
+wood_psi_min_prior_id <- input_prior(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+
+```
+
+```{r}
+wood_psi_min_fit <- tbl(bety, "priors") %>% filter(id == wood_psi_min_prior_id) %>% collect()
+wood_psi_min_prior <- rdistn(wood_psi_min_fit)
+
+plot(density(wood_psi_min_prior), main = "wood_psi_min prior")
+abline(v = get_ED_default(PFT3_defaults_history, "wood_psi_min"), col = "blue", lwd = 2)
+legend("topright",legend=c("Prior","ED PFT 3 Default"), col=c("black", "blue"), lwd=2)
+```

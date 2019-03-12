@@ -5,30 +5,39 @@
 #' @export
 
 
-rdistn <- function(fit){
+rdistn <- function(fit, n = 100000){
 
-  if(fit$distn == "beta"){
-    out <- rbeta(1000000, fit$parama, fit$paramb)
-  }else if(fit$distn == "unif"){
-    out <- runif(1000000, fit$parama, fit$paramb)
-  }else if(fit$distn == "exp"){
-    out <- rexp(1000000, fit$parama)
-  }else if(fit$distn == "gamma"){
-    out <- rgamma(1000000, fit$parama, fit$paramb)
-  }else if(fit$distn == "norm"){
-    out <- rnorm(1000000, fit$parama, fit$paramb)
-  }else if(fit$distn == "weibull"){
-    out <- rweibull(1000000, fit$parama, fit$paramb)
+  if(fit$distn == "norm"){
+    out <- rnorm(n, fit$parama, fit$paramb)
   }else if(fit$distn == "lnorm"){
-    out <- rlnorm(1000000, fit$parama, fit$paramb)
+    out <- rlnorm(n, fit$parama, fit$paramb)
+  }else if(fit$distn == "chisq"){
+    out <- rchisq(n, fit$parama)
+  }else if(fit$distn == "beta"){
+    out <- rbeta(n, fit$parama, fit$paramb)
   }else if(fit$distn == "pois"){
-    out <- rpois(1000000, fit$parama)
-    # }else if(fit$distn == "t"){
-    #   out <- rt(1000000, fit$parama, fit$paramb, fit$paramc)
-    # }else if(fit$distn == "lt"){
-    #   out <- rt(1000000, fit$parama, fit$paramb, fit$paramc, log.p = TRUE)
+    out <- rpois(n, fit$parama)
+  }else if(fit$distn == "exp"){
+    out <- rexp(n, fit$parama)
+  }else if(fit$distn == "gamma"){
+    out <- rgamma(n, fit$parama, fit$paramb)
+  }else if(fit$distn == "weibull"){
+    out <- rweibull(n, fit$parama, fit$paramb)
+  }else if(fit$distn == "unif"){
+    out <- runif(n, fit$parama, fit$paramb)
   }else{
     out <- NA
   }
   return(out)
 }
+
+
+
+
+
+
+
+# }else if(fit$distn == "t"){
+#   out <- rt(1000000, fit$parama, fit$paramb, fit$paramc)
+# }else if(fit$distn == "lt"){
+#   out <- rt(1000000, fit$parama, fit$paramb, fit$paramc, log.p = TRUE)

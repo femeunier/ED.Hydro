@@ -4,18 +4,17 @@
 \alias{prior_input}
 \title{Check if a prior is already in the database and enter it if it is not}
 \usage{
-prior_input(bety, myfit, variable_id.in, phylogeny.in, distn.in)
+prior_input(bety, variable_id.in, phylogeny.in, dist.name.in,
+  parama.in = NA, paramb.in = NA, paramc.in = NA)
 }
 \arguments{
 \item{bety}{BETY connection}
-
-\item{myfit}{fit object}
 
 \item{variable_id.in}{BETY variable id}
 
 \item{phylogeny.in}{BETY phylogeny}
 
-\item{distn.in}{BETY distribution}
+\item{dist.name.in}{BETY distribution}
 }
 \value{
 BETY prior id

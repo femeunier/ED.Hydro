@@ -1,0 +1,10 @@
+* using log directory ‘/fs/data3/ecowdery/ED.Hydro/ED.Hydro.Helpers.Rcheck’
+* using R version 3.4.4 (2018-03-15)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using options ‘--no-manual --as-cran’
+* checking for file ‘ED.Hydro.Helpers/DESCRIPTION’ ... ERROR
+Required field missing or empty:
+  ‘License’
+* DONE
+Status: 1 ERROR

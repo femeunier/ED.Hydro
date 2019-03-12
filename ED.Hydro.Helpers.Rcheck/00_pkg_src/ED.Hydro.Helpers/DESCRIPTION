@@ -1,0 +1,16 @@
+Package: ED.Hydro.Helpers
+Type: Package
+Title: Calculate parameter priors and add constraining data
+Authors@R: person("Betsy", "Cowdery", email = "emcowdery@gmail.com",
+                  role = c("aut", "cre"))
+Version: 0.1
+Description: Ok this isn't that fancy. 
+Encoding: UTF-8
+LazyLoad: yes
+LazyData: TRUE
+Imports: googledrive, PEcAn.DB, SHELF, tidyverse, XML
+RoxygenNote: 6.1.1
+NeedsCompilation: no
+Packaged: 2019-02-21 22:00:48 UTC; ecowdery
+Author: Betsy Cowdery [aut, cre]
+Maintainer: Betsy Cowdery <emcowdery@gmail.com>

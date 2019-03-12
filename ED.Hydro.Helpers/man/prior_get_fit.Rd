@@ -2,14 +2,14 @@
 % Please edit documentation in R/prior_get_fit.R
 \name{prior_get_fit}
 \alias{prior_get_fit}
-\title{Get a prior fit, specifically from the priors dataframe}
+\title{Get a prior fit, specifically from a priors dataframe}
 \usage{
-prior_get_fit(priors, i, plot = FALSE)
+prior_get_fit(prior_in, accepted_dists, plot = FALSE)
 }
 \arguments{
-\item{priors}{dataframe}
+\item{prior_in}{one row of the priors dataframe}
 
-\item{i}{row of dataframe to be used}
+\item{accepted_dists}{accepted dists}
 
 \item{plot}{option to plot the fits}
 }
@@ -17,5 +17,5 @@ prior_get_fit(priors, i, plot = FALSE)
 fit object
 }
 \description{
-Get a prior fit, specifically from the priors dataframe
+Get a prior fit, specifically from a priors dataframe
 }

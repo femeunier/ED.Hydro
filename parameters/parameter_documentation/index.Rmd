@@ -1,0 +1,9 @@
+--- 
+title: "Calculating ED Hydro Parameter Priors"
+author: "Betsy Cowdery"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+---

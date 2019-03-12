@@ -1,0 +1,12 @@
+book_filename: "Final_Book"
+chapter_name: "Chapter "
+rmd_files: [
+  "index.Rmd",
+  "01-Setup.Rmd",
+  "02-Starting_Parameters.Rmd",
+  "03-Leaf_Parameters.Rmd",
+  "04-Sapwood_Parameters.Rmd",
+  "05-Data_Compare.Rmd"
+  ]
+output_dir: "docs"
+delete_merged_file: TRUE

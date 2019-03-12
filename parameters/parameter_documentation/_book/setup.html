@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Calculating ED Hydro Parameter Priors</title>
+  <meta name="description" content="Calculating ED Hydro Parameter Priors">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Calculating ED Hydro Parameter Priors" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Calculating ED Hydro Parameter Priors" />
+  
+  
+  
+
+<meta name="author" content="Betsy Cowdery">
+
+
+<meta name="date" content="2019-03-08">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="starting-parameters.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
+<li class="chapter" data-level="2" data-path="starting-parameters.html"><a href="starting-parameters.html"><i class="fa fa-check"></i><b>2</b> Starting Parameters</a><ul>
+<li class="chapter" data-level="2.1" data-path="starting-parameters.html"><a href="starting-parameters.html#liquid-water-density"><i class="fa fa-check"></i><b>2.1</b> Liquid water density</a></li>
+<li class="chapter" data-level="2.2" data-path="starting-parameters.html"><a href="starting-parameters.html#gravity"><i class="fa fa-check"></i><b>2.2</b> Gravity</a></li>
+<li class="chapter" data-level="2.3" data-path="starting-parameters.html"><a href="starting-parameters.html#conversion-from-mpa-to-m"><i class="fa fa-check"></i><b>2.3</b> Conversion from MPa to m</a></li>
+<li class="chapter" data-level="2.4" data-path="starting-parameters.html"><a href="starting-parameters.html#wood-density"><i class="fa fa-check"></i><b>2.4</b> Wood density</a></li>
+<li class="chapter" data-level="2.5" data-path="starting-parameters.html"><a href="starting-parameters.html#specific-leaf-area-sla"><i class="fa fa-check"></i><b>2.5</b> Specific Leaf Area (SLA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html"><i class="fa fa-check"></i><b>3</b> Key Leaf Traits</a><ul>
+<li class="chapter" data-level="3.1" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#leaf-psi-osmotic"><i class="fa fa-check"></i><b>3.1</b> Leaf psi osmotic</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#prior-data-provided-by-brad-christoffersen-yes"><i class="fa fa-check"></i><b>3.1.1</b> Prior data provided by Brad Christoffersen: YES</a></li>
+<li class="chapter" data-level="3.1.2" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#conversion"><i class="fa fa-check"></i><b>3.1.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#leaf-bulk-elastic-modulus"><i class="fa fa-check"></i><b>3.2</b> Leaf bulk elastic modulus</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#prior-data-provided-by-brad-christoffersen-yes-1"><i class="fa fa-check"></i><b>3.2.1</b> Prior data provided by Brad Christoffersen: YES</a></li>
+<li class="chapter" data-level="3.2.2" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#conversion-1"><i class="fa fa-check"></i><b>3.2.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#density-of-leaf-tissue"><i class="fa fa-check"></i><b>3.3</b> Density of leaf tissue</a></li>
+<li class="chapter" data-level="3.4" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#leaf-water-content-at-saturation"><i class="fa fa-check"></i><b>3.4</b> Leaf water content at saturation</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#prior-data-provided-by-brad-christoffersen-yes-2"><i class="fa fa-check"></i><b>3.4.1</b> Prior data provided by Brad Christoffersen: YES</a></li>
+<li class="chapter" data-level="3.4.2" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#conversion-2"><i class="fa fa-check"></i><b>3.4.2</b> Conversion</a></li>
+<li class="chapter" data-level="3.4.3" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#conversion-3"><i class="fa fa-check"></i><b>3.4.3</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#leaf_psi_tlp"><i class="fa fa-check"></i><b>3.5</b> leaf_psi_tlp</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-and-conversion"><i class="fa fa-check"></i><b>3.5.1</b> Calculation and conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#leaf_water_cap"><i class="fa fa-check"></i><b>3.6</b> leaf_water_cap</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation"><i class="fa fa-check"></i><b>3.6.1</b> Calculation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#leaf_psi_min"><i class="fa fa-check"></i><b>3.7</b> leaf_psi_min</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-1"><i class="fa fa-check"></i><b>3.7.1</b> Calculation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="key-wood-traits.html"><a href="key-wood-traits.html"><i class="fa fa-check"></i><b>4</b> Key Wood Traits</a><ul>
+<li class="chapter" data-level="4.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#sapwood-osmotic-water-potential-at-saturation"><i class="fa fa-check"></i><b>4.1</b> Sapwood osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data"><i class="fa fa-check"></i><b>4.1.1</b> Prior data?</a></li>
+<li class="chapter" data-level="4.1.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#conversion-4"><i class="fa fa-check"></i><b>4.1.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#sapwood-bulk-elastic-modulus"><i class="fa fa-check"></i><b>4.2</b> Sapwood bulk elastic modulus</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-1"><i class="fa fa-check"></i><b>4.2.1</b> Prior data?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#conversion-5"><i class="fa fa-check"></i><b>4.2.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="key-wood-traits.html"><a href="key-wood-traits.html#sapwood-water-content-at-saturation"><i class="fa fa-check"></i><b>4.3</b> Sapwood water content at saturation</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-2"><i class="fa fa-check"></i><b>4.3.1</b> Prior data?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#conversion-6"><i class="fa fa-check"></i><b>4.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="key-wood-traits.html"><a href="key-wood-traits.html#sapwood-water-potential-at-turgor-loss-point"><i class="fa fa-check"></i><b>4.4</b> Sapwood water potential at turgor loss point</a></li>
+<li class="chapter" data-level="4.5" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-3"><i class="fa fa-check"></i><b>4.5</b> Prior data?</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-and-conversion-1"><i class="fa fa-check"></i><b>4.5.1</b> Calculation and conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="key-wood-traits.html"><a href="key-wood-traits.html#wood-hydaulic-capacitance."><i class="fa fa-check"></i><b>4.6</b> Wood hydaulic capacitance.</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-4"><i class="fa fa-check"></i><b>4.6.1</b> Prior data?</a></li>
+<li class="chapter" data-level="4.6.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-2"><i class="fa fa-check"></i><b>4.6.2</b> Calculation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="key-wood-traits.html"><a href="key-wood-traits.html#sapwood-minimum-relative-water-content-or-sapwood-residual-fraction"><i class="fa fa-check"></i><b>4.7</b> Sapwood minimum relative water content or Sapwood residual fraction</a></li>
+<li class="chapter" data-level="4.8" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-5"><i class="fa fa-check"></i><b>4.8</b> Prior data?</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-3"><i class="fa fa-check"></i><b>4.8.1</b> Calculation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="key-wood-traits.html"><a href="key-wood-traits.html#maximum-hydraulic-conductivity-of-the-stem"><i class="fa fa-check"></i><b>4.9</b> Maximum hydraulic conductivity of the stem</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-6"><i class="fa fa-check"></i><b>4.9.1</b> Prior data?</a></li>
+<li class="chapter" data-level="4.9.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#conversion-7"><i class="fa fa-check"></i><b>4.9.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="key-wood-traits.html"><a href="key-wood-traits.html#water-potential-at-which-50-of-stem-conductivity-is-lost"><i class="fa fa-check"></i><b>4.10</b> Water potential at which 50% of stem conductivity is lost</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-7"><i class="fa fa-check"></i><b>4.10.1</b> Prior data?</a></li>
+<li class="chapter" data-level="4.10.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#conversion-8"><i class="fa fa-check"></i><b>4.10.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="key-wood-traits.html"><a href="key-wood-traits.html#exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><i class="fa fa-check"></i><b>4.11</b> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#prior-data-8"><i class="fa fa-check"></i><b>4.11.1</b> Prior data?</a></li>
+<li class="chapter" data-level="4.11.2" data-path="key-wood-traits.html"><a href="key-wood-traits.html#conversion-9"><i class="fa fa-check"></i><b>4.11.2</b> Conversion</a></li>
+<li class="chapter" data-level="4.11.3" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-4"><i class="fa fa-check"></i><b>4.11.3</b> Calculation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html"><i class="fa fa-check"></i><b>5</b> Comparing Data to Priors</a><ul>
+<li class="chapter" data-level="5.1" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kmax"><i class="fa fa-check"></i><b>5.1</b> Kmax</a></li>
+<li class="chapter" data-level="5.2" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i><b>5.2</b> Psi50</a></li>
+<li class="chapter" data-level="5.3" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i><b>5.3</b> Kexp</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Calculating ED Hydro Parameter Priors</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Calculating ED Hydro Parameter Priors</h1>
+<p class="author"><em>Betsy Cowdery</em></p>
+<p class="date"><em>2019-03-08</em></p>
+</div>
+<div id="setup" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Setup</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(ED.Hydro.Helpers))
+<span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(rlang))
+<span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(knitr))
+<span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">10</span>)
+
+knitr::<span class="kw">include_graphics</span>(<span class="st">&quot;ED_HYDRO.png&quot;</span>)</code></pre></div>
+<p><img src="ED_HYDRO.png" /><!-- --></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bety &lt;-<span class="st"> </span><span class="kw">betyConnect</span>(<span class="st">&quot;/fs/data3/ecowdery/pecan/web/config.php&quot;</span>)
+PFT3_defaults_history &lt;-<span class="st"> &quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>
+
+stats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>,
+           <span class="st">&quot;low.025&quot;</span>, 
+           <span class="st">&quot;low.25&quot;</span>, 
+           <span class="st">&quot;mean&quot;</span>,
+           <span class="st">&quot;upp.75&quot;</span>,
+           <span class="st">&quot;upp.975&quot;</span>,
+           <span class="st">&quot;theor.max&quot;</span>)
+
+priors &lt;-<span class="st"> </span><span class="kw">prior_load_data</span>(<span class="dt">download =</span> <span class="ot">FALSE</span>, <span class="dt">subset =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;leaf_psi_tlp&quot;   &quot;wood_psi_tlp&quot;   &quot;rwc_tlp_wood&quot;   &quot;leaf_density&quot;  
+## [5] &quot;leaf_psi_min&quot;   &quot;leaf_water_cap&quot; &quot;wood_psi_min&quot;   &quot;wood_water_cap&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(priors)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">ED_name</th>
+<th align="left">Christoffersen_name</th>
+<th align="right">BETY_variable_id</th>
+<th align="right">BETY_prior_id</th>
+<th align="left">ED_units</th>
+<th align="left">Christoffersen_units</th>
+<th align="right">theor.min</th>
+<th align="right">low.025</th>
+<th align="right">low.25</th>
+<th align="right">mean</th>
+<th align="right">upp.75</th>
+<th align="right">upp.975</th>
+<th align="right">theor.max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">wood_Kexp</td>
+<td align="left">avuln_node</td>
+<td align="right">1000000291</td>
+<td align="right">1000000361</td>
+<td align="left">unitless</td>
+<td align="left">unitless</td>
+<td align="right">1e-01</td>
+<td align="right">1.00</td>
+<td align="right">10.0</td>
+<td align="right">NA</td>
+<td align="right">100</td>
+<td align="right">200.00</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">leaf_elastic_mod</td>
+<td align="left">epsil_node</td>
+<td align="right">1000000294</td>
+<td align="right">1000000387</td>
+<td align="left">MPa</td>
+<td align="left">MPa</td>
+<td align="right">1e+00</td>
+<td align="right">5.00</td>
+<td align="right">NA</td>
+<td align="right">20.00</td>
+<td align="right">NA</td>
+<td align="right">50.00</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">wood_elastic_mod</td>
+<td align="left">epsil_node</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">MPa</td>
+<td align="left">MPa</td>
+<td align="right">1e+00</td>
+<td align="right">5.00</td>
+<td align="right">NA</td>
+<td align="right">20.00</td>
+<td align="right">NA</td>
+<td align="right">50.00</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">wood_Kmax</td>
+<td align="left">kmax_node</td>
+<td align="right">1000000290</td>
+<td align="right">1000000357</td>
+<td align="left">kg H2O / m / s</td>
+<td align="left">kg m-1 s-1 MPa-1</td>
+<td align="right">1e-02</td>
+<td align="right">0.10</td>
+<td align="right">0.5</td>
+<td align="right">NA</td>
+<td align="right">5</td>
+<td align="right">10.00</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">wood_psi50</td>
+<td align="left">p50_node</td>
+<td align="right">1000000289</td>
+<td align="right">1000000360</td>
+<td align="left">m</td>
+<td align="left">MPa</td>
+<td align="right">1e-01</td>
+<td align="right">0.50</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="right">4</td>
+<td align="right">6.00</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">leaf_psi_osmotic</td>
+<td align="left">pinot_node</td>
+<td align="right">1000000295</td>
+<td align="right">1000000388</td>
+<td align="left">m</td>
+<td align="left">MPa</td>
+<td align="right">1e-01</td>
+<td align="right">0.50</td>
+<td align="right">NA</td>
+<td align="right">2.00</td>
+<td align="right">NA</td>
+<td align="right">4.00</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">wood_psi_osmotic</td>
+<td align="left">pinot_node</td>
+<td align="right">1000000298</td>
+<td align="right">NA</td>
+<td align="left">m</td>
+<td align="left">MPa</td>
+<td align="right">1e-01</td>
+<td align="right">0.50</td>
+<td align="right">NA</td>
+<td align="right">2.00</td>
+<td align="right">NA</td>
+<td align="right">4.00</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">leaf_psi_tlp</td>
+<td align="left">pitlp_node</td>
+<td align="right">1000000284</td>
+<td align="right">1000000384</td>
+<td align="left">m</td>
+<td align="left">MPa</td>
+<td align="right">5e-01</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">6.00</td>
+</tr>
+<tr class="odd">
+<td align="left">wood_psi_tlp</td>
+<td align="left">pitlp_node</td>
+<td align="right">1000000301</td>
+<td align="right">NA</td>
+<td align="left">m</td>
+<td align="left">MPa</td>
+<td align="right">1e-01</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">rwc_tlp_wood</td>
+<td align="left">rwctlp_node</td>
+<td align="right">1000000296</td>
+<td align="right">NA</td>
+<td align="left">unitless</td>
+<td align="left">unitless</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">leaf_water_sat</td>
+<td align="left">thetas_node</td>
+<td align="right">1000000285</td>
+<td align="right">1000000358</td>
+<td align="left">kg H2O/kg biomass</td>
+<td align="left">kg kg-1</td>
+<td align="right">1e-02</td>
+<td align="right">0.40</td>
+<td align="right">NA</td>
+<td align="right">0.65</td>
+<td align="right">NA</td>
+<td align="right">0.88</td>
+<td align="right">0.99</td>
+</tr>
+<tr class="even">
+<td align="left">wood_water_sat</td>
+<td align="left">thetas_node</td>
+<td align="right">1000000286</td>
+<td align="right">1000000359</td>
+<td align="left">kg H2O/kg biomass</td>
+<td align="left">kg kg-1</td>
+<td align="right">5e-02</td>
+<td align="right">0.35</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.80</td>
+<td align="right">0.90</td>
+</tr>
+<tr class="odd">
+<td align="left">leaf_density</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">kg/m3</td>
+<td align="left">NA</td>
+<td align="right">1e-07</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2000.00</td>
+</tr>
+<tr class="even">
+<td align="left">leaf_psi_min</td>
+<td align="left">NA</td>
+<td align="right">1000000299</td>
+<td align="right">1000000392</td>
+<td align="left">m</td>
+<td align="left">NA</td>
+<td align="right">1e-01</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">700.00</td>
+</tr>
+<tr class="odd">
+<td align="left">leaf_water_cap</td>
+<td align="left">NA</td>
+<td align="right">1000000287</td>
+<td align="right">1000000390</td>
+<td align="left">kg H2O/kg biomass/m</td>
+<td align="left">NA</td>
+<td align="right">1e-07</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">wood_psi_min</td>
+<td align="left">NA</td>
+<td align="right">1000000300</td>
+<td align="right">NA</td>
+<td align="left">m</td>
+<td align="left">NA</td>
+<td align="right">1e-01</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">wood_water_cap</td>
+<td align="left">NA</td>
+<td align="right">1000000288</td>
+<td align="right">1000000391</td>
+<td align="left">kg H2O/kg biomass/m</td>
+<td align="left">NA</td>
+<td align="right">1e-07</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/prior_calculations/prior_data/accepted_dists.Rdata&quot;</span>)</code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="starting-parameters.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
