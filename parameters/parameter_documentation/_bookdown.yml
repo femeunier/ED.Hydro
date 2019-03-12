@@ -8,5 +8,5 @@ rmd_files: [
   "04-Sapwood_Parameters.Rmd",
   "05-Data_Compare.Rmd"
   ]
-output_dir: "docs"
+output_dir: "/fs/data3/ecowdery/ED.Hydro/docs"
 delete_merged_file: TRUE
