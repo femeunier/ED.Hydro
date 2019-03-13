@@ -54,9 +54,6 @@ prior_plot(prior = leaf_psi_osmotic_prior,
            title = sprintf(" (leaf_psi_osmotic): %s", leaf_psi_osmotic_fit$distn),
            type = "data")
 ```
-Additional thoughts: All psi variables must be negative. 
-However, the normal distribution fits the prior data the best and the 95% CI falls below 0. 
-So for now I'm going to stick with the normal distribution. 
 
 ## Leaf bulk elastic modulus
 
@@ -178,13 +175,6 @@ prior_plot(prior = leaf_density_prior,
            type = "equation")
 
 ```
-So in this case, the log normal distribution fits the prior data better (with a lower RMSE)
-but the normal distribution fits the default values better. 
-I'm not really sure which is best ... 
-Down below I'll perform the next set of calculations using both the log normal and normal distributions. 
-At the end of the day, I think the distribution that fits better with the prior data (ie log normal) produces better looking results.
-Which is nice because I'd like to go by default and always choose the model with the better fit to the prior data. 
-
 
 ## Leaf water content at saturation
 
@@ -203,7 +193,7 @@ and the prior distribution for leaf_density.
 
 I am going to try doing both just to see how they differ.
 
-I am also going to calculate with both the normal and the log normal distribution for leaf density to see how it affects the final distribution. 
+I am also going to calculate with both the weibull and the log normal distribution for leaf density to see how it affects the final distribution. 
 
 ### Conversion 
 
@@ -315,15 +305,15 @@ ggplot(data = df2) +
 
 ```
 
-From this pot, we can see that just using the equations in the ED code makes 
+From this point, we can see that just using the equations in the ED code makes 
 the distributions predict low values which is definitely a problem given that 
 these values should not be zero and that the distribution underpredicts both 
-in relation to the default value and the three values that Felicien gave me. 
+in relation to the default value and the values that Felicien gave me. 
 
 Thus I would create the prior using the data provided by Brad. 
 I am also comfortable with chooseing the best fit distribution for leaf_density
-which is the log normal distribution instead of trying to come up with a reason 
-why we should make leaf density normal instead. 
+which is the weibull distribution instead of trying to come up with a reason 
+why we should make leaf density log normal instead. The log normal was the best if I didn't include the lower bound. 
 
 In short: I choose `leaf_water_sat_prior_2_2`
 
@@ -432,7 +422,6 @@ prior_plot(prior = leaf_psi_tlp_prior,
 
 ```
 
-Once again the 95% confidence interval is below 0 so I'm ok with using normal even though psi should be negative. 
 
 ## leaf_water_cap
 
