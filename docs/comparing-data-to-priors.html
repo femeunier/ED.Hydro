@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-03-13">
+<meta name="date" content="2019-03-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -203,10 +203,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 pftid &lt;-<span class="st"> </span><span class="dv">1000000132</span>
 
-tropical_species &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;pfts&quot;</span>) %&gt;%<span class="st"> </span>dplyr::<span class="kw">rename</span>(<span class="dt">pft_id =</span> id) %&gt;%<span class="st"> </span><span class="kw">filter</span>(pft_id ==<span class="st"> </span>pftid) %&gt;%
-<span class="st">  </span><span class="kw">inner_join</span>(., <span class="kw">tbl</span>(bety, <span class="st">&quot;pfts_species&quot;</span>), <span class="dt">by =</span> <span class="st">&quot;pft_id&quot;</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">inner_join</span>(., <span class="kw">tbl</span>(bety, <span class="st">&quot;species&quot;</span>) %&gt;%<span class="st"> </span>dplyr::<span class="kw">rename</span>(<span class="dt">specie_id =</span> id), <span class="dt">by =</span> <span class="st">&quot;specie_id&quot;</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span>dplyr::<span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;pft_id&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;specie_id&quot;</span>, <span class="st">&quot;genus&quot;</span>, <span class="st">&quot;species&quot;</span>, <span class="st">&quot;scientificname&quot;</span>)) %&gt;%<span class="st"> </span>
+tropical_species &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;pfts&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">pft_id =</span> id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pft_id <span class="op">==</span><span class="st"> </span>pftid) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">inner_join</span>(., <span class="kw">tbl</span>(bety, <span class="st">&quot;pfts_species&quot;</span>), <span class="dt">by =</span> <span class="st">&quot;pft_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(., <span class="kw">tbl</span>(bety, <span class="st">&quot;species&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">specie_id =</span> id), <span class="dt">by =</span> <span class="st">&quot;specie_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;pft_id&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;specie_id&quot;</span>, <span class="st">&quot;genus&quot;</span>, <span class="st">&quot;species&quot;</span>, <span class="st">&quot;scientificname&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">collect</span>()
 
 variables &lt;-<span class="st"> </span><span class="kw">c</span>(
@@ -223,25 +223,25 @@ variables &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="st">&quot;wood_Kexp&quot;</span>
 )
 
-variables_ids &lt;-<span class="st"> </span><span class="kw">lapply</span>(variables, function(v) <span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(name ==<span class="st"> </span>v) %&gt;%<span class="st"> </span><span class="kw">pull</span>(id)) %&gt;%<span class="st"> </span><span class="kw">unlist</span>()
+variables_ids &lt;-<span class="st"> </span><span class="kw">lapply</span>(variables, <span class="cf">function</span>(v) <span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>v) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unlist</span>()
 
 v_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(variables, variables_ids)
 
-species_ids &lt;-<span class="st"> </span><span class="kw">unique</span>(tropical_species$specie_id)
+species_ids &lt;-<span class="st"> </span><span class="kw">unique</span>(tropical_species<span class="op">$</span>specie_id)
 
-trait_data &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;traits&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(specie_id %in%<span class="st"> </span>species_ids) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(variable_id %in%<span class="st"> </span>variables_ids) %&gt;%<span class="st"> </span><span class="kw">collect</span>()</code></pre></div>
+trait_data &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;traits&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(specie_id <span class="op">%in%</span><span class="st"> </span>species_ids) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(variable_id <span class="op">%in%</span><span class="st"> </span>variables_ids) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()</code></pre></div>
 <div id="wood-density-1" class="section level2">
 <h2><span class="header-section-number">5.1</span> Wood Density</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v_id &lt;-<span class="st"> </span>v_df %&gt;%<span class="st"> </span><span class="kw">filter</span>(variables ==<span class="st"> &quot;wood_density&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">pull</span>(variables_ids)
-wood_density_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>v_id) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span><span class="dv">1000000281</span>) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v_id &lt;-<span class="st"> </span>v_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variables <span class="op">==</span><span class="st"> &quot;wood_density&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(variables_ids)
+wood_density_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span>v_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span><span class="dv">1000000281</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 
 wood_density_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_density_fit) 
 wood_density_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;rho&quot;</span>)
 
 p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_density_prior, 
            <span class="dt">plot_default =</span> wood_density_default,
-           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(wood_density): %s&quot;</span>, wood_density_fit$distn),
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(wood_density): %s&quot;</span>, wood_density_fit<span class="op">$</span>distn),
            <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)
 
 p </code></pre></div>
@@ -251,82 +251,82 @@ p </code></pre></div>
 </div>
 <div id="sla" class="section level2">
 <h2><span class="header-section-number">5.2</span> SLA</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v_id &lt;-<span class="st"> </span>v_df %&gt;%<span class="st"> </span><span class="kw">filter</span>(variables ==<span class="st"> &quot;SLA&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">pull</span>(variables_ids)
-SLA_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>v_id) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span><span class="dv">142</span>) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v_id &lt;-<span class="st"> </span>v_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variables <span class="op">==</span><span class="st"> &quot;SLA&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(variables_ids)
+SLA_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span>v_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span><span class="dv">142</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 
 SLA_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(SLA_fit) 
 SLA_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;SLA&quot;</span>)
 
 p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="dt">prior =</span> SLA_prior, 
            <span class="dt">plot_default =</span> SLA_default,
-           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(SLA): %s&quot;</span>, SLA_fit$distn),
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(SLA): %s&quot;</span>, SLA_fit<span class="op">$</span>distn),
            <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)
 
-obs &lt;-<span class="st"> </span>trait_data %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>v_df$variables_ids[v_df$variables ==<span class="st"> &quot;SLA&quot;</span>]) 
-obs$mean &lt;-<span class="st"> </span>obs$mean 
+obs &lt;-<span class="st"> </span>trait_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span>v_df<span class="op">$</span>variables_ids[v_df<span class="op">$</span>variables <span class="op">==</span><span class="st"> &quot;SLA&quot;</span>]) 
+obs<span class="op">$</span>mean &lt;-<span class="st"> </span>obs<span class="op">$</span>mean 
 
-p +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
+p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
 <p><img src="Final_Book_files/figure-html/plot%20with%20data%20SLA-1.png" width="672" /></p>
 </div>
 <div id="kmax" class="section level2">
 <h2><span class="header-section-number">5.3</span> Kmax</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_Kmax_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span>wood_Kmax_prior_id) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
-wood_Kmax_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_Kmax_fit) <span class="co"># NOTE: Need to convert to m from -m </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_Kmax_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_Kmax_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_Kmax_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_Kmax_fit) <span class="co"># </span><span class="al">NOTE</span><span class="co">: Need to convert to m from -m </span>
 wood_Kmax_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_Kmax&quot;</span>)
 
 p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_Kmax_prior, 
            <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>),
            <span class="dt">plot_default =</span> wood_Kmax_default,
-           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Maximum hydraulic conductivity of the stem (wood_Kmax): %s&quot;</span>, wood_Kmax_fit$distn),
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Maximum hydraulic conductivity of the stem (wood_Kmax): %s&quot;</span>, wood_Kmax_fit<span class="op">$</span>distn),
            <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)
 
-obs &lt;-<span class="st"> </span>trait_data %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>v_df$variables_ids[v_df$variables ==<span class="st"> &quot;wood_Kmax&quot;</span>]) 
-obs$mean &lt;-<span class="st"> </span>obs$mean 
+obs &lt;-<span class="st"> </span>trait_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span>v_df<span class="op">$</span>variables_ids[v_df<span class="op">$</span>variables <span class="op">==</span><span class="st"> &quot;wood_Kmax&quot;</span>]) 
+obs<span class="op">$</span>mean &lt;-<span class="st"> </span>obs<span class="op">$</span>mean 
 
-p +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
+p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
 <pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20with%20data%20wood_Kmax-1.png" width="672" /></p>
 </div>
 <div id="psi50" class="section level2">
 <h2><span class="header-section-number">5.4</span> Psi50</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_psi50_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span>wood_psi50_prior_id) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
-wood_psi50_prior &lt;-<span class="st"> </span>-<span class="kw">rdistn</span>(wood_psi50_fit) <span class="co"># NOTE: Need to convert to m from -m </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_psi50_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_psi50_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_psi50_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(wood_psi50_fit) <span class="co"># </span><span class="al">NOTE</span><span class="co">: Need to convert to m from -m </span>
 
 <span class="co"># Calculating default by hand because it is calculated wrong in ED! </span>
-wood_psi50_default &lt;-<span class="st"> </span>(-<span class="fl">1.09</span> -<span class="st"> </span>(<span class="fl">3.57</span> *<span class="st"> </span>default_wood_density ^<span class="st"> </span><span class="fl">1.73</span>)) *<span class="st"> </span>MPa2m
+wood_psi50_default &lt;-<span class="st"> </span>(<span class="op">-</span><span class="fl">1.09</span> <span class="op">-</span><span class="st"> </span>(<span class="fl">3.57</span> <span class="op">*</span><span class="st"> </span>default_wood_density <span class="op">^</span><span class="st"> </span><span class="fl">1.73</span>)) <span class="op">*</span><span class="st"> </span>MPa2m
 wrong_wood_psi50_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;wood_psi50&quot;</span>)
 
 p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_psi50_prior, 
            <span class="dt">q =</span> <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="dv">1</span>),
            <span class="dt">plot_default =</span> wood_psi50_default,
-           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s&quot;</span>, wood_psi50_fit$distn),
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s&quot;</span>, wood_psi50_fit<span class="op">$</span>distn),
            <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>) 
 
-obs &lt;-<span class="st"> </span>trait_data %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>v_df$variables_ids[v_df$variables ==<span class="st"> &quot;wood_psi50&quot;</span>]) 
-obs$mean &lt;-<span class="st"> </span>obs$mean 
+obs &lt;-<span class="st"> </span>trait_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span>v_df<span class="op">$</span>variables_ids[v_df<span class="op">$</span>variables <span class="op">==</span><span class="st"> &quot;wood_psi50&quot;</span>]) 
+obs<span class="op">$</span>mean &lt;-<span class="st"> </span>obs<span class="op">$</span>mean 
 
-p +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
+p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
 <pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20with%20data%20wood_psi50-1.png" width="672" /></p>
 </div>
 <div id="kexp" class="section level2">
 <h2><span class="header-section-number">5.5</span> Kexp</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_Kexp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span>wood_Kexp_prior_id) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_Kexp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_Kexp_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 wood_Kexp_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_Kexp_fit)
 
 <span class="co"># Calculating default by hand because psi50 is calculated wrong in ED!</span>
-wood_Kexp_default &lt;-<span class="st"> </span><span class="fl">0.544</span> *<span class="st"> </span><span class="dv">4</span>. *<span class="st"> </span>(-wood_psi50_default /<span class="st"> </span>MPa2m) ^<span class="st"> </span>(-<span class="fl">0.17</span>)
+wood_Kexp_default &lt;-<span class="st"> </span><span class="fl">0.544</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span>. <span class="op">*</span><span class="st"> </span>(<span class="op">-</span>wood_psi50_default <span class="op">/</span><span class="st"> </span>MPa2m) <span class="op">^</span><span class="st"> </span>(<span class="op">-</span><span class="fl">0.17</span>)
 wrong_wood_Kexp_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;wood_Kexp&quot;</span>)
 
 p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_Kexp_prior, 
                 <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>), 
                 <span class="dt">plot_default =</span> wood_Kexp_default,
-                <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s&quot;</span>, wood_Kexp_fit$distn),
+                <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s&quot;</span>, wood_Kexp_fit<span class="op">$</span>distn),
                 <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>) 
 
-obs &lt;-<span class="st"> </span>trait_data %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>v_df$variables_ids[v_df$variables ==<span class="st"> &quot;wood_Kexp&quot;</span>]) 
+obs &lt;-<span class="st"> </span>trait_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span>v_df<span class="op">$</span>variables_ids[v_df<span class="op">$</span>variables <span class="op">==</span><span class="st"> &quot;wood_Kexp&quot;</span>]) 
 
-p +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
+p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">x =</span> mean, <span class="dt">fill =</span> <span class="st">&quot;obs&quot;</span>), <span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="ot">NA</span>)</code></pre></div>
 <pre><code>## Warning: Removed 50000 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20with%20data%20Kexp-1.png" width="672" /></p>
 

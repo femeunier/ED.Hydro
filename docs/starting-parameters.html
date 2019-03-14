@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-03-13">
+<meta name="date" content="2019-03-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -219,7 +219,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>ED variable name : <code>MPa2m</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MPa2m &lt;-<span class="st"> </span>wdns /<span class="st"> </span>grav</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MPa2m &lt;-<span class="st"> </span>wdns <span class="op">/</span><span class="st"> </span>grav</code></pre></div>
 </div>
 <div id="wood-density" class="section level2">
 <h2><span class="header-section-number">2.4</span> Wood density</h2>
@@ -231,7 +231,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>In the database, wood_density is unitless. So I’m assuming it can be directly mapped to our <code>wood_density</code> as such:</p>
 <p><span class="math display">\[\frac{WD (gcm^{-2})}{\rho_w(gcm^{-2})} * \rho_w(gcm^{-2}) =  \frac{WD (gcm^{-2})}{1(gcm^{-2})} * 1(gcm^{-2})\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_density_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span><span class="dv">1000000055</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span><span class="dv">1000000281</span>) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_density_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span><span class="dv">1000000055</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span><span class="dv">1000000281</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 wood_density_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_density_fit)
 default_wood_density &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;rho&quot;</span>) 
 
@@ -247,7 +247,7 @@ default_wood_density &lt;-<span class="st"> </span><span class="kw">get_ED_defau
 <li>ED variable name : <code>SLA</code></li>
 <li>ED variable id: 15</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SLA_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span><span class="dv">15</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span><span class="dv">142</span>) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SLA_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span><span class="dv">15</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span><span class="dv">142</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 <span class="co"># In this case, we are using prior_id = 142, this was chosen by someone else and maybe we&#39;ll revisit</span>
 SLA_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(SLA_fit)
 <span class="kw">plot</span>(<span class="kw">density</span>(SLA_prior), <span class="dt">main =</span> <span class="st">&quot;SLA prior&quot;</span>)
