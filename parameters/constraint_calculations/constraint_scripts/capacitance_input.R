@@ -6,23 +6,27 @@ wdns <- 1.000e3
 grav <- 9.80665
 MPa2m <- wdns / grav
 
-cap <- read.csv("/fs/data3/ecowdery/ED.Hydro/parameters/constraints/Capacitance_BETY.csv")
+################################################################################
+# Load Data
 
-names(cap)
+datafile <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Capacitance_BETY.csv"
+dat <- read.csv(datafile, stringsAsFactors = FALSE) %>% rename(species = Species)
 
-unique(cap$Organ)
+names(dat)
 
-cap <- cap %>% mutate(water_cap =  case_when(
+unique(dat$Organ)
+
+dat <- dat %>% mutate(water_cap =  case_when(
   Organ == "Leaf" ~ "leaf_water_cap",
   Organ == "Xylem" ~ "wood_water_cap"
 ))
 
-cap <- cap %>% mutate( Cft_conv = case_when(
+dat <- dat %>% mutate( Cft_conv = case_when(
   Organ == "Leaf" ~ Cft * 1/MPa2m,
   Organ == "Xylem" ~ Cft * 1/MPa2m * 1/1000 #* 1/WD
 ))
 
-ggplot(cap) + geom_density(aes(x = Cft_conv, col = Organ))
+# ggplot(dat) + geom_density(aes(x = Cft_conv, col = Organ))
 
 ################################################################################
 ## Wood Density
@@ -42,7 +46,10 @@ p <- prior_plot(prior = wood_density_prior,
                 title = sprintf("Wood Density"),
                 type = "prior")
 
-p + geom_density(data = cap, aes(x = WD, fill = "obs"), alpha = .3, color = NA)
+p + geom_density(data = dat, aes(x = WD, fill = "obs"), alpha = .3, color = NA)
+
+ggplot() + geom_density(data = dat, aes(x = WD, fill = Organ), alpha = .3, color = NA) +
+  geom_density(data = data.frame(WD = wood_density_prior), aes(x = WD))
 
 ################################################################################
 ## Leaf Water Capacitance
@@ -55,13 +62,13 @@ leaf_water_cap_fit <- tbl(bety, "priors") %>%
   collect()
 
 leaf_water_cap_prior <- rdistn(leaf_water_cap_fit) * (1/1000)
-leaf_water_cap_data <- cap %>% filter(Organ == "Leaf")
+leaf_water_cap_data <- dat %>% filter(Organ == "Leaf")
 leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")
 
 prior_plot(prior = leaf_water_cap_prior,
            q = c(0,.995),
            plot_default = leaf_water_cap_default,
-           title = sprintf("Leaf Water Cap"),
+           title = sprintf("Leaf Water dat"),
            type = "prior") +
   geom_density(data = leaf_water_cap_data, aes(x = Cft_conv, fill = "obs"), alpha = .3, color = NA)
 
@@ -77,20 +84,33 @@ wood_water_cap_fit <- tbl(bety, "priors") %>%
   collect()
 
 wood_water_cap_prior <- rdistn(wood_water_cap_fit) * (1/1000)
-wood_water_cap_data <- cap %>% filter(Organ == "Xylem")
+wood_water_cap_data <- dat %>% filter(Organ == "Xylem")
 leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")
 
 prior_plot(prior = wood_water_cap_prior,
            # q = c(0,1),
            plot_default = leaf_water_cap_default,
-           title = sprintf("Wood Water Cap"),
+           title = sprintf("Wood Water dat"),
            type = "prior") +
   geom_density(data = wood_water_cap_data, aes(x = Cft_conv, fill = "obs"), alpha = .3, color = NA)
 
 ################################################################################
 ## SLA
 
-get.trait.data()
+SLA_variable_id <- tbl(bety, "variables") %>%
+  filter(name == "SLA") %>% pull(id)
+SLA_fit <- tbl(bety, "priors") %>% filter(variable_id == SLA_variable_id) %>% filter(id == 142) %>% collect()
+
+SLA_prior <- rdistn(SLA_fit)
+SLA_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "SLA")
+
+p <- prior_plot(prior = SLA_prior,
+                plot_default = SLA_default,
+                title = sprintf("SLA"),
+                type = "prior")
+p + geom_density(data = dat, aes(x = SLA, fill = "obs"), alpha = .3, color = NA)
+
+ggplot() + geom_density(data = dat, aes(x = SLA, fill = Organ), alpha = .3, color = NA)
 
 
 ################################################################################
@@ -98,7 +118,7 @@ get.trait.data()
 
 source("/fs/data3/ecowdery/FRED/project_functions.R")
 
-all_doi <- unique(na.omit(cap$doi))
+all_doi <- unique(na.omit(dat$doi))
 
 bibs <- list()
 
@@ -169,3 +189,82 @@ for(i in seq_along(all_doi)){
 
   bibs[[i]]$citation_id <- citation_id
 }
+
+################################################################################
+
+# Get species id
+
+sp <- data.frame(species = sort(unique(dat$species)),
+                 species_matched = NA,
+                 species_id = NA,
+                 stringsAsFactors = FALSE)
+
+# # Species that will return multiple results that we can preemptively fill and one typo
+# sp[sp$species == "anacardium excelsum", "species_id"] <- 49943
+# # sp[sp$species == "bursera simarouba", "species_id"] <- 227
+# sp[sp$species == "cedrela fissilis", "species_id"] <- 1000002385
+# sp[sp$species == "luehea seemannii", "species_id"] <- 50567
+# sp[sp$species == "manilkara bidentata", "species_id"] <- 43171
+# sp[sp$species == "schefflera morototoni", "species_id"] <- 51206
+#
+
+for(i in seq_along(sp$species)){
+
+  if(is.na(sp$species_id[i])){
+
+    find <- tbl(bety, "species") %>%
+      filter(toupper(scientificname) == toupper(sp$species[i])) %>%
+      select(one_of("id", "genus", "species", "scientificname")) %>%
+      collect()
+      # filter(grepl(sp$species[i], scientificname, ignore.case = TRUE)) %>% collect
+
+    if(dim(find)[1] == 1){
+      sp$species_matched[i] <- find$scientificname
+      sp$species_id[i] <- find$id
+
+    } else {
+
+      print(paste0(i, ": ", sp$species[i]))
+
+      g <- strsplit(sp$species[i], " ") %>% unlist %>% .[1]
+      s <- strsplit(sp$species[i], " ") %>% unlist %>% .[2]
+
+      find2 <- tbl(bety, "species") %>%
+        filter(grepl(g, genus, ignore.case = TRUE))   %>%
+        filter(grepl(s, species, ignore.case = TRUE)) %>% collect
+
+      if(dim(find2)[1]>=1){
+        if(dim(find)[1]>=1){
+          full_join(find, find2, by = c("id", "genus", "species", "scientificname")) %>% select(one_of("id", "genus", "species", "scientificname"))  %>%  print
+        }else{ find2 %>% select(one_of("id", "genus", "species", "scientificname"))  %>% print }
+      }
+    }
+  }
+}
+
+
+View(sp)
+
+View(left_join(sp %>% filter(is.na(species_id)), dat))
+
+sum(is.na(sp$species_id))
+
+sp$species_matched <- NA
+
+library(taxize)
+
+names <- problem_species
+
+
+resolved_names <- list()
+for(n in names){
+  resolved_names[[n]] <- gnr_resolve(n)
+}
+
+resolved_names$`albizia guachapele`
+
+
+get_tsn("Albizia guachapele")
+
+
+itis_acceptname(names)
