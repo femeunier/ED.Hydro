@@ -56,7 +56,7 @@ i_range <- seq_along(sp$submit_name)
 for(i in i_range){
 
   if(sp$case[i] == 0){
-
+    Sys.sleep(.4)
     print(paste0(i, ": ", sp$submit_name[i]))
 
     # This is a bit redundant but I find it helpful for the debugging
@@ -154,7 +154,7 @@ for(i in i_range){
     case13 <- !accept_name_exists
     if(case13){
       case01 = case02 = case03 = case04 = case05 = case06 = case07 = case08 =
-      case09 = case10 = case11 = case12 = FALSE
+        case09 = case10 = case11 = case12 = FALSE
     }
 
     if(sum(case01, case02, case03, case04, case05, case06, case07, case08,
