@@ -12,7 +12,8 @@ variables <- c(
   "leaf_psi_tlp",
   "wood_Kmax",
   "wood_psi50",
-  "wood_Kexp"
+  "wood_Kexp",
+  "fineroot2leaf"
 )
 
 pftid <- 1000000131

@@ -1,0 +1,10 @@
+"","distn","parama","paramb","n"
+"fineroot2leaf","lnorm",0.21,0.6,0
+"SLA","weibull",2.1,12.1,967
+"wood_density","unif",0.49,0.9,NA
+"wood_psi50","norm",284.65,176.32,NA
+"leaf_psi_tlp","lnorm",5.42,0.54,NA
+"leaf_water_cap","lnorm",-0.29,0.76,NA
+"wood_water_cap","lnorm",-0.47,0.49,NA
+"wood_Kmax","exp",32.66,NA,NA
+"wood_Kexp","exp",0.02,NA,NA
