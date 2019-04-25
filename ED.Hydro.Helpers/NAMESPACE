@@ -3,6 +3,7 @@
 export(clean_NAs)
 export(clean_chars)
 export(get_ED_default)
+export(insert_dois)
 export(insert_traits)
 export(nearby_sites)
 export(pdistn)

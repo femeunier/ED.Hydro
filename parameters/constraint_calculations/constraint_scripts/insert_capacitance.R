@@ -15,11 +15,6 @@ datafile <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/cons
 dat_in <- read.csv(datafile, stringsAsFactors = FALSE) %>% rename(species = Species)
 dat_in$Ref <- str_replace(string = dat_in$Ref, pattern = "[.]", replacement = "")
 
-unique(dat_in$Ref) %>% length()
-unique(dat_in$doi) %>% length()
-
-dat_in %>% select("Ref", "doi") %>% distinct()
-
 trait.data <- read.csv("/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/get_trait_results/ED_tropical_hydro/trait.data.csv", stringsAsFactors = FALSE)
 
 ################################################################################
@@ -34,6 +29,7 @@ sp <- sp_in %>%
 
 dat <- inner_join(dat_in, sp, by = "species")
 
+################################################################################
 # Set treatment id
 
 dat$treatment <- 2000000012
@@ -41,108 +37,54 @@ dat$treatment <- 2000000012
 ################################################################################
 ##  Check that citations are in the database
 
-# Some doi's are wrong in the data!
-dat$doi[which(dat$Ref == "Werden et al 2018")] <- "10.1093/treephys/tpx135"
-
-# I can't reconcile these ones:
-# dim(dat)
-# dim(dat %>% filter((Ref == "Meinzer et al 2008" & doi == "10.1046/j.1365-3040.2003.01039.x")))
-# dat %>% filter((Ref == "Meinzer et al 2008" & doi == "10.1093/treephys/28.11.1609")) %>% arrange(Long)
-#
-# example <- dat %>% filter(doi == "10.1046/j.1365-3040.2003.01039.x") %>% arrange(Ref, Long) %>% select(-specie_id) %>% mutate(in_paper = FALSE)
-# example$in_paper[which(example$WD == .39)] <- TRUE
-# example$in_paper[which(example$WD == .29)] <- TRUE
-# example$in_paper[which(example$WD == .28)] <- TRUE
-# example$in_paper[which(example$WD == .52)] <- TRUE
-# example
-
-dat <- dat %>% filter(!(Ref == "Meinzer et al 2008" & doi == "10.1046/j.1365-3040.2003.01039.x"))
-
-
-#################
-
 unique(dat$Ref) %>% length()
 unique(dat$doi) %>% length()
 dat %>% select("Ref", "doi") %>% distinct()
 
+# Some doi's are wrong in the data!
+dat$doi[which(dat$Ref == "Werden et al 2018")] <- "10.1093/treephys/tpx135"
+
+# Here begins the mess that is the Meinzer data
+# M <- dat %>%
+#   filter(str_detect(Ref, "Meinzer")) %>%
+#   filter(!Ref == "Meinzer et al 2003") %>% # The 2003 ref is fine
+#   mutate(s = paste(Long, Lat)) %>%
+#   mutate(site = factor(s, labels=c(1:length(unique(s))))) %>%
+#   select(-one_of("s")) %>%
+#   arrange(doi, site, species)
+# M
+# M <- M %>% filter(!doi == "10.1093/treephys/28.11.1609") # One of the 2008 refs is fine
+# M
+# # Fixing another 2008 Ref ... well I thought this was right until I realized that site 3 also sort of counts.
+# M[which(M$site == 1 | M$site == 4), "doi"] <- "10.1007/s00442-008-0974-5"
+# M <- M %>% filter(!doi == "10.1007/s00442-008-0974-5")
+
+# Currently I'm still leaving this shit mess out.
+dat <- dat %>% filter(!(Ref == "Meinzer et al 2008" & doi == "10.1046/j.1365-3040.2003.01039.x"))
+
+################################################################################
 
 dat$citation_id <- NA
 
 all_doi <- unique(na.omit(dat$doi))
 
-bibs <- list()
+bibs <- insert_dois(all_doi)
 
-for(i in seq_along(all_doi)){
-  print(i)
-  bibs[[i]] = rcrossref::cr_cn(dois = all_doi[i], format = "bibentry")
-
-  check_doi <- tbl(bety, "citations") %>% filter(doi == bibs[[i]]$doi) %>% collect()
-
-  queries <- data.frame(include = c("user_id", "created_at", "updated_at"),
-                        values = c("1000000003", "NOW()", "NOW()"),
-                        stringsAsFactors = FALSE)
-
-  if(nrow(check_doi) == 0){
-
-    if(!is.null(bibs[[i]]$author)){
-      new <- c("author", paste0("'", paste(bibs[[i]]$author, collapse = ", ")
-                                %>% clean_chars(), "'"))
-      queries <- rbind.data.frame(queries, new)
-    }
-    if(!is.null(bibs[[i]]$year)){
-      new <- c("year", paste0(as.numeric(bibs[[i]]$year)))
-      queries <- rbind.data.frame(queries, new)
-    }
-    if(!is.null(bibs[[i]]$title)){
-      new <- c("title", paste0("'", paste(bibs[[i]]$title, collapse = ", ")
-                               %>% clean_chars(), "'"))
-      queries <- rbind.data.frame(queries, new)
-    }
-    if(!is.null(bibs[[i]]$journal)){
-      new <- c("journal", paste0("'", paste(bibs[[i]]$journal, collapse = ", ")
-                                 %>% clean_chars(), "'"))
-      queries <- rbind.data.frame(queries, new)
-    }
-    if(!is.null(bibs[[i]]$volume)){
-      new <- c("vol", paste0(as.numeric(bibs[[i]]$volume)))
-      queries <- rbind.data.frame(queries, new)
-    }
-    if(!is.null(bibs[[i]]$pg)){
-      new <- c("pg", paste0("'", bibs[[i]]$pages %>%
-                              str_replace(pattern = "--",replacement = "-") %>%
-                              str_squish, "'"))
-      queries <- rbind.data.frame(queries, new)
-    }
-    if(!is.null(bibs[[i]]$url)){
-      new <- c("url", paste0("'", bibs[[i]]$url %>% str_squish, "'"))
-      queries <- rbind.data.frame(queries, new)
-    }
-    if(!is.null(bibs[[i]]$doi)){
-      new <- c("doi", paste0("'", bibs[[i]]$doi %>% str_squish, "'"))
-      queries <- rbind.data.frame(queries, new)
-    }
-
-    paste(queries$include, collapse = ", ")
-    paste(queries$values, collapse = ", ")
-
-    insert.query <- sprintf("INSERT INTO citations (%s) VALUES(%s) RETURNING id;",
-                            paste(queries$include, collapse = ", "),
-                            paste(queries$values, collapse = ", "))
-
-    citation_id <- db.query(insert.query, bety$con)
-    sprintf("Citation %10.0f added to BETY", citation_id)
-
-  }else{
-    citation_id <- check_doi$id
-    print(sprintf("Citation %10.0f already in BETY", citation_id))
-  }
-
-  bibs[[i]]$citation_id <- citation_id
-
+for(i in seq_along(bibs)){
   idx <- which(dat$doi == bibs[[i]]$doi)
-  dat$citation_id[idx] <- citation_id
-}
+  authors <- bibs[[i]]$author %>% str_split(" ") %>% unlist()
+  author <- authors %>% head(min(length(authors), 5))
+  year <- bibs[[i]]$year
 
+  print(paste0(i," | ",unique(dat[idx, "Ref"])))
+  print(bibs[[i]]$key)
+
+  print(str_match(unique(dat[idx, "Ref"]), author))
+  print(str_match(unique(dat[idx, "Ref"]), year))
+
+  print("--------------------------------------------")
+  dat$citation_id[idx] <- bibs[[i]]$citation_id
+}
 
 ################################################################################
 ##  Check that sites are in the database
@@ -166,7 +108,8 @@ for(i in 1:nrow(dat_sites)){
   print(sprintf("%.2f, %.2f, %s", dat_sites$Lat[i], dat_sites$Long[i], dat_sites$Biome[i]))
 
   # 1) Does the citation already have a site attached?
-  test1 <- tbl(bety, "citations_sites") %>% filter(citation_id == dat_sites$citation_id[i]) %>% collect()
+  cit_id <- dat_sites$citation_id[i]
+  test1 <- tbl(bety, "citations_sites") %>% filter(citation_id == cit_id) %>% collect()
 
   # 2) Are there things in BETY that are nearby the site?
   lat <- as.numeric(dat_sites[i,"Lat"])
@@ -209,8 +152,8 @@ dat <- dat %>% mutate(water_cap =  case_when(
 ))
 
 dat <- dat %>% mutate( Cft_conv = case_when(
-  Organ == "Leaf" ~ Cft * 1/MPa2m,
-  Organ == "Xylem" ~ Cft * 1/MPa2m * 1/1000 #* 1/WD
+  Organ == "Leaf" ~ Cft * 1/MPa2m * 1000,
+  Organ == "Xylem" ~ Cft * 1/MPa2m #* 1/WD
 ))
 
 ggplot(dat) + geom_density(aes(x = Cft_conv, col = Organ))
@@ -265,8 +208,29 @@ p <- prior_plot(prior = wood_density_prior,
 p + geom_density(data = wood_density_traits,
                  aes(x = var, fill = "obs"), alpha = .3, color = NA)
 
-ggplot() + geom_density(data = dat, aes(x = WD, fill = Organ), alpha = .3, color = NA) +
-  geom_density(data = data.frame(WD = wood_density_prior), aes(x = WD))
+ggplot() +
+  geom_rect(aes(xmin=wood_density_fit$parama, xmax=wood_density_fit$paramb, ymin=0, ymax=Inf), alpha = .5) +
+  geom_density(data = wood_density_traits,
+                        aes(x = var, fill = as.factor(citation_id)), alpha = .5, position="stack") +
+  theme_classic()
+
+ggplot() +
+  geom_rect(aes(xmin=wood_density_fit$parama, xmax=wood_density_fit$paramb, ymin=0, ymax=Inf), alpha = .5) +
+  geom_histogram(data = wood_density_traits,
+               aes(x = var, fill = as.factor(site_id)), bins = 60) +
+  theme_classic()
+
+ggplot() +
+  geom_rect(aes(xmin=wood_density_fit$parama, xmax=wood_density_fit$paramb, ymin=0, ymax=Inf), alpha = .5) +
+  geom_density(data = wood_density_traits,
+               aes(x = var, fill = as.factor(site_id)), alpha = .5, position="stack") +
+  theme_classic()
+
+ggplot() +
+  geom_rect(aes(xmin=wood_density_fit$parama, xmax=wood_density_fit$paramb, ymin=0, ymax=Inf), alpha = .5) +
+  geom_density(data = wood_density_traits,
+                        aes(x = var, fill = as.factor(citation_id)), alpha = .3) +
+  theme_classic()
 
 ################################################################################
 ## Leaf Water Capacitance
@@ -284,27 +248,33 @@ insert_dat <- dat_ready %>%
   mutate(trait_id = NA) %>%
   distinct()
 
+# for(i in seq_along(insert_dat$var)){
+#   update.query <- sprintf("UPDATE traits SET mean = %.0f WHERE mean = %.0f;",
+#                           insert_dat$var[i]*1000, insert_dat$var[i])
+#   trait_id <- db.query(insert.query, bety$con)
+# }
+
+
 leaf_water_cap_traits <- insert_traits(insert_dat = insert_dat, bety = bety)
 
 leaf_water_cap_fit <- tbl(bety, "priors") %>%
   filter(variable_id == var_id) %>%
   collect()
 
-leaf_water_cap_prior <- rdistn(leaf_water_cap_fit) * (1/1000)
-leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")
+leaf_water_cap_prior <- rdistn(leaf_water_cap_fit)
+leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap") * 1000
 
 p <- prior_plot(prior = leaf_water_cap_prior,
-           q = c(0,.995),
-           plot_default = leaf_water_cap_default,
-           title = sprintf("Leaf Water Capacitance"),
-           type = "prior")
+                q = c(0,.995),
+                plot_default = leaf_water_cap_default,
+                title = sprintf("Leaf Water Capacitance"),
+                type = "prior")
 p + geom_density(data = leaf_water_cap_traits, aes(x = var, fill = "obs"), alpha = .3, color = NA)
 
 ################################################################################
 ## Wood water capacitance
 ## Sapwood: kg m-3 MPa-1
 ## (~1/(1000*WD*MPa2M I guess)
-
 
 var <- "wood_water_cap"
 var_id <- tbl(bety, "variables") %>% filter(name == var) %>% pull(id)
@@ -324,8 +294,8 @@ wood_water_cap_fit <- tbl(bety, "priors") %>%
   filter(variable_id == var_id) %>%
   collect()
 
-wood_water_cap_prior <- rdistn(wood_water_cap_fit) * (1/1000)
-wood_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_cap")
+wood_water_cap_prior <- rdistn(wood_water_cap_fit)
+wood_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_cap") * 1000
 
 p <- prior_plot(prior = wood_water_cap_prior,
                 q = c(0,.995),
@@ -362,4 +332,3 @@ p <- prior_plot(prior = SLA_prior,
                 title = sprintf("SLA"),
                 type = "prior")
 p + geom_density(data = SLA_traits, aes(x = var, fill = "obs"), alpha = .3, color = NA)
-p + geom_density(data = dat, aes(x = SLA, fill = "obs"), alpha = .3, color = NA)
