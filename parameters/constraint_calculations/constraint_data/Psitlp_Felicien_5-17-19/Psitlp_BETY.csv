@@ -1,0 +1,297 @@
+Species,Ptlp,WD,SLA,Organ,Ref,Biome,Long,Lat
+irvingia malayana,-1.83,0.883333333,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,99.78333333,7.56666667
+mallotus penangensis,-1.15,0.59,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,102.3,2.96666667
+millettia atropurpurea,-1.12,0.61,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,99.78333333,7.56666667
+palaquium sumatranum,-1.88,0.52,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,99.78333333,7.56666667
+parashorea densiflora,-1.83,0.67,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,102.3,2.96666667
+quercus semiserrata,-1.42,0.712333333,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,99.78333333,7.56666667
+shorea guiso,-1.38,0.705,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,102.3,2.96666667
+shorea macroptera,-0.93,0.425,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,102.3,2.96666667
+shorea parvifolia,-1.1,0.405,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,102.3,2.96666667
+vatica odorata,-1.27,0.79,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,99.78333333,7.56666667
+xanthophyllum affine,-1.8,0.613333333,NaN,Leaf,"Baltzer et al. 2008",Tropical rainforest,102.3,2.96666667
+barringtonia pendula,-1.246333333,0.52,NaN,Leaf,"Bartlett unpublished data",Tropical seasonal forest,101.574,21.6117
+quercus oleoides,-3.12,0.86,5.555555556,Leaf,"Brodribb et al. 2003, Brodribb&Holbrook 2005",Tropical seasonal forest,-85.56666667,10.86666667
+rhedera trinervis,-1.37056928,NaN,5.882352941,Leaf,"Brodribb et al. 2003, Brodribb&Holbrook 2005",Tropical seasonal forest,-85.56666667,10.86666667
+simarouba glauca,-2.21,0.414188909,6.25,Leaf,"Brodribb et al. 2003, Brodribb&Holbrook 2005",Tropical seasonal forest,-85.56666667,10.86666667
+bursera simaruba,-1.39,0.305,14.7893413,Leaf,"Brodribb etal. 2003",Tropical seasonal forest,-85.56666667,10.86666667
+calycophyllum candidissimum,-1.3,0.696666667,NaN,Leaf,"Brodribb etal. 2003",Tropical seasonal forest,-85.56666667,10.86666667
+enterolobium cyclocarpum,-1.82,0.39,NaN,Leaf,"Brodribb etal. 2003",Tropical seasonal forest,-85.56666667,10.86666667
+hymenaea courbaril,-2.174006445,0.792334,NaN,Leaf,"Brodribb etal. 2003",Tropical seasonal forest,-85.56666667,10.86666667
+sweitenia macrophylla,-2.15,NaN,NaN,Leaf,"Brodribb etal. 2003",Tropical seasonal forest,-85.56666667,10.86666667
+gliricidia sepium,-1.6,0.6175,NaN,Leaf,"Brodribb&Holbrook 2003",Tropical seasonal forest,-85.56666667,10.86666667
+michelia hypolampra,-1.4,NaN,NaN,Leaf,"Chen et al. 2017",Tropical rainforest,101.7666667,21.9
+celtis tetrandra,-2.23,0.53,11.04,Leaf,"Chen et al. 2017 + unpublished data",Tropical rainforest,101.7666667,21.9
+ficus concinna,-2.06,0.51,13.29,Leaf,"Chen et al. 2017 + unpublished data",Tropical rainforest,101.7666667,21.9
+harpullia cupanioides,-2.37,0.44,12.5,Leaf,"Chen et al. 2017 + unpublished data",Tropical rainforest,101.7666667,21.9
+streblus asper,-2.26,0.55,12.08,Leaf,"Chen et al. 2017 + unpublished data",Tropical rainforest,101.7666667,21.9
+cordia alliodora,-1.97,0.520307692,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-79.85,9.15
+cordia alliodora,-2.16,0.520307692,NaN,Leaf,"Choat et al. 2007",Tropical seasonal forest,-85.35,10.35
+cordia alliodora,-1.89,0.520307692,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-79.85,9.15
+cordia alliodora,-1.86,0.520307692,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-84,10.41666667
+cordia collococca,-2.09,0.42,NaN,Leaf,"Choat et al. 2007",Tropical seasonal forest,-85.35,10.35
+cordia cymosa,-1.5,NaN,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-84,10.41666667
+cordia dentata,-2.14,0.5,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-85.35,10.35
+cordia lasiocalyx,-1.63,0.397,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-79.85,9.15
+cordia lucidula,-1.4,NaN,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-84,10.41666667
+cordia panamensis,-2,NaN,NaN,Leaf,"Choat et al. 2007",Tropical rainforest,-79.85,9.15
+forchhammeria pallida,-2.83,0.84,NaN,Leaf,"Fanjul & Barradas 1987",Tropical seasonal forest,-105.05,19.5
+randia armata,-1.96,0.668,NaN,Leaf,"Fanjul & Barradas 1987",Tropical seasonal forest,-105.05,19.5
+thouinidium decandrum,-3.48,0.67,NaN,Leaf,"Fanjul & Barradas 1987",Tropical seasonal forest,-105.05,19.5
+trichilia trifolia,-1.98,0.8,NaN,Leaf,"Fanjul & Barradas 1987",Tropical seasonal forest,-105.05,19.5
+illicium floridanum,-1.1,0.575,11.77578898,Leaf,"Feild et al. 2009 + Feild & Isnard 2013",Tropical rainforest,-83.59333333,35.12611111
+bauhinia variegata,-1.29,0.653,13.18256739,Leaf,"Fu et al. 2012",Tropical seasonal forest,101.7666667,21.9
+celtis philippensis,-2.62,0.703,NaN,Leaf,"Fu et al. 2012",Tropical seasonal forest,101.7666667,21.9
+cleistanthus sumatranus,-1.72,0.64,NaN,Leaf,"Fu et al. 2012",Tropical seasonal forest,101.7666667,21.9
+hymenaea martiana,-2.32,0.825,9.652509653,Leaf,"Hao et al. 2008",Tropical seasonal forest,-47.88333333,-15.93333333
+ficus auriculata,-0.86,0.468,14.83679525,Leaf,"Hao et al. 2010",Tropical rainforest,105.25,21.93333333
+ficus hispida,-1.23,0.3815,10.68376068,Leaf,"Hao et al. 2010",Tropical rainforest,105.25,21.93333333
+ficus racemosa,-1.44,0.3626,19.92031873,Leaf,"Hao et al. 2010",Tropical rainforest,105.25,21.93333333
+anacardium excelsum,-1.13,0.43,10.83926914,Leaf,"Johnson et al. 2013",Tropical rainforest,-79.54694444,8.98561944
+crossopteryx febrifuga,-1.73,0.702,NaN,Leaf,"Le Roux & Bariac 1998",Tropical seasonal forest,-5.033333333,6.216666667
+ochroma pyramidale,-1.6,0.157516429,NaN,Leaf,"Machado & Tyree 1994",Tropical seasonal forest,-79.85,9.15
+pseudobombax septenatum,-1.28,0.211666667,7.762471166,Leaf,"Machado & Tyree 1994",Tropical seasonal forest,-79.85,9.15
+abarema jupunba,-1.595426667,0.585142857,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+apeiba glabra,-2.017666667,0.32,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+aspidosperma excelsum,-1.743106667,0.792,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+bocoa prouacensis,-2.1286,1.053666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+bocoa prouacensis,-1.96012,1.053666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+bocoa prouacensis,-2.306093333,1.053666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+bocoa prouacensis,-2.227746667,1.053666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+bocoa prouacensis,-1.6086,1.053666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+bocoa prouacensis,-2.24924,1.053666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+bocoa prouacensis,-2.08284,1.053666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+brosimum rubescens,-2.279746667,0.825142857,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+carapa procera,-1.744493333,0.5638125,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+carapa procera,-2.0246,0.5638125,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+carapa procera,-2.04124,0.5638125,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+carapa procera,-1.8686,0.5638125,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+carapa procera,-1.955266667,0.5638125,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+caryocar glabrum,-1.879693333,0.653571429,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+cassipourea guianensis,-2.054413333,0.82,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+chrysophyllum sanguinolentum,-1.4474,0.6714,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+conceveiba guianensis,-1.69596,0.54325,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+cordia sagotii,-1.94972,0.409,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+cordia sagotii,-1.8686,0.409,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+couepia bracteosa,-2.25548,0.77,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+couepia caryophylloides,-1.86756,0.77,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+couratari oblongifolia,-1.971906667,0.505,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+couratari oblongifolia,-1.751426667,0.505,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+cupania scrobiculata,-2.13484,0.628,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+dicorynia guianensis,-1.511533333,0.5912,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+dicorynia guianensis,-1.58468,0.5912,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+dicorynia guianensis,-2.344226667,0.5912,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+dicorynia guianensis,-1.661293333,0.5912,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+dicorynia guianensis,-1.4578,0.5912,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+diospyros carbonaria,-1.808973333,0.73,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+diospyros carbonaria,-1.60236,0.73,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+drypetes variabilis,-2.31372,0.736666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+drypetes variabilis,-1.930306667,0.736666667,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-2.11196,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-1.9102,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-2.256866667,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-1.987853333,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-1.994093333,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-2.031533333,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-2.04956,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eperua grandiflora,-2.17852,0.704,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera coriacea,-1.705666667,0.852083333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera coriacea,-1.66476,0.852083333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera coriacea,-2.028066667,0.852083333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera coriacea,-1.71884,0.852083333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera coriacea,-1.984386667,0.852083333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera coriacea,-1.6814,0.852083333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera coriacea,-2.014893333,0.852083333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+eschweilera grandiflora,-1.7542,0.876,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+guettarda acreana,-1.780546667,0.87,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+gustavia hexapetala,-1.996866667,0.716,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+gustavia hexapetala,-1.958733333,0.716,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+gustavia hexapetala,-2.014893333,0.716,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+gustavia hexapetala,-1.750733333,0.716,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+gustavia hexapetala,-1.917826667,0.716,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+gustavia hexapetala,-2.26172,0.716,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+hirtella glandulosa,-1.88628,0.925,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+hymenaea courbaril,-1.442893333,0.79235,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+iryanthera sagotiana,-1.83012,0.572,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis persistens,-1.744493333,0.86,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis persistens,-1.925453333,0.86,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis persistens,-2.056493333,0.86,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis persistens,-2.030146667,0.86,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis persistens,-1.99964,0.86,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis persistens,-1.946946667,0.86,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis persistens,-1.944866667,0.86,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis poiteaui,-2.19724,0.802,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis poiteaui,-2.586893333,0.802,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis poiteaui,-2.643053333,0.802,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis poiteaui,-3.145026667,0.802,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+lecythis poiteaui,-2.333133333,0.802,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania alba,-2.025986667,0.8874,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania alba,-1.901186667,0.8874,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania alba,-1.7438,0.8874,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania alba,-2.19932,0.8874,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania alba,-2.077293333,0.8874,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania alba,-2.138306667,0.8874,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania alba,-2.2222,0.8874,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-2.123053333,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-2.06828,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-1.951106667,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-2.016973333,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-1.69804,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-2.32828,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-1.994786667,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania canescens,-2.202093333,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania membranacea,-2.1598,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania membranacea,-2.262413333,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania membranacea,-2.102253333,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania membranacea,-1.973293333,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania membranacea,-2.79316,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licania membranacea,-2.143853333,0.88,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+licaria guianensis,-2.435053333,0.7475,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+manilkara huberi,-2.36364,0.921363636,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+manilkara huberi,-2.13276,0.921363636,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+minquartia guianensis,-1.611373333,0.786714286,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+neea floribunda,-1.90604,0.62,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+ocotea percurrens,-1.722306667,0.519,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+perebea guianensis,-1.817293333,0.56,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+pourouma tomentosa,-1.688333333,0.395,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+pouteria cladantha,-1.926146667,0.942333333,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+pouteria filipes,-2.19932,0.964,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium opacum,-1.8998,0.57,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium opacum,-1.927533333,0.57,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium opacum,-2.1182,0.57,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium sagotianum,-2.23052,0.5575,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium sagotianum,-2.27628,0.5575,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium sagotianum,-2.32828,0.5575,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium sagotianum,-2.312333333,0.5575,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium trifoliolatum,-2.34076,0.685,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+protium trifoliolatum,-2.283213333,0.685,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+qualea rosea,-1.77916,0.5796,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+talisia microphylla,-2.041933333,0.8165,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+tapura capitulifera,-1.915053333,0.7205,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+tapura capitulifera,-1.950413333,0.7205,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+tapura capitulifera,-1.661293333,0.7205,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+theobroma subincanum,-1.657133333,0.47,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+theobroma subincanum,-2.04332,0.47,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+theobroma subincanum,-1.738946667,0.47,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+theobroma subincanum,-2.109186667,0.47,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+unonopsis rufescens,-1.520546667,0.605,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+unonopsis rufescens,-1.992013333,0.605,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+unonopsis rufescens,-1.957346667,0.605,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+vataireopsis surinamensis,-1.761826667,0.57,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+virola michelii,-1.838093333,0.470125,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+virola michelii,-1.644653333,0.470125,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+vouacapoua americana,-2.499533333,0.793625,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+vouacapoua americana,-2.048866667,0.793625,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+vouacapoua americana,-2.104333333,0.793625,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+vouacapoua americana,-2.063426667,0.793625,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+vouacapoua americana,-1.907426667,0.793625,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+vouacapoua americana,-2.256866667,0.793625,NaN,Leaf,"Marechaux et al. 2015",Tropical rainforest,-52.66666667,4.08333333
+anacardium excelsum,-0.995,0.384560171,10.78134125,Leaf,"McCulloh et al. 2012",Tropical rainforest,-79,9
+miconia argentea,-1.81,0.541821562,NaN,Leaf,"McCulloh et al. 2012",Tropical rainforest,-79,9
+aspidosperma cruenta,-2.782178,0.74,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-80.001385,9.322863
+chrysophllum cainito,-2.900261354,0.66,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-79.54694444,8.98561944
+ficus insipida,-2.038259321,0.4,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-79.54694444,8.98561944
+manilkara bidentata,-3.051426366,0.67,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-80.001385,9.322863
+protium panamense,-2.662673758,0.62,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-80.001385,9.322863
+tachigalia versicolor,-2.341414674,0.64,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-80.001385,9.322863
+tapirira guianensis,-2.188606647,0.5,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-80.001385,9.322863
+trattinnickia aspera,-2.53675004,0.57,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-80.001385,9.322863
+vochysia ferruginea,-2.301080569,0.56,NaN,Leaf,"Meinzer et al 2008",Tropical rainforest,-80.001385,9.322863
+coffea arabica,-1.82,0.62,NaN,Leaf,"Meinzer et al. 1990",Tropical rainforest,-158.0333333,21.35
+astronium graveolens,-2.07,0.867692308,16.97792869,Leaf,"Olivares & Medina 1992",Tropical seasonal forest,-66.892248,10.495062
+bursera simaruba,-0.69,0.305,15.31393568,Leaf,"Olivares & Medina 1992",Tropical seasonal forest,-66.892248,10.495062
+sapindus saponaria,-2.14,0.71225,19.49317739,Leaf,"Olivares & Medina 1992",Tropical seasonal forest,-66.892248,10.495062
+tabebuia chrysantha,-1.49,1.043333333,22.37136465,Leaf,"Olivares & Medina 1992",Tropical seasonal forest,-66.892248,10.495062
+byrsonima sericea,-2.03,0.78,NaN,Leaf,"Rosado & De Mattos 2010",Tropical seasonal forest,-41.41666667,-22.2
+maytenus obtusifolia,-3.08,0.75,NaN,Leaf,"Rosado & De Mattos 2010",Tropical seasonal forest,-41.41666667,-22.2
+ternstroemia brasiliensis,-1.88,0.47,NaN,Leaf,"Rosado & De Mattos 2010",Tropical seasonal forest,-41.41666667,-22.2
+hymenosporum flavum,-2.06,0.607,NaN,Leaf,"Scoffoni et al. 2008",Tropical rainforest,-118.446152,34.068858
+bauhinia variegata,-1.93,0.653,13.12335958,Leaf,"Shrestha et al. 2008",Tropical seasonal forest,85.641074,27.61922
+cupressus torulosa,-0.81,0.44,NaN,Leaf,"Singh et al. 2006",Tropical seasonal forest,79.45,29.38333333
+rhododendron arboreum,-1.74,0.491,NaN,Leaf,"Singh et al. 2006",Tropical seasonal forest,79.45,29.38333333
+shorea robusta,-2.04,0.73,10.23292992,Leaf,"Singh et al. 2006",Tropical seasonal forest,79.45,29.38333333
+capparis verrucosa,-3.65,0.86,8.896797153,Leaf,"Sobrado 1986",Tropical seasonal forest,-67.05,10.25
+morisonia americana,-4.08,0.88,6.798096533,Leaf,"Sobrado 1986",Tropical seasonal forest,-67.05,10.25
+coursetia ferruginea,-2.46,0.85,26.9541779,Leaf,"Sobrado 1986; Sobrado 1993",Tropical seasonal forest,-67.05,10.25
+lonchocarpus dipteroneurus,-2.32,0.6,24.06639004,Leaf,"Sobrado 1986; Sobrado 1993",Tropical seasonal forest,-67.05,10.25
+mansoa verrucifera,-2.51,NaN,17.51313485,Leaf,"Sobrado 1986; Sobrado 1993",Tropical seasonal forest,-67.05,10.25
+morisonia americana,-4.08,0.6,6.638217166,Leaf,"Sobrado 1986; Sobrado 1993",Tropical seasonal forest,-67.05,10.25
+catostemma sancarlosianum,-1.89,0.67,NaN,Leaf,"Sobrado 2009",Tropical rainforest,-67.05,1.9
+heteropterys sp.,-1.97,0.61,NaN,Leaf,"Sobrado 2009",Tropical rainforest,-67.05,1.9
+pachira sordida,-1.98,0.63,NaN,Leaf,"Sobrado 2009",Tropical rainforest,-67.05,1.9
+remijia morilloi,-1.95,0.61,2.818382931,Leaf,"Sobrado 2009",Tropical rainforest,-67.05,1.9
+retiniphyllum concolor,-1.87,0.55,6.165950019,Leaf,"Sobrado 2009",Tropical rainforest,-67.05,1.9
+caryocar glabrum,-1.28,0.653571429,NaN,Leaf,"Sobrado 2012",Tropical rainforest,-67.05,1.9
+eperua leucantha,-1.36,NaN,9.54992586,Leaf,"Sobrado 2012",Tropical rainforest,-67.05,1.9
+micranda sprucei,-1.12,NaN,NaN,Leaf,"Sobrado 2012",Tropical rainforest,-67.05,1.9
+ocotea aciphylla,-1.5,0.5105,NaN,Leaf,"Sobrado 2012",Tropical rainforest,-67.05,1.9
+alseis blackiana,-2.04,0.535989568,35,Leaf,"Tobin et al. 1999",Tropical rainforest,-79.85,9.15
+hybanthus prunifolius,-1.74,0.67,30.8,Leaf,"Tobin et al. 1999",Tropical rainforest,-79.85,9.15
+licania platypus,-1.41,0.62,14.7,Leaf,"Tobin et al. 1999",Tropical rainforest,-79.85,9.15
+ouratea lucens,-1.84,0.726990909,12.3,Leaf,"Tobin et al. 1999",Tropical rainforest,-79.85,9.15
+psychotria horizontalis,-1.86,0.56362,23.1,Leaf,"Tobin et al. 1999",Tropical rainforest,-79.85,9.15
+swartzia simplex,-1.88,0.841537052,15.7,Leaf,"Tobin et al. 1999",Tropical rainforest,-79.85,9.15
+balfourodendron riedelianum,-2.27,0.666457143,18.83239171,Leaf,"Villagra et al. 2013",Tropical rainforest,-54.33333333,-25.61666667
+cedrela fissilis,-1.28,0.4666,31.25,Leaf,"Villagra et al. 2013",Tropical rainforest,-54.33333333,-25.61666667
+cordia americana,-1.58,0.688,17.57469244,Leaf,"Villagra et al. 2013",Tropical rainforest,-54.33333333,-25.61666667
+maclura tinctoria,-1.85,0.794526667,23.98081535,Leaf,"Villagra et al. 2013",Tropical rainforest,-54.33333333,-25.61666667
+peltophorum dubium,-1.36,0.74388,32.78688525,Leaf,"Villagra et al. 2013",Tropical rainforest,-54.33333333,-25.61666667
+bowdichia virgilioides,-2.5,0.91,5.952380952,Leaf,"Wenhui 1998",Tropical seasonal forest,-43.75,-22.25
+caryocar brasiliense,-2.2,0.65,8.474576271,Leaf,"Wenhui 1998",Tropical seasonal forest,-43.75,-22.25
+casearia sylvestris,-2.73,0.705,15.92356688,Leaf,"Wenhui 1998",Tropical seasonal forest,-43.75,-22.25
+connarus suberosus,-2.63,0.45,6.711409396,Leaf,"Wenhui 1998",Tropical seasonal forest,-43.75,-22.25
+piptocarpha rotundifolia,-1.75,0.65,6.25,Leaf,"Wenhui 1998",Tropical seasonal forest,-43.75,-22.25
+bursera simarouba,-1.27,0.36,12.76,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+casearia corymbosa,-2.33,0.61,12.66,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+casearia sylvestris,-2.68,0.64,21.41,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+cochlospermum vitifolium,-1.77,0.18,17.6,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+crescentia alata,-3.86,0.55,8.33,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+cupania guatemalensis,-2.28,0.6,15.45,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+enterolobium cyclocarpum,-2.59,0.38,7,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+guazuma ulmifolia,-2.04,0.74,13.34,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+hymenea courbaril,-1.68,0.84,11.68,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+maclura tinctoria,-2.59,0.78,18.12,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+myrospermum frutescens,-2.4,0.68,27.69,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+piscidia carthagenensis,-2.4,0.64,14.15,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+semialarium mexicanum,-1.81,0.51,18.73,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+tabebuia rosea,-1.88,0.53,9.13,Leaf,"Werden et al 2018",Tropical seasonal forest,-85.594,10.718
+baccaurea ramiflora,-1,0.56,NaN,Leaf,"Zhu & Cao 2009",Tropical rainforest,101.7666667,21.9
+baccaurea ramiflora,-1.56,0.56,NaN,Leaf,"Zhu & Cao 2009",Tropical rainforest,101.7666667,21.9
+bauhinia variegate,-1.15,0.51,NaN,Leaf,"Zhu & Cao 2009",Tropical rainforest,101.7666667,21.9
+bauhinia variegate,-1.7,0.51,NaN,Leaf,"Zhu & Cao 2009",Tropical rainforest,101.7666667,21.9
+syzygium szemaoense,-1.28,0.52,NaN,Leaf,"Zhu & Cao 2009",Tropical rainforest,101.7666667,21.9
+syzygium szemaoense,-1.77,0.52,NaN,Leaf,"Zhu & Cao 2009",Tropical rainforest,101.7666667,21.9
+albizia guachapele,-2.1576697,0.513,NaN,Xylem,"Borchert & Pockman 2005",Tropical seasonal forest,-95.255601,38.954074
+calycophyllum candidissimum,-2.904004036,0.697,NaN,Xylem,"Borchert & Pockman 2005",Tropical seasonal forest,-95.255601,38.954074
+simarouba glauca,-2.080381587,0.464535059,NaN,Xylem,"Borchert & Pockman 2005",Tropical seasonal forest,-95.255601,38.954074
+spondias purpurea,-1.523878946,0.33,NaN,Xylem,"Borchert & Pockman 2005",Tropical seasonal forest,-95.255601,38.954074
+balfourodendron riedelianum,-1.765703888,0.659035123,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+cabralea canjerana,-1.037239621,0.528022175,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+cedrela fissilis,-0.609459516,0.491526273,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+ceiba speciosa,-0.560636897,0.30827275,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+chrysophyllum gonocarpum,-1.344317635,0.59504569,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+cordia trichotoma,-2.345513715,0.508058826,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+holocalyx balansae,-0.836263697,0.858303343,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+lonchocarpus muehlbergianus,-0.834566828,0.697730064,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+ocotea diospyrifolia,-1.935477671,0.540559839,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+parapiptadenia rigida,-0.738389516,0.757215075,NaN,Xylem,"Carrasco et al. 2014",Subtropical Forest,-54.13333333,-25.51666667
+anacardium excelsum,-0.96,0.35,8.47,Xylem,"De Guzman et al. 2016 + unpublished data",Tropical rainforest,-79.55,8.98333333
+annona spraguei,-1.43,0.27,15.3,Xylem,"De Guzman et al. 2016 + unpublished data",Tropical rainforest,-79.55,8.98333333
+antirrhea trichantha,-2.66,0.37,15.7,Xylem,"De Guzman et al. 2016 + unpublished data",Tropical rainforest,-79.55,8.98333333
+astronium graveolens,-2.82,0.41,14.1,Xylem,"De Guzman et al. 2016 + unpublished data",Tropical rainforest,-79.55,8.98333333
+cordia alliodora,-1.78,0.37,NaN,Xylem,"De Guzman et al. 2016 + unpublished data",Tropical rainforest,-79.55,8.98333333
+luehea seemannii,-2.3,0.27,16.1,Xylem,"De Guzman et al. 2016 + unpublished data",Tropical rainforest,-79.55,8.98333333
+ochroma pyramidale,-0.882677991,0.19,NaN,Xylem,"Machado & Tyree 1994",Tropical rainforest,-79.846036,9.166666667
+pseudobombax septenatum,-1.137595182,0.25,7.762471166,Xylem,"Machado & Tyree 1994",Tropical rainforest,-79.846036,9.166666667
+anacardium excelsum,-1.325050278,0.390097712,10.83926914,Xylem,"Meinzer et al. 2008",Tropical rainforest,-79.54694444,8.98561944
+cordia alliodora,-2.94416607,0.520247451,NaN,Xylem,"Meinzer et al. 2008",Tropical rainforest,-79.54694444,8.98561944
+ficus insipida,-1.625012782,0.400137312,NaN,Xylem,"Meinzer et al. 2008",Tropical rainforest,-79.54694444,8.98561944
+manilkara bidentata,-2.565804274,0.665210733,NaN,Xylem,"Meinzer et al. 2008",Tropical rainforest,-80.001385,9.322863
+schefflera morototoni,-0.86,0.279688601,NaN,Xylem,"Meinzer et al. 2008",Tropical rainforest,-79.54694444,8.98561944
+tapirira guianensis,-1.645464771,0.520305811,NaN,Xylem,"Meinzer et al. 2008",Tropical rainforest,-80.001385,9.322863
+trattinnickia aspera,-0.929645158,0.540195858,NaN,Xylem,"Meinzer et al. 2008",Tropical rainforest,-80.001385,9.322863
+blepharocalyx salicifolius,-1.563656816,0.559462486,NaN,Xylem,"Scholz et al. 2007",Tropical seasonal forest,-47.88333333,-15.93333333
+caryocar brasiliense,-1.318232948,0.589641657,8.511380382,Xylem,"Scholz et al. 2007",Tropical seasonal forest,-47.88333333,-15.93333333
+qualea parviflora,-1.492074854,0.569652856,NaN,Xylem,"Scholz et al. 2007",Tropical seasonal forest,-47.88333333,-15.93333333
+schefflera macrocarpa,-1.563656816,0.539473684,NaN,Xylem,"Scholz et al. 2007",Tropical seasonal forest,-47.88333333,-15.93333333
+schefflera morototoni,-0.861749918,0.456,NaN,Xylem,"Tyree et al. 1991",Tropical rainforest,-79.86666667,9.13333333

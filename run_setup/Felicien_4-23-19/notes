@@ -1,0 +1,19 @@
+Notes
+
+Just a few things I wanted to share with you for the BCI simulations
+
+1) I realize that, as we start during the dry season (BCI),
+plants might experience severe drought stress at the beginning of the simulation.
+So in my runs at least it was needed to initialize the water content with
+higher values (I use the middistance between the field capacity
+and the porosity for now)
+
+2) In my runs, the LAI (and AGB) was constantly decreasing from the initial
+conditions and to avoid this I had to decrease the clumping factor of the
+different PFTs I was using (down to 0.5) and also the turnover rates.
+
+3) To help the PFTs, as suggested by Mike, I also had to provide the
+tree cohorts some initial carbon storage (0.1 their living tissues)
+but you have to change the code to do so.
+
+Here is an example of minimal config file I currently use

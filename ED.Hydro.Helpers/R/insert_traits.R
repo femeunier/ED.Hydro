@@ -14,7 +14,7 @@ insert_traits <- function(insert_dat, bety){
       filter(specie_id == insert_dat$specie_id[i]) %>%
       filter(citation_id == insert_dat$citation_id[i]) %>%
       filter(treatment_id == insert_dat$treatment[i]) %>%
-      filter(abs(mean - insert_dat$var[i]) < 10^-10)  %>%
+      filter(abs(mean - insert_dat$var[i]) < 10^-6)  %>%
       filter(variable_id == insert_dat$variable_id[i]) %>%
       collect
 

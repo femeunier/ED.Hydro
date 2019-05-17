@@ -15,13 +15,15 @@ PFT_species <- tbl(bety, "pfts") %>% dplyr::rename(pft_id = id) %>% filter(pft_i
 
 sp = read.csv(
   file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species.csv",
-  stringsAsFactors = FALSE) %>% select(-one_of("X", "X.1"))
+  stringsAsFactors = FALSE) %>% select(-one_of("X"))
 sp$submit_name <- str_to_sentence(sp$submit_name)
 sp <- sp[order(sp$case),]
 
 m <- sp %>%
   select(one_of("submit_name", "accept_name", "case")) %>%
-  select(-one_of("sourceid", "authority", "score"))
+  filter(case %in% c(7, 8, 12, 13)) %>%
+  arrange(case, submit_name)
+
 m$matched_name2 <- NA
 m$current_name_string <- NA
 m$betsy <- NA
@@ -29,13 +31,20 @@ m$betsy <- NA
 for(j in seq_along(m$submit_name)){
   r <- gnr_resolve(names = m$submit_name[j], with_context = TRUE, canonical = TRUE, fields = "all")
 
-  if("current_name_string" %in% names(r)){
-    m$current_name_string[j] <- r %>% pull(current_name_string) %>% unique() %>% paste(., collapse = ", ")
-  }
+  if(dim(r)[1]>0){
+    if("current_name_string" %in% names(r)){
+      m$current_name_string[j] <- r %>% pull(current_name_string) %>% unique() %>% paste(., collapse = ", ")
+    }
 
-  m$matched_name2[j] <- r %>% pull(matched_name2) %>% unique() %>% paste(., collapse = ", ")
+    m$matched_name2[j] <- r %>% pull(matched_name2) %>% unique() %>% paste(., collapse = ", ")
+  }
   cat("*")
 }
+
+m <- m %>%
+  select(one_of("submit_name", "matched_name2", "case", "accept_name","current_name_string"))
+
+View(m)
 
 # I'm changing the case of three of names because I don't agree with the auto resolving
 
@@ -82,7 +91,6 @@ sp[id, "accept_name"] = sp[id, "submit_name"]
 sp[id, "accept_bety_id"] = sp[id, "submit_bety_id"]
 sp[id, "accept_in_PFT"] = sp[id, "submit_in_PFT"]
 sp[id, "case"] = 2
-sp[id, "uri"] =
 
 
 

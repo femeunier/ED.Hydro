@@ -11,17 +11,21 @@ PFT_species <- tbl(bety, "pfts") %>% dplyr::rename(pft_id = id) %>% filter(pft_i
   dplyr::select(one_of("pft_id", "name", "specie_id", "genus", "species", "scientificname")) %>%
   collect()
 
-datafile <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Capacitance_BETY.csv"
-dat <- read.csv(datafile, stringsAsFactors = FALSE) %>% rename(species = Species)
+datafile1 <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/capacitance_BETY.csv"
+dat1 <- read.csv(datafile1, stringsAsFactors = FALSE) %>% rename(species = Species)
+length(unique(dat1$species))
 
-url <- "https://docs.google.com/spreadsheets/d/1feKS04I2eErSvQrSKLfPuLSHYqDGH7ccRfRh5M6tN0U/edit?usp=sharing"
+datafile2 <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/conductivity_BETY.csv"
+dat2 <- read.csv(datafile2, stringsAsFactors = FALSE) %>% rename(species = Species)
+length(unique(dat2$species))
 
-# googlesheets4::sheets_auth(use_oob = TRUE)
-dat2 <- googlesheets4::read_sheet(ss=url, na = "NaN", col_types = "cncccnccnnn") %>%
-  mutate(species_id = NA) %>%
-  mutate(citation_id = NA)
-1
-species_all <- sort(unique(toupper(c(dat$species, dat2$species))))
+species_all <- sort(unique(tolower(c(dat1$species, dat2$species))))
+
+test <- species_all %in% tolower(PFT_species$scientificname)
+df <- data.frame( species_all = species_all, in_dat1 = test, stringsAsFactors = FALSE )
+df <- df %>% arrange(-in_dat1, species_all)
+
+species_all <- df$species_all # Wow that was probably the WORST way to do that.
 
 sp <- data.frame(submit_name = species_all,
                  submit_bety_id = NA,
@@ -40,30 +44,13 @@ sp <- data.frame(submit_name = species_all,
 
                  stringsAsFactors = FALSE)
 
-# write.csv(
-#   x = sp,
-#   file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species.csv")
+write.csv(
+  x = sp,
+  file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species.csv")
 
 # sp = read.csv(
-#   file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species.csv",
-#   stringsAsFactors = FALSE) %>% select(-one_of("X", "X.1"))
-
-# Repeating their vignette
-# names <- sp$submit_name
-# resolved_names <- resolve(names)
-# resolved_names <- resolved_names$gnr
-# View(resolved_names)
-# resolved_names_source <- resolved_names[, c("submitted_name", "data_source_title")]
-# resolved_names_source <- unique(resolved_names_source)
-# resolved_names_source$count <- 1
-# summary_resolved <- aggregate(resolved_names_source$count, list(data_source = resolved_names_source$data_source_title), FUN = "sum")
-# summary_resolved <- summary_resolved[with(summary_resolved, order(-x)),]
-# head(summary_resolved, 20)
-#
-# gnr_names <- resolved_names[, c("submitted_name", "score")]
-# gnr_names <-  unique(gnr_names)
-# dim(gnr_names)
-
+#   file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv",
+#   stringsAsFactors = FALSE)
 
 # Special cases that just don't work with the code right now that I will be overriding
 # "Simarouba glauca"            <- "Simarouba glauca"
@@ -73,15 +60,20 @@ sp <- data.frame(submit_name = species_all,
 # "Symplocos mosenii"           <- "Symplocos mosenii"
 # "Tachigalia versicolor"       <- "Tachigalia versicolor"
 
+# override <- data.frame(
+#   sub = tolower(c(
+#     "Simarouba glauca", "Aegiphila lhotzkiana", "Lonchocarpus muehlbergianus",
+#     "Byrsonima crassa", "Symplocos mosenii", "Tachigalia versicolor",
+#     "Michelia hypolampra")),
+#   acc = c(
+#     "Simarouba glauca", "Aegiphila lhotzkiana", "Lonchocarpus muehlbergianus",
+#     "Byrsonima crassa", "Symplocos mosenii", "Tachigali versicolor",
+#     "Magnolia hypolampra"),
+#   stringsAsFactors = FALSE
+# )
 
-override <- data.frame(
-  sub = toupper(c("Simarouba glauca", "Aegiphila lhotzkiana", "Lonchocarpus muehlbergianus", "Byrsonima crassa", "Symplocos mosenii", "Tachigalia versicolor")),
-  acc = c("Simarouba glauca", "Aegiphila lhotzkiana", "Lonchocarpus muehlbergianus", "Byrsonima crassa", "Symplocos mosenii", "Tachigali versicolor"),
-  stringsAsFactors = FALSE
-)
-
-i_range = 1
-i_range <- 50:55
+# i_range = 1
+# i_range <- 50:55
 i_range <- seq_along(sp$submit_name)
 
 for(i in i_range){
@@ -98,8 +90,11 @@ for(i in i_range){
     accept_name_exists <- FALSE
 
     # First check if the name is in BETY (without any changes/resolution)
+
+    sub_name <- sp$submit_name[i]
+
     find_submit <- tbl(bety, "species") %>%
-      filter(toupper(scientificname) == toupper(sp$submit_name[i])) %>%
+      filter(tolower(scientificname) == sub_name) %>%
       select(one_of("id", "genus", "species", "scientificname")) %>%
       collect()
 
@@ -115,35 +110,35 @@ for(i in i_range){
     # Now put the name through the Taxanomic Name Resolution Service
     # Check that the species names are properly spelled and if they are accepted
 
-    if(sp$submit_name[i] %in% override$sub){
-
-      print(paste("Overriding", sp$submit_name[i]))
-      sp$accept_name[i] = override$acc[which(override$sub == sp$submit_name[i])]
-
-    }else{
+    # if(sp$submit_name[i] %in% override$sub){
+    #
+    #   print(paste("Overriding", sp$submit_name[i]))
+    #   sp$accept_name[i] = override$acc[which(override$sub == sp$submit_name[i])]
+    #
+    # }else{
 
       # Submit as a try() in case of connection error
       test_tnrs <- try(tnrs(query = sp$submit_name[i], source = "iPlant_TNRS"))
       if(!class(test_tnrs) == "try-error"){
-        sp$accept_name[i] = test_tnrs$acceptedname
-        sp$sourceid[i] = test_tnrs$sourceid
-        sp$score[i] = test_tnrs$score
-        if("authority" %in% names(test_tnrs)) sp$uri[i] =  test_tnrs$authority
-        if("uri" %in% names(test_tnrs)) sp$uri[i] = test_tnrs$uri
-
+        if("acceptedname" %in% names(test_tnrs)) sp$accept_name[i] = test_tnrs$acceptedname
+        if("sourceid" %in% names(test_tnrs))     sp$sourceid[i] = test_tnrs$sourceid
+        if("score" %in% names(test_tnrs))        sp$score[i] = test_tnrs$score
+        if("authority" %in% names(test_tnrs))    sp$authority[i] =  test_tnrs$authority
+        if("uri" %in% names(test_tnrs))          sp$uri[i] = test_tnrs$uri
       }
-    }
+    # }
     # If the search retuns an accepted name, check to see if it's in the database and PFT
     accept_name_exists <- !sp$accept_name[i] == "" & !is.na(sp$accept_name[i])
     if(accept_name_exists){
 
       # If the names are the same, then find_accept is the same as find_submit
       # otherwise, look it up in bety
-      if(toupper(sp$submit_name[i]) == toupper(sp$accept_name[i])){
+      if(sp$submit_name[i] == tolower(sp$accept_name[i])){
         find_accept <- find_submit
       }else{
+        acc_name <- tolower(sp$accept_name[i])
         find_accept <- tbl(bety, "species") %>%
-          filter(toupper(scientificname) == toupper(sp$accept_name[i])) %>%
+          filter(tolower(scientificname) == acc_name) %>%
           select(one_of("id", "genus", "species", "scientificname")) %>%
           collect()
       }
@@ -226,7 +221,7 @@ for(i in i_range){
 
 } # End loop
 
-write.csv(x = sp, file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_final.csv")
+write.csv(x = sp, file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species.csv")
 
 # view(sp)
 

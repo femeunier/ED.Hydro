@@ -1,0 +1,313 @@
+Species,ksat,kl,P50,ax,Lat,Long,Ref,SLA,WD
+bursera simaruba,3.55,0.000214,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,15.31087462,0.305
+byrsonima crassifolia,2.1,0.000225,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.584
+calycophyllum candidissimum,1.11,0.000137,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.696666667
+curatella americana,1.25,0.000127,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.65
+enterolobium cyclocarpum,3.5,0.000426,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.39
+gliricidia sepium,3.65,0.000275,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.6175
+hymenaea courbaril,2.4,0.000169,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.79235
+manilkara chicle,0.45,4.8E-05,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,1.04
+quercus oleoides,2.1,0.000199,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.86
+rehdera trinervis,1.72,0.000262,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,NaN
+simarouba amara,1.2,0.000366,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.383333333
+swietenia macrophylla,1.2,0.000144,NaN,NaN,10.90555556,-85.60194444,Brodribb et al. 2002,NaN,0.519545455
+bursera simaruba,NaN,NaN,-1,54.28571429,10.90555556,-85.60194444,Brodribb et al. 2003,15.31087462,0.305
+calycophyllum candidissimum,NaN,NaN,-2.87,26.57342657,10.90555556,-85.60194444,Brodribb et al. 2003,NaN,0.696666667
+enterolobium cyclocarpum,NaN,NaN,-2.73,49.35064935,10.90555556,-85.60194444,Brodribb et al. 2003,NaN,0.39
+hymenaea courbaril,NaN,NaN,-3,42.22222222,10.90555556,-85.60194444,Brodribb et al. 2003,NaN,0.79235
+quercus oleoides,NaN,NaN,-3.03,43.67816092,10.90555556,-85.60194444,Brodribb et al. 2003,NaN,0.86
+rehdera trinervis,NaN,NaN,-2.8,20,10.90555556,-85.60194444,Brodribb et al. 2003,NaN,NaN
+simarouba glauca,NaN,NaN,-2,54.28571429,10.90555556,-85.60194444,Brodribb et al. 2003,NaN,0.383333333
+swietenia macrophylla,NaN,NaN,-2.2,42.22222222,10.90555556,-85.60194444,Brodribb et al. 2003,NaN,0.519545455
+erythroxylum suberosum,0.41,0.000578,NaN,NaN,-15.93333333,-47.88333333,Bucci et al. 2004,3.91,0.633
+kielmeyera coriacea,0.93,0.001841,NaN,NaN,-15.93333333,-47.88333333,Bucci et al. 2004,7.38,0.455
+blepharocalyx salicifolius,4.73,0.00067,-2.17,20.10582011,-15.93333333,-47.88333333,Bucci et al. 2006,15.8,0.33
+blepharocalyx salicifolius,5.37,0.000682,-2.3,17.9245283,-15.93333333,-47.88333333,Bucci et al. 2006,15.2,0.31
+blepharocalyx salicifolius,2.05,0.000757,-1.93,14.78599222,-15.93333333,-47.88333333,Bucci et al. 2006,10.2,0.53
+blepharocalyx salicifolius,2.28,0.000776,-1.72,16.10169492,-15.93333333,-47.88333333,Bucci et al. 2006,11.7,0.49
+caryocar brasiliense,3.5,0.000756,-2.03,52.77777778,-15.93333333,-47.88333333,Bucci et al. 2006,14.9,0.35
+caryocar brasiliense,3.88,0.000877,-1.97,21.46892655,-15.93333333,-47.88333333,Bucci et al. 2006,17.4,0.38
+caryocar brasiliense,2.67,0.001078,-1.48,14.96062992,-15.93333333,-47.88333333,Bucci et al. 2006,14.5,0.35
+caryocar brasiliense,2.78,0.001187,-1.62,15.57377049,-15.93333333,-47.88333333,Bucci et al. 2006,10.8,0.34
+ouratea hexasperma,1.69,0.000629,-2.03,11.9873817,-15.93333333,-47.88333333,Bucci et al. 2006,8.1,0.41
+ouratea hexasperma,1.62,0.000674,-1.87,10.21505376,-15.93333333,-47.88333333,Bucci et al. 2006,10.5,0.42
+ouratea hexasperma,1.11,0.000987,-1.48,12.7090301,-15.93333333,-47.88333333,Bucci et al. 2006,7.5,0.42
+ouratea hexasperma,0.96,0.000824,-1.48,12.17948718,-15.93333333,-47.88333333,Bucci et al. 2006,7.64,0.46
+qualea parviflora,1.26,0.000575,-2.23,13.62007168,-15.93333333,-47.88333333,Bucci et al. 2006,7.9,0.46
+qualea parviflora,1.7,0.000364,-2.5,12.79461279,-15.93333333,-47.88333333,Bucci et al. 2006,7.9,0.45
+qualea parviflora,0.94,0.00058,-1.65,11.01449275,-15.93333333,-47.88333333,Bucci et al. 2006,6,0.48
+qualea parviflora,1.15,0.000857,-1.72,10.38251366,-15.93333333,-47.88333333,Bucci et al. 2006,5.7,0.48
+schefflera macrocarpa,3.23,0.00055,-2.17,21.34831461,-15.93333333,-47.88333333,Bucci et al. 2006,5.8,0.46
+schefflera macrocarpa,2.67,0.000389,-2.43,25,-15.93333333,-47.88333333,Bucci et al. 2006,5.4,0.56
+schefflera macrocarpa,0.96,0.000712,-1.77,14.23220974,-15.93333333,-47.88333333,Bucci et al. 2006,2.9,0.59
+schefflera macrocarpa,2.14,0.000666,-1.72,17.04035874,-15.93333333,-47.88333333,Bucci et al. 2006,3.76,0.56
+erythroxylum suberosum,NaN,0.000578,NaN,NaN,-15.93333333,-47.88333333,Bucci et al. 2008,NaN,NaN
+kielmeyera coriacea,NaN,0.00184,-1.91,NaN,-15.93333333,-47.88333333,Bucci et al. 2008,4.897788194,NaN
+styrax ferrugineus,NaN,0.0012,-3.35,NaN,-15.93333333,-47.88333333,Bucci et al. 2008,NaN,NaN
+adansonia rubrostipa,NaN,NaN,-1.1,NaN,-20.45,44.8167,Chapotin et al. 2006,NaN,NaN
+adansonia za,NaN,NaN,-1.7,NaN,-20.45,44.8167,Chapotin et al. 2006,NaN,NaN
+hevea brasiliensis,NaN,NaN,-1.27,NaN,21.6833,101.4167,"Chen et al. 2009a, b",NaN,0.466625
+macaranga denticulata,4.41,0.000364,-1.14,52.77777778,21.68333333,101.4166667,"Chen et al. 2009a, b",NaN,0.41
+celtis tetrandra,6.21,NaN,-1.53,NaN,21.9,101.7666667,Chen et al. 2017,11.04,0.53
+ficus concinna,3.95,NaN,-1.43,NaN,21.9,101.7666667,Chen et al. 2017,13.29,0.51
+harpullia cupanioides,2.2,NaN,-2.51,NaN,21.9,101.7666667,Chen et al. 2017,12.5,0.44
+michelia hypolampra,1.69,NaN,-2.25,NaN,21.9,101.7666667,Chen et al. 2017,NaN,NaN
+streblus asper,1.86,NaN,-2.93,NaN,21.9,101.7666667,Chen et al. 2017,12.08,0.55
+alphitonia excelsa,4.89,0.001003,-5.56,10.88825215,-19.18333333,145.75,Choat et al. 2005,9.44,0.67
+austromyrtus bidwillii,NaN,NaN,-5.12,NaN,-19.1833,145.75,Choat et al. 2005,NaN,NaN
+brachychiton australis,6.46,0.002019,-3.17,19.19191919,-19.18333333,145.75,Choat et al. 2005,13.44,0.25
+cochlospermum gillivraei,7.75,0.003982,-1.44,62.29508197,-19.18333333,145.75,Choat et al. 2005,16.5,0.3
+gossia bidwillii,1.24,0.00018,-5.12,5.523255814,-19.18333333,145.75,Choat et al. 2005,11.61,0.71
+cordia alliodora,9.562827947,0.001258637,-3.6,15.70247934,10.35,-85.35,Choat et al. 2007,10.13067281,0.520307692
+cordia alliodora,10.99587564,0.001203539,-2.93,17.11711712,9.166666667,-79.846036,Choat et al. 2007,11.44952373,0.520307692
+cordia alliodora,8.931733887,0.001022978,-1.78,20.32085561,10.41666667,-84,Choat et al. 2007,11.62621607,0.520307692
+cordia collococa,NaN,NaN,-2.34,NaN,10.35,-85.35,Choat et al. 2007,NaN,NaN
+cordia cymosa,7.806902666,0.000807631,-1.2,28.14814815,10.41666667,-84,Choat et al. 2007,13.69162853,NaN
+cordia inermis,1.842397477,0.000248493,NaN,NaN,10.35,-85.35,Choat et al. 2007,32.62398287,NaN
+cordia lasiocalyx,3.764341188,0.000191891,-2.57,22.35294118,9.166666667,-79.846036,Choat et al. 2007,17.85176439,0.397
+cordia lucidula,3.323462731,0.000288741,-1.58,27.3381295,10.41666667,-84,Choat et al. 2007,17.82559317,NaN
+cordia nodosa,3.71533023,0.000404829,-2.34,22.22222222,10.35,-85.35,Choat et al. 2007,7.565508966,0.39
+cordia panamensis,11.63171081,0.000731387,-2.33,29.6875,9.166666667,-79.846036,Choat et al. 2007,11.03015463,NaN
+araucaria hunsteinii,NaN,NaN,-4.07,44.84,5.1806,-52.68,Cochard 2006,NaN,0.5683735
+anacardium excelsum,4.52,0.00047,-0.9,NaN,8.98333333,-79.55,De Guzman et al. 2016,8.47,0.35
+annona spraguei,8.68,0.00072,-0.17,NaN,8.98333333,-79.55,De Guzman et al. 2016,15.3,0.27
+antirrhea trichantha,4.25,0.00054,-1.19,NaN,8.98333333,-79.55,De Guzman et al. 2016,15.7,0.37
+astronium graveolens,3.19,0.00049,-0.48,NaN,8.98333333,-79.55,De Guzman et al. 2016,14.1,0.41
+cordia alliodora,14.8,0.00178,-0.4,NaN,8.98333333,-79.55,De Guzman et al. 2016,NaN,0.37
+luehea seemannii,1.26,0.00022,-0.87,NaN,8.98333333,-79.55,De Guzman et al. 2016,16.1,0.27
+blepharocalyx salicifolius,21,NaN,-1.4,26.38888889,-15.93333333,-47.88333333,Domec et al. 2006a,NaN,0.55
+byrsonima crassa,49,NaN,-0.9,24.35897436,-15.93333333,-47.88333333,Domec et al. 2006a,NaN,0.52
+kielmeyera coriacea,32,NaN,-0.8,39.58333333,-15.93333333,-47.88333333,Domec et al. 2006a,4.897788194,0.66
+qualea parviflora,47,NaN,-1,19.79166667,-15.93333333,-47.88333333,Domec et al. 2006a,NaN,0.28
+laguncularia racemosa,NaN,NaN,-3.4,NaN,19.5653,-96.3859,Ewers et al. 2004,NaN,0.61
+gnetum costatum,1.12,0.000125,-3.1,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,NaN
+gnetum gnemon,1.1,0.000127,-4.620333333,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,0.61
+hibiscus,9.2,0.00041,NaN,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,NaN
+homalanthus novoguineensis,3.87,0.00032,NaN,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,NaN
+horsfieldia,1.45455,0.000188,NaN,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,NaN
+kleinhovia hospita,8.2,0.0004445,NaN,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,0.428666667
+podocarpus neriifolius,0.45,0.000125,NaN,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,0.476875
+trema orientalis,5.87,0.00024,NaN,NaN,-5.133333333,145.6833333,Feild & Balun 2008,10.47128548,0.345333333
+trichospermum pleiostigma,7.66942,0.000297,NaN,NaN,-5.133333333,145.6833333,Feild & Balun 2008,NaN,NaN
+ardisia palmana,0.23,0.00062,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,NaN,NaN
+clusia stenophylla,0.12,0.00013,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,3.801893963,NaN
+cosmibuena valerioi,0.39,0.00041,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,NaN,NaN
+dendropanax latilobus,0.64,0.00062,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,NaN,NaN
+drimys granadensis,0.39,0.00033,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,NaN,NaN
+miconia,0.51,0.00045,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,NaN,NaN
+oreopanax nubigenus,0.48,0.00026,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,NaN,NaN
+schefflera pittieri,0.65,0.00063,NaN,NaN,10.2,-84.7,Feild & Holbrook 2000,NaN,NaN
+illicium floridanum,0.4,NaN,NaN,NaN,35.12611111,-83.59333333,Feild et al. 2009 + Feild & Isnard 2013,11.78,0.575
+caesalpinia eriostachys,1.7,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.7
+capparis indica,0.9,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.56
+cnidoscolus spinosus,3,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.31
+cordia alliodora,2.9,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.59
+guapira,1.7,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.475
+heliocarpus pallidus,5.5,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.47
+ipomoea wolcottiana,2.2,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.605
+psidium sartorianum,1.1,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.725
+ruprechtia fusca,2.4,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.625
+spondias purpurea,2.9,NaN,NaN,NaN,19.5,-105.05,Gartner et al. 1990,NaN,0.39
+drimys granadensis,NaN,NaN,-1.64,50.66666667,10.7,-84.11666667,Hacke et al. 2007,NaN,0.454669
+drimys insipida,NaN,NaN,-4.68,28.78787879,-16.31,145.15,Hacke et al. 2007,NaN,0.554086
+drimys winteri,NaN,NaN,-2.3,NaN,-30.675,-71.675,Hacke et al. 2007,6.27335696,0.415
+zygogynum baillonii,NaN,NaN,-3,35.51401869,-22.047,166.468,Hacke et al. 2007,NaN,NaN
+zygogynum bicolor,NaN,NaN,-2.3,40.86021505,-21.37,165.5,Hacke et al. 2007,NaN,NaN
+zygogynum pancheri,NaN,NaN,-5.2,39.58333333,-22.166,166.534,Hacke et al. 2007,NaN,0.627626
+zygogynum pomiferum,NaN,NaN,-3.45,39.17525773,-21.34,165.46,Hacke et al. 2007,NaN,0.574514
+zygogynum queenslandianum,NaN,NaN,-3.6,15.96638655,-16.35,145.17,Hacke et al. 2007,NaN,NaN
+zygogynum semecarpoides,NaN,NaN,-3.27,43.18181818,-16.08333333,145.4,Hacke et al. 2007,NaN,0.408366
+acinodendron pohlianum,4.73,0.001092,-3.1,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.53
+hymenaea martiana,2.94,0.000412,-2.8,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.56
+hymenaea stigonocarpa,3.59,0.000656,-3.17,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.72
+miconia cuspidata,5.37,0.000344,-3.4,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.74
+miconia pohliana,NaN,NaN,-3.1,NaN,-15.9333,-47.8833,Hao et al. 2008,NaN,NaN
+myrsine ferruginea,3.25,0.000434,-3.08,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.62
+myrsine guianensis,2,0.000384,-2.12,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.52
+styrax ferrugineus,2.59,0.000487,-3.35,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.49
+styrax pohlii,3.45,0.00069,-2,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.54
+symplocos lanceolata,1.62,0.000417,-1.5,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.38
+symplocos mosenii,4.78,0.000856,-1.6,NaN,-15.93333333,-47.88333333,Hao et al. 2008,NaN,0.48
+anacardium excelsum,1.1,0.0051,-1.45,NaN,8.98561944,-79.54694444,Johnson et al. 2013,10.83926914,0.43
+bursera simaruba,NaN,0.00059,-0.9,38,9.166666667,-79.846036,Lopez et al. 2005,15.31087462,0.305
+carapa guianensis,NaN,3.46E-05,-0.8,25.33333333,9.166666667,-79.846036,Lopez et al. 2005,NaN,0.53
+cordia alliodora,NaN,0.000658,-3.2,58.46153846,9.166666667,-79.846036,Lopez et al. 2005,NaN,0.520307692
+ficus citrifolia,NaN,0.000162,-1.6,63.33333333,9.166666667,-79.846036,Lopez et al. 2005,NaN,0.4
+prioria copaifera,NaN,6.3E-05,-1.6,34.54545455,9.166666667,-79.846036,Lopez et al. 2005,NaN,0.413571429
+ochroma pyramidale,2.1,0.00114,-1,95,9.166666667,-79.846036,Machado & Tyree 1994,NaN,0.19
+pseudobombax septenatum,1.6,0.000515,-1,95,9.166666667,-79.846036,Machado & Tyree 1994,7.762471166,0.25
+anacardium excelsum,NaN,NaN,-1.56,NaN,9.166666667,-79.85,Meinzer et al. 2003,10.83926914,0.39
+cordia alliodora,NaN,NaN,-3,NaN,9.166666667,-79.85,Meinzer et al. 2003,NaN,0.52
+ficus insipida,NaN,NaN,-1.66,NaN,9.166666667,-79.85,Meinzer et al. 2003,NaN,0.29
+schefflera morototoni,NaN,NaN,-1.68,NaN,9.166666667,-79.85,Meinzer et al. 2003,NaN,0.28
+aspidosperma cruenta,1.556485,NaN,NaN,NaN,9.2833,-79.975,Meinzer et al. 2008,NaN,NaN
+chrysophyllum cainito,NaN,NaN,-2.1,NaN,9.166666667,-79.85,Meinzer et al. 2008,NaN,0.655
+ficus insipida,NaN,NaN,-1.9,NaN,9.166666667,-79.85,Meinzer et al. 2008,NaN,0.376555556
+luehea seemannii,8.761506,NaN,NaN,NaN,9.1667,-79.85,Meinzer et al. 2008,9.66050879,0.417
+manilkara bidentata,NaN,NaN,-2.7,NaN,9.283333333,-79.975,Meinzer et al. 2008,NaN,0.872933333
+protium panamense,NaN,NaN,-1.7,NaN,9.283333333,-79.975,Meinzer et al. 2008,NaN,0.452333333
+tachigali versicolor,NaN,NaN,-1.6,NaN,9.283333333,-79.975,Meinzer et al. 2008,NaN,0.521
+tapirira guianensis,NaN,NaN,-1.8,NaN,9.283333333,-79.975,Meinzer et al. 2008,NaN,0.457
+trattinnickia aspera,NaN,NaN,-1.1,NaN,9.283333333,-79.975,Meinzer et al. 2008,NaN,0.424
+vochysia ferruginea,NaN,NaN,-1,NaN,9.283333333,-79.975,Meinzer et al. 2008,NaN,0.410166667
+amphipterygium adstringens,5.36,NaN,-0.96,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.48
+apoplanesia paniculata,0.99,NaN,-4.61,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.56
+bursera heteresthes,10.24,NaN,-1.36,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.4
+bursera instabilis,15.4,NaN,-2.54,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.4
+caesalpinia eriostachys,4.95,NaN,-2.07,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.85
+caesalpinia sclerocarpa,2.6,NaN,-2.51,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.71
+cordia alliodora,1.21,NaN,-3.18,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.63
+cordia elaeagnoides,1.59,NaN,-1.15,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.54
+esenbeckia nesiotica,0.43,NaN,-4.74,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,1.06
+gliricidia sepium,14.82,NaN,-0.85,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.64
+heliocarpus pallidus,9.67,NaN,-0.66,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.55
+piptadenia constricta,1.53,NaN,-1.94,NaN,19.5,-105.05,Mendez-Alonzo et al. 2012,NaN,0.73
+eucalyptus miniata,3.13,0.00064,NaN,NaN,-12.433729,130.923491,Prior & Eamus 2000,5.688529308,0.897666667
+eucalyptus tetrodonta,2.5,0.00059,-6.27,NaN,-12.433729,130.923491,Prior & Eamus 2000,4.606099692,0.922
+corymbia erythrophloia,NaN,NaN,-1.64,NaN,-20.1,146.8833,Rice et al. 2004,NaN,0.895
+aspidosperma desmanthum,NaN,0.0002844,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.7
+chrysophyllum cainito,NaN,0.0006084,NaN,NaN,9.166666667,-79.85,Santiago et al. 2004,NaN,0.61
+cordia alliodora,NaN,0.0011088,NaN,NaN,9.166666667,-79.85,Santiago et al. 2004,NaN,0.47
+dussia munda,NaN,0.0006732,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.53
+ficus insipida,NaN,0.0022158,NaN,NaN,9.166666667,-79.85,Santiago et al. 2004,NaN,0.34
+guatteria dumetorum,NaN,0.0006912,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.42
+humiriastrum diguense,NaN,0.0006138,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.58
+luehea seemannii,NaN,0.0020736,NaN,NaN,9.166666667,-79.85,Santiago et al. 2004,9.66050879,0.33
+manilkara bidentata,NaN,0.000567,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.61
+marila laxiflora,NaN,0.0005382,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.48
+miconia minutiflora,NaN,0.001458,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.5
+nectandra purpurascens,NaN,0.0010602,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.55
+ocotea insularis,NaN,0.0008244,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.58
+poulsenia armata,NaN,0.000711,NaN,NaN,9.15,-79.85,Santiago et al. 2004,8.511380382,0.43
+pourouma bicolor,NaN,0.0008982,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.45
+simarouba amara,NaN,0.0018432,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.41
+tapirira guianensis,NaN,0.001116,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.43
+trattinnickia aspera,NaN,0.000774,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.57
+virola sebifera,NaN,0.0010944,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.5
+vochysia ferruginea,NaN,0.0016506,NaN,NaN,9.15,-79.85,Santiago et al. 2004,NaN,0.35
+aspidosperma tomentosum,1.56,0.000398,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,6.002,0.6
+aspidosperma tomentosum,4.02,0.000915,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,7.45,0.545
+aspidosperma tomentosum,3.55,0.000909,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,7.86,0.497
+eriotheca pubescens,2.67,0.000521,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,6.002,0.6
+eriotheca pubescens,4.33,0.000932,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,7.452,0.54
+eriotheca pubescens,4.21,0.001408,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,7.865,0.497
+guapira areolata,8.1,NaN,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,10.123,0.46
+guapira noxia,2.56,0.000845,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,7.467,0.498
+guapira noxia,3.7,0.00111,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,8.108,0.496
+guapira noxia,4.8,0.0012,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,8.105,0.497
+guarea guidonia,7.7,0.0029,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,10.016,0.467
+protium,7.4,0.0032,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,9.92,0.44
+qualea grandiflora,0.99,0.000523,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,5.747,0.606
+qualea grandiflora,2.22,0.000901,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,7.2,0.52
+qualea grandiflora,2.05,0.000754,NaN,NaN,-15.93333333,-47.88333333,Scholz et al. 2008,6.15,0.57
+curatella americana,NaN,0.000925,-1.48,55.07246377,9.916666667,-66.91666667,Sobrado 1996,NaN,0.39
+bourreria cumanensis,0.41,9.95E-05,-3.82,NaN,10.25,-67.05,Sobrado 1997,NaN,NaN
+capparis aristiguetae,0.105,1.58E-05,-2.45,10.55555556,10.25,-67.05,Sobrado 1997,6.918309709,NaN
+coursetia arborea,1.26,9.19E-05,-2.42,10.46831956,10.25,-67.05,Sobrado 1997,26.91534804,NaN
+lonchocarpus dipteroneurus,0.98,9.63E-05,-1.77,11.37724551,10.25,-67.05,Sobrado 1997,23.98832919,NaN
+morisonia americana,0.14,3.47E-05,-2.39,10.0795756,10.25,-67.05,Sobrado 1997,6.760829754,0.88
+pithecellobium dulce,0.54,7.06E-05,-1.65,8.71559633,10.25,-67.05,Sobrado 1997,15.13561248,0.6835
+rhizophora mangle,NaN,NaN,-6.3,NaN,25.549,-80.3227,Sperry et al. 1988,NaN,0.897714286
+cassipourea guianensis,1.3,NaN,-4.8,NaN,9.166666667,-79.846036,Sperry et al. 1988,NaN,0.82
+canella winterana,NaN,NaN,-0.23,NaN,25.6773,-80.2724,Sperry et al. 2007,NaN,0.95
+galbulimima baccata,NaN,NaN,-1.3,16.53611836,-16.81972222,145.6453611,Sperry et al. 2007,NaN,0.5005
+hedyosmum goudotianum,NaN,NaN,-1.741,55.47445255,10.31897222,-84.79363889,Sperry et al. 2007,NaN,NaN
+hedyosmum mexicanum,NaN,NaN,-0.789,NaN,10.02511111,-84.12533333,Sperry et al. 2007,NaN,NaN
+idiospermum australiense,NaN,NaN,-0.615,19.48717949,-16.89933611,145.750725,Sperry et al. 2007,NaN,0.65
+illicium floridanum,NaN,NaN,-3.28,NaN,29.9546,-90.0751,Sperry et al. 2007,NaN,NaN
+trimenia neocaledonica,NaN,NaN,-1.253,15.66364386,-21.18247222,165.2923889,Sperry et al. 2007,NaN,NaN
+cassipourea guianensis,NaN,NaN,-4.68,19.79166667,9.166666667,-79.846036,Tyree & Sperry 1989,NaN,0.82
+schefflera morototoni,NaN,NaN,-1.38,82.60869565,9.166666667,-79.846036,Tyree et al. 1991,NaN,0.4559375
+agathis borneensis,NaN,NaN,-1.91,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.383333333
+aglaia glabrata,NaN,NaN,-0.71,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,NaN
+amyxa pluricornis,NaN,NaN,-0.63,43.67816092,4.66,114.52,Tyree et al. 1998,NaN,0.63
+canarium caudatum,NaN,NaN,-1.47,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.33
+cotylelobium burckii,NaN,NaN,-0.45,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.815
+diospyros brachiata,NaN,NaN,-0.42,74.50980392,4.66,114.52,Tyree et al. 1998,NaN,0.54
+diospyros hermaphroditica,NaN,NaN,-0.6,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.595
+diospyros mindanaensis,NaN,NaN,-0.79,105.5555556,4.66,114.52,Tyree et al. 1998,NaN,0.65
+dipterocarpus globosus,NaN,NaN,-0.18,223.5294118,4.66,114.52,Tyree et al. 1998,NaN,0.7
+dryobalanops aromatica,NaN,NaN,-0.26,NaN,4.66,114.52,Tyree et al. 1998,NaN,0.68
+dryobalanops sumatrensis,NaN,NaN,-0.26,200,4.66,114.52,Tyree et al. 1998,NaN,0.65
+eugenia ampullaria,NaN,NaN,-0.6,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,NaN
+eugenia bankensis,NaN,NaN,-1.26,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,NaN
+eugenia muelleri,NaN,NaN,-0.54,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.87
+heritiera sumatrana,NaN,NaN,-1.69,43.67816092,4.66,114.52,Tyree et al. 1998,NaN,0.53
+homalium moultonii,NaN,NaN,-6.3,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,NaN
+isonandra lanceolata,NaN,NaN,-0.48,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.93
+lophopetalum subobovatum,NaN,NaN,-0.59,70.37037037,4.66,114.52,Tyree et al. 1998,NaN,0.54
+mallotus wrayi,NaN,NaN,-0.53,122.5806452,4.66,114.52,Tyree et al. 1998,NaN,NaN
+nephelium lappaceum,NaN,NaN,-0.76,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.7102
+payena endertii,NaN,NaN,-0.63,74.50980392,4.66,114.52,Tyree et al. 1998,NaN,0.633333333
+pentace adenophora,NaN,NaN,-0.19,165.2173913,4.66,114.52,Tyree et al. 1998,NaN,NaN
+santiria mollis,NaN,NaN,-0.2,92.68292683,4.66,114.52,Tyree et al. 1998,NaN,NaN
+shorea faguetiana,NaN,NaN,-0.37,88.37209302,4.66,114.52,Tyree et al. 1998,NaN,0.48
+shorea mecistopteryx,NaN,NaN,-0.63,140.7407407,4.66,114.52,Tyree et al. 1998,NaN,0.426666667
+shorea ovalis,NaN,NaN,-0.39,158.3333333,4.66,114.52,Tyree et al. 1998,NaN,0.43
+sindora leiocarpa,NaN,NaN,-0.86,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.51
+stemonurus umbellatus,NaN,NaN,-0.18,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.61
+xerospermum laevigatum,NaN,NaN,-0.18,NaN,4.5594,114.4213,Tyree et al. 1998,NaN,0.77
+eucalyptus grandis,NaN,NaN,-1.31,NaN,-28.4333,32.1833,Vander Willigen & Pammenter 1998,NaN,0.662
+eucalyptus x,NaN,NaN,-1.77,NaN,-28.4333,32.1833,Vander Willigen & Pammenter 1998,NaN,NaN
+barringtonia racemosa,NaN,NaN,-1.36,NaN,-29.8833,31,Vander Willigen et al. 2000,NaN,0.454
+cinnamomum camphora,NaN,NaN,-1.24,NaN,-29.8833,31,Vander Willigen et al. 2000,NaN,0.4874
+podocarpus latifolius,NaN,NaN,-1.74,NaN,-29.8833,31,Vander Willigen et al. 2000,3.84591782,0.469
+trichilia dregeana,NaN,NaN,-2.66,NaN,-29.8833,31,Vander Willigen et al. 2000,NaN,0.482
+sclerolobium paniculatum,4.2,0.00088,-3.4,NaN,-15.93333333,-47.88333333,Zhang et al. 2009,5.555,0.65
+sclerolobium paniculatum,3.6,0.00083,-3.2,NaN,-15.93333333,-47.88333333,Zhang et al. 2009,5,0.67
+sclerolobium paniculatum,6,0.0011,-3.4,NaN,-15.93333333,-47.88333333,Zhang et al. 2009,5.405,0.59
+sclerolobium paniculatum,NaN,NaN,-3.4,NaN,-15.9333,-47.8833,Zhang et al. 2009,NaN,NaN
+baccaurea ramiflora,0.74,0.00037,-2.1,NaN,21.9,101.7666667,Zhu & Cao 2009,NaN,0.56
+baccaurea ramiflora,0.74,0.00037,-2.1,NaN,21.9,101.7666667,Zhu & Cao 2009,NaN,0.56
+bauhinia variegate,2.07,0.000633,-1.6,NaN,21.9,101.7666667,Zhu & Cao 2009,NaN,0.51
+bauhinia variegate,2.07,0.000633,-1.6,NaN,21.9,101.7666667,Zhu & Cao 2009,NaN,0.51
+syzygium szemaoense,1.64,0.000533,-2,NaN,21.9,101.7666667,Zhu & Cao 2009,NaN,0.52
+syzygium szemaoense,1.64,0.000533,-2,NaN,21.9,101.7666667,Zhu & Cao 2009,NaN,0.52
+alphonsea monogyna,3.47,0.000391,-1.9,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.6
+bauhinia purpurea,11.79,0.00098,-1.3,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.42
+bauhinia variegate,10.58,0.001059,-1.2,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.44
+bischofia javanica,7.89,0.000533,-1.2,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.44
+castanopsis indica ,4.45,0.000371,-1.3,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.47
+celtis philippensis,3.45,0.000534,-2.1,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.62
+cipadessa baccifera,3.89,0.000468,-2.3,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.61
+cleistanthus sumatranus,1.57,0.000169,-3.4,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.71
+croton crassifolius,4.07,0.000438,-1.6,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.63
+lagerstroemia tomentosa,7.74,0.000985,-1.4,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.61
+lasiococca comberi,2.12,0.000223,-2,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.69
+millettia cubitti,7.73,0.000777,-1.1,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.53
+millettia leptobotrya,4.61,0.000236,-1.6,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.63
+pistacia weinmannifolia,2.01,0.000387,-4.1,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.72
+syzygium cumini,6.15,0.000603,-1.2,NaN,21.9,101.7666667,Zhu et al. 2017,7.413102413,0.61
+syzygium latilimbum,4.57,0.000416,-2,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.64
+syzygium szemaoense,8.06,0.000697,-1.3,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.53
+turpinia pomifera,2.73,0.000501,-2.2,NaN,21.9,101.7666667,Zhu et al. 2017,NaN,0.58
+cordia alliodora,NaN,NaN,-3.2,58.46153846,9.166666667,-79.846036,Zotz et al. 1994,NaN,0.520307692
+ficus citrifolia,NaN,NaN,-1.6,63.33333333,9.166666667,-79.846036,Zotz et al. 1994,NaN,0.4
+ouratea lucens,NaN,NaN,-1.8,14.07407407,9.166666667,-79.846036,Zotz et al. 1994,NaN,NaN
+annona glabra,9.1,0.0018,-3.3,18.0952381,9.166666667,-79.846036,Zotz et al. 1997,10.27,0.51
+alseis blackiana,4.0426,0.000670722,-3.074643425,14.17986293,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,15.2912,0.57106
+croton billbergianus,8.0085376,0.001325324,-0.434398757,71.35798787,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,26.769148,0.44668
+erythrina costaricensis,6.6344588,0.001207007,-1.359056703,40.97292312,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,36.78721,0.30128
+eugenia nesiotica,5.8039816,0.000917559,-1.435378143,30.05014163,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,21.091442,0.47282
+faramea occidentalis,1.27166,0.000191062,-3.996514316,11.26112425,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,18.856968,0.5132833
+gustavia superba,1.093745,0.000303322,-1.598452836,50.55533823,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,16.345402,0.39436
+inga vera,1.8498364,0.000285028,-4.495364579,17.63828247,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,19.40248,0.45516
+luehea seemannii,8.04222,0.001437552,-2.027483016,39.81884936,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,19.5426,0.4074
+miconia argentea,2.1880484,0.000471854,-0.779175224,59.04399617,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,15.231692,0.58236
+senna dariensis,1.373471,0.000533683,-1.572874874,27.49481716,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,44.52742,0.4301167
+terminalia amazonia,0.6830346,0.000240593,-3.403316231,12.87741815,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,22.059242,0.56028
+vismia billbergiana,2.3815075,0.001093299,-2.631534516,20.84928618,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,22.878338,0.3847167
+xylopia macrantha,1.318958,0.000460579,-2.65370924,15.08845143,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,23.18995,0.41306
+zanthoxylum panamense,6.8690662,0.000741532,-2.589694304,21.27978929,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,23.388837,0.4267
+zuelania guidonia,5.26524,0.000475035,-3.53941893,19.96156217,9.16666667,-79.11666667,Van der Sande et al. 2013 + unpublished data,14.590266,0.55888
+annona spraguei,7.3408,0.001241857,-2.377684574,29.04526549,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,14.225738,0.35238
+brosimum utile,9.11352,0.001275674,-2.065974143,22.86722251,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,10.02136,0.53688
+cecropia obtusifolia,9.70104,0.001545671,-0.697993285,68.20993693,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,20.685776,0.28148
+myriocarpa longipes,11.9952,0.001724209,-0.73995332,76.89441033,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,18.1148,0.26522
+piper reticulatum,8.0422,0.001710931,-0.752099638,60.90441931,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,13.902812,0.34366
+pourouma bicolor,6.831,0.001437636,-1.240017663,34.6898397,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,15.83768,0.3469
+protium panamense,8.72496,0.001689882,-1.512397772,28.16725218,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,11.547208,0.50214
+simarouba amara,6.44182,0.001624577,-0.947587384,43.32960464,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,16.1094,0.38282
+tachigali versicolor,1.79872,0.00076449,-2.98247997,27.72041825,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,10.957978,0.58934
+tapirira guianensis,3.3879,0.001003693,-2.855256864,25.57114338,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,11.745478,0.55584
+virola sebifera,5.22424,0.000981601,-1.99214399,27.73510435,9.28111111,-79.97451944,Van der Sande & Markesteijn et al. unpublished data,10.12885,0.4869

@@ -1,0 +1,94 @@
+"","Cft","WD","SLA","Organ","Biome","lon","lat","species","citation_id"
+"1",0.22,0.49,10.46025105,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Aegiphila lhotzkiana",1000000101
+"2",0.39,0.41,12.78772379,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Aegiphila sellowiana",1000000101
+"3",0.036469112,0.56,9.652509653,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Hymenaea martiana",1000000101
+"4",0.061971074,0.72,6.887052342,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Hymenaea stignocarpa",1000000101
+"5",0.067360248,0.74,10.35196687,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Miconia cuspidata",1000000101
+"6",0.074970684,0.53,5.42888165,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Miconia pohliana",1000000101
+"7",0.101475259,0.62,11.50747986,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Myrsine ferruginea",1000000101
+"8",0.09,0.52,5.151983514,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Myrsine guianensis",1000000101
+"9",0.057424191,0.49,5.678591709,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Styrax ferrugineus",1000000101
+"10",0.065297872,0.54,8.183306056,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Styrax pohlii",1000000101
+"11",0.058264463,0.38,6.887052342,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Symplocos lanceolata",1000000101
+"12",0.060883645,0.48,8.136696501,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Symplocos mosenii",1000000101
+"13",0.044,0.74,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Aspidosperma cruenta",1000000102
+"14",0.064,0.66,NA,"Leaf","Tropical rainforest",-79.54694444,8.98561944,"Chrysophllum cainito",1000000102
+"15",0.151,0.4,NA,"Leaf","Tropical rainforest",-79.54694444,8.98561944,"Ficus insipida",1000000102
+"16",0.053,0.67,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Manilkara bidentata",1000000102
+"17",0.065,0.62,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Protium panamense",1000000102
+"18",0.069,0.64,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Tachigalia versicolor",1000000102
+"19",0.071,0.5,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Tapirira guianensis",1000000102
+"20",0.077,0.56,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Vochysia ferruginea",1000000102
+"21",0.11,0.36,12.76,"Leaf","Tropical seasonal forest",-85.594,10.718,"Bursera simarouba",1000000109
+"22",0.13,0.61,12.66,"Leaf","Tropical seasonal forest",-85.594,10.718,"Casearia corymbosa",1000000109
+"23",0.11,0.64,21.41,"Leaf","Tropical seasonal forest",-85.594,10.718,"Casearia sylvestris",1000000109
+"24",0.18,0.18,17.6,"Leaf","Tropical seasonal forest",-85.594,10.718,"Cochlospermum vitifolium",1000000109
+"25",0.1,0.55,8.33,"Leaf","Tropical seasonal forest",-85.594,10.718,"Crescentia alata",1000000109
+"26",0.11,0.6,15.45,"Leaf","Tropical seasonal forest",-85.594,10.718,"Cupania guatemalensis",1000000109
+"27",0.1,0.38,7,"Leaf","Tropical seasonal forest",-85.594,10.718,"Enterolobium cyclocarpum",1000000109
+"28",0.12,0.74,13.34,"Leaf","Tropical seasonal forest",-85.594,10.718,"Guazuma ulmifolia",1000000109
+"29",0.07,0.84,11.68,"Leaf","Tropical seasonal forest",-85.594,10.718,"Hymenea courbaril",1000000109
+"30",0.05,0.78,18.12,"Leaf","Tropical seasonal forest",-85.594,10.718,"Maclura tinctoria",1000000109
+"31",0.21,0.68,27.69,"Leaf","Tropical seasonal forest",-85.594,10.718,"Myrospermum frutescens",1000000109
+"32",0.18,0.64,14.15,"Leaf","Tropical seasonal forest",-85.594,10.718,"Piscidia carthagenensis",1000000109
+"33",0.17,0.51,18.73,"Leaf","Tropical seasonal forest",-85.594,10.718,"Semialarium mexicanum",1000000109
+"34",0.12,0.53,9.13,"Leaf","Tropical seasonal forest",-85.594,10.718,"Tabebuia rosea",1000000109
+"35",11.90984038,0.513,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Albizia guachapele",1000000103
+"36",5.679491184,0.697,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Calycophyllum candidissimum",1000000103
+"37",14.29496799,0.464535059,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Simarouba glauca",1000000103
+"38",11.0149605,0.33,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Spondias purpurea",1000000103
+"39",13.84766082,0.659035123,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Balfourodendron riedelianum",1000000104
+"40",54.88725821,0.528022175,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Cabralea canjerana",1000000104
+"41",103.2156417,0.491526273,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Cedrela fissilis",1000000104
+"42",262.0336416,0.30827275,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Ceiba speciosa",1000000104
+"43",22.17600802,0.59504569,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Chrysophyllum gonocarpum",1000000104
+"44",19.47222572,0.508058826,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Cordia trichotoma",1000000104
+"45",22.70262928,0.858303343,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Holocalyx balansae",1000000104
+"46",16.36263418,0.697730064,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Lonchocarpus muehlbergianus",1000000104
+"47",32.61183584,0.540559839,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Ocotea diospyrifolia",1000000104
+"48",17.29205215,0.757215075,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Parapiptadenia rigida",1000000104
+"49",388.42,0.35,8.47,"Xylem","Tropical rainforest",-79.55,8.98333333,"Anacardium excelsum",1000000071
+"50",618.94,0.27,15.3,"Xylem","Tropical rainforest",-79.55,8.98333333,"Annona spraguei",1000000071
+"51",213.93,0.37,15.7,"Xylem","Tropical rainforest",-79.55,8.98333333,"Antirrhea trichantha",1000000071
+"52",171.4,0.41,14.1,"Xylem","Tropical rainforest",-79.55,8.98333333,"Astronium graveolens",1000000071
+"53",347.64,0.37,NA,"Xylem","Tropical rainforest",-79.55,8.98333333,"Cordia alliodora",1000000071
+"54",195.07,0.27,16.1,"Xylem","Tropical rainforest",-79.55,8.98333333,"Luehea seemannii",1000000071
+"55",47,0.55,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Blepharocalyx salicifolius",1000000105
+"56",60,0.52,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Byrsonima crassa",1000000105
+"57",66,0.66,4.897788194,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Kielmeyera coriacea",1000000105
+"58",171,0.28,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Qualea parviflora",1000000105
+"59",251.4128818,0.19,NA,"Xylem","Tropical rainforest",-79.846036,9.166666667,"Ochroma pyramidale",1000000061
+"60",95,0.19,NA,"Xylem","Tropical rainforest",-79.846036,9.166666667,"Ochroma pyramidale",1000000061
+"61",111.7163481,0.25,7.762471166,"Xylem","Tropical rainforest",-79.846036,9.166666667,"Pseudobombax septenatum",1000000061
+"62",60,0.25,7.762471166,"Xylem","Tropical rainforest",-79.846036,9.166666667,"Pseudobombax septenatum",1000000061
+"63",300,0.39,10.83926914,"Xylem","Tropical seasonal forest",-79.85,9.166666667,"Anacardium excelsum",1000000079
+"64",80,0.52,NA,"Xylem","Tropical seasonal forest",-79.85,9.166666667,"Cordia alliodora",1000000079
+"65",230,0.29,NA,"Xylem","Tropical seasonal forest",-79.85,9.166666667,"Ficus insipida",1000000079
+"66",415,0.28,NA,"Xylem","Tropical seasonal forest",-79.85,9.166666667,"Schefflera morototoni",1000000079
+"67",142.9625863,0.390097712,10.83926914,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Anacardium excelsum",1000000137
+"68",51.42868505,0.520247451,NA,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Cordia alliodora",1000000137
+"69",82.24273705,0.400137312,NA,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Ficus insipida",1000000137
+"70",262,0.376555556,NA,"Xylem","Tropical seasonal forest",-79.85,9.166666667,"Ficus insipida",1000000137
+"71",31.18344299,0.665210733,NA,"Xylem","Tropical rainforest",-80.001385,9.322863,"Manilkara bidentata",1000000137
+"72",153,0.872933333,NA,"Xylem","Tropical rainforest",-79.975,9.283333333,"Manilkara bidentata",1000000137
+"73",282,0.452333333,NA,"Xylem","Tropical rainforest",-79.975,9.283333333,"Protium panamense",1000000137
+"74",200.8621236,0.279688601,NA,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Schefflera morototoni",1000000137
+"75",302,0.521,NA,"Xylem","Tropical rainforest",-79.975,9.283333333,"Tachigali versicolor",1000000137
+"76",54.50311922,0.520305811,NA,"Xylem","Tropical rainforest",-80.001385,9.322863,"Tapirira guianensis",1000000137
+"77",337,0.457,NA,"Xylem","Tropical rainforest",-79.975,9.283333333,"Tapirira guianensis",1000000137
+"78",97.03223746,0.540195858,NA,"Xylem","Tropical rainforest",-80.001385,9.322863,"Trattinnickia aspera",1000000137
+"79",411,0.424,NA,"Xylem","Tropical rainforest",-79.975,9.283333333,"Trattinnickia aspera",1000000137
+"80",407,0.410166667,NA,"Xylem","Tropical rainforest",-79.975,9.283333333,"Vochysia ferruginea",1000000137
+"81",67.53855274,0.559462486,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Blepharocalyx salicifolius",1000000106
+"82",73,0.56,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Blepharocalyx salicifolius",1000000106
+"83",83,0.53,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Byrsonima crassa",1000000106
+"84",73.82226809,0.589641657,8.511380382,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Caryocar brasiliense",1000000106
+"85",40,0.59,8.511380382,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Caryocar brasiliense",1000000106
+"86",107,0.5,4.897788194,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Kielmeyera coriacea",1000000106
+"87",89.43341979,0.569652856,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Qualea parviflora",1000000106
+"88",67,0.569,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Qualea parviflora",1000000106
+"89",55.58797211,0.539473684,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Schefflera macrocarpa",1000000106
+"90",85,0.54,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Schefflera macrocarpa",1000000106
+"91",38,0.62,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Sclerolobium paniculatum",1000000106
+"92",157,0.42,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Vochysia thyrsoidea",1000000106
+"93",122.7421893,0.456,NA,"Xylem","Tropical rainforest",-79.86666667,9.13333333,"Schefflera morototoni",1000000107

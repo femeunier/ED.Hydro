@@ -1,0 +1,94 @@
+Species,Cft,WD,SLA,Organ,Ref,Biome,Long,Lat
+aegiphila lhotzkiana,0.22,0.49,10.46025105,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+aegiphila sellowiana,0.39,0.41,12.78772379,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+hymenaea martiana,0.036469112,0.56,9.652509653,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+hymenaea stignocarpa,0.061971074,0.72,6.887052342,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+miconia cuspidata,0.067360248,0.74,10.35196687,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+miconia pohliana,0.074970684,0.53,5.42888165,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+myrsine ferruginea,0.101475259,0.62,11.50747986,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+myrsine guianensis,0.09,0.52,5.151983514,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+styrax ferrugineus,0.057424191,0.49,5.678591709,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+styrax pohlii,0.065297872,0.54,8.183306056,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+symplocos lanceolata,0.058264463,0.38,6.887052342,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+symplocos mosenii,0.060883645,0.48,8.136696501,Leaf,Hao et al. 2008,Tropical seasonal forest,-47.88333333,-15.93333333
+aspidosperma cruenta,0.044,0.74,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-80.001385,9.322863
+chrysophllum cainito,0.064,0.66,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-79.54694444,8.98561944
+ficus insipida,0.151,0.4,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-79.54694444,8.98561944
+manilkara bidentata,0.053,0.67,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-80.001385,9.322863
+protium panamense,0.065,0.62,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-80.001385,9.322863
+tachigalia versicolor,0.069,0.64,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-80.001385,9.322863
+tapirira guianensis,0.071,0.5,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-80.001385,9.322863
+vochysia ferruginea,0.077,0.56,NaN,Leaf,Meinzer et al 2008,Tropical rainforest,-80.001385,9.322863
+bursera simarouba,0.11,0.36,12.76,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+casearia corymbosa,0.13,0.61,12.66,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+casearia sylvestris,0.11,0.64,21.41,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+cochlospermum vitifolium,0.18,0.18,17.6,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+crescentia alata,0.1,0.55,8.33,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+cupania guatemalensis,0.11,0.6,15.45,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+enterolobium cyclocarpum,0.1,0.38,7,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+guazuma ulmifolia,0.12,0.74,13.34,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+hymenea courbaril,0.07,0.84,11.68,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+maclura tinctoria,0.05,0.78,18.12,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+myrospermum frutescens,0.21,0.68,27.69,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+piscidia carthagenensis,0.18,0.64,14.15,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+semialarium mexicanum,0.17,0.51,18.73,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+tabebuia rosea,0.12,0.53,9.13,Leaf,Werden et al 2018,Tropical seasonal forest,-85.594,10.718
+albizia guachapele,11.90984038,0.513,NaN,Xylem,Borchert & Pockman 2005,Tropical seasonal forest,-95.255601,38.954074
+calycophyllum candidissimum,5.679491184,0.697,NaN,Xylem,Borchert & Pockman 2005,Tropical seasonal forest,-95.255601,38.954074
+simarouba glauca,14.29496799,0.464535059,NaN,Xylem,Borchert & Pockman 2005,Tropical seasonal forest,-95.255601,38.954074
+spondias purpurea,11.0149605,0.33,NaN,Xylem,Borchert & Pockman 2005,Tropical seasonal forest,-95.255601,38.954074
+balfourodendron riedelianum,13.84766082,0.659035123,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+cabralea canjerana,54.88725821,0.528022175,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+cedrela fissilis,103.2156417,0.491526273,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+ceiba speciosa,262.0336416,0.30827275,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+chrysophyllum gonocarpum,22.17600802,0.59504569,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+cordia trichotoma,19.47222572,0.508058826,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+holocalyx balansae,22.70262928,0.858303343,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+lonchocarpus muehlbergianus,16.36263418,0.697730064,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+ocotea diospyrifolia,32.61183584,0.540559839,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+parapiptadenia rigida,17.29205215,0.757215075,NaN,Xylem,Carrasco et al. 2014,Subtropical Forest,-54.13333333,-25.51666667
+anacardium excelsum,388.42,0.35,8.47,Xylem,De Guzman et al. 2016 + unpublished data,Tropical rainforest,-79.55,8.98333333
+annona spraguei,618.94,0.27,15.3,Xylem,De Guzman et al. 2016 + unpublished data,Tropical rainforest,-79.55,8.98333333
+antirrhea trichantha,213.93,0.37,15.7,Xylem,De Guzman et al. 2016 + unpublished data,Tropical rainforest,-79.55,8.98333333
+astronium graveolens,171.4,0.41,14.1,Xylem,De Guzman et al. 2016 + unpublished data,Tropical rainforest,-79.55,8.98333333
+cordia alliodora,347.64,0.37,NaN,Xylem,De Guzman et al. 2016 + unpublished data,Tropical rainforest,-79.55,8.98333333
+luehea seemannii,195.07,0.27,16.1,Xylem,De Guzman et al. 2016 + unpublished data,Tropical rainforest,-79.55,8.98333333
+blepharocalyx salicifolius,47,0.55,NaN,Xylem,Domec et al. 2006a,Tropical seasonal forest,-47.88333333,-15.93333333
+byrsonima crassa,60,0.52,NaN,Xylem,Domec et al. 2006a,Tropical seasonal forest,-47.88333333,-15.93333333
+kielmeyera coriacea,66,0.66,4.897788194,Xylem,Domec et al. 2006a,Tropical seasonal forest,-47.88333333,-15.93333333
+qualea parviflora,171,0.28,NaN,Xylem,Domec et al. 2006a,Tropical seasonal forest,-47.88333333,-15.93333333
+ochroma pyramidale,251.4128818,0.19,NaN,Xylem,Machado & Tyree 1994,Tropical rainforest,-79.846036,9.166666667
+ochroma pyramidale,95,0.19,NaN,Xylem,Machado & Tyree 1994,Tropical rainforest,-79.846036,9.166666667
+pseudobombax septenatum,111.7163481,0.25,7.762471166,Xylem,Machado & Tyree 1994,Tropical rainforest,-79.846036,9.166666667
+pseudobombax septenatum,60,0.25,7.762471166,Xylem,Machado & Tyree 1994,Tropical rainforest,-79.846036,9.166666667
+anacardium excelsum,300,0.39,10.83926914,Xylem,Meinzer et al. 2003,Tropical seasonal forest,-79.85,9.166666667
+cordia alliodora,80,0.52,NaN,Xylem,Meinzer et al. 2003,Tropical seasonal forest,-79.85,9.166666667
+ficus insipida,230,0.29,NaN,Xylem,Meinzer et al. 2003,Tropical seasonal forest,-79.85,9.166666667
+schefflera morototoni,415,0.28,NaN,Xylem,Meinzer et al. 2003,Tropical seasonal forest,-79.85,9.166666667
+anacardium excelsum,142.9625863,0.390097712,10.83926914,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.54694444,8.98561944
+cordia alliodora,51.42868505,0.520247451,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.54694444,8.98561944
+ficus insipida,82.24273705,0.400137312,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.54694444,8.98561944
+ficus insipida,262,0.376555556,NaN,Xylem,Meinzer et al. 2008,Tropical seasonal forest,-79.85,9.166666667
+manilkara bidentata,31.18344299,0.665210733,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-80.001385,9.322863
+manilkara bidentata,153,0.872933333,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.975,9.283333333
+protium panamense,282,0.452333333,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.975,9.283333333
+schefflera morototoni,200.8621236,0.279688601,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.54694444,8.98561944
+tachigali versicolor,302,0.521,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.975,9.283333333
+tapirira guianensis,54.50311922,0.520305811,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-80.001385,9.322863
+tapirira guianensis,337,0.457,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.975,9.283333333
+trattinnickia aspera,97.03223746,0.540195858,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-80.001385,9.322863
+trattinnickia aspera,411,0.424,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.975,9.283333333
+vochysia ferruginea,407,0.410166667,NaN,Xylem,Meinzer et al. 2008,Tropical rainforest,-79.975,9.283333333
+blepharocalyx salicifolius,67.53855274,0.559462486,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+blepharocalyx salicifolius,73,0.56,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+byrsonima crassa,83,0.53,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+caryocar brasiliense,73.82226809,0.589641657,8.511380382,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+caryocar brasiliense,40,0.59,8.511380382,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+kielmeyera coriacea,107,0.5,4.897788194,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+qualea parviflora,89.43341979,0.569652856,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+qualea parviflora,67,0.569,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+schefflera macrocarpa,55.58797211,0.539473684,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+schefflera macrocarpa,85,0.54,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+sclerolobium paniculatum,38,0.62,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+vochysia thyrsoidea,157,0.42,NaN,Xylem,Scholz et al. 2007,Tropical seasonal forest,-47.88333333,-15.93333333
+schefflera morototoni,122.7421893,0.456,NaN,Xylem,Tyree et al. 1991,Tropical rainforest,-79.86666667,9.13333333

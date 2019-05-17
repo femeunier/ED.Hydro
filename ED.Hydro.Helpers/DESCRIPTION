@@ -17,5 +17,6 @@ Imports:
   gridExtra,
   readr,
   SHELF,
+  taxize,
   XML
 RoxygenNote: 6.1.1

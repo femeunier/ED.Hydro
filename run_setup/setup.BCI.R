@@ -7,12 +7,21 @@ pecan.xml.path <- "/fs/data2/output/PEcAn_1000010050/pecan.xml"
 
 pecan.xml.path <- "/fs/data3/ecowdery/ED_Tropics/pecan.BCI_new.xml"
 
-pecan.xml.path <- "/fs/data2/output//PEcAn_1000010231/pecan.xml"
+pecan.xml.path <- "/fs/data2/output//PEcAn_1000010231/pecan.xml" # Was this a good run? I wonderrrrrrrr?????/
+
+pecan.xml.path <- "/fs/data2/output//PEcAn_1000010332/pecan.xml"
 
 # file.edit(pecan.xml.path)
 # file.edit(file.path(dirname(pecan.xml.path),"STATUS"))
 
-settings <- PEcAn.settings::read.settings(pecan.xml.path) 
+settings2 <- PEcAn.settings::read.settings("/fs/data2/output//PEcAn_1000010231/pecan.xml")
+settings <- PEcAn.settings::read.settings(pecan.xml.path)
+
+settings$pfts$pft$ed2_pft_number <- 3
+settings$pfts$pft$constants$b1Bl_large <- 0.0132
+settings$pfts$pft$constants$leaf_turnover_rate <- 0.33333
+settings$pfts$pft$constants$root_turnover_rate <- 0.33333
+settings$pfts$pft$constants$num <- NULL
 
 # Probably check if there is a tunnel ... ? I dunno how to do that right now ...
 

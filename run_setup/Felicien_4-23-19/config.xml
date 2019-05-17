@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE config SYSTEM "ed.dtd">
+<config>
+ <pft>
+  <num>2</num>
+  <leaf_turnover_rate>0.33333</leaf_turnover_rate>
+  <root_turnover_rate>0.33333</root_turnover_rate>
+  <b1Bl_large>0.0096</b1Bl_large>
+ </pft>
+ <pft>
+  <num>3</num>
+  <is_tropical>1</is_tropical>
+  <leaf_turnover_rate>0.33333</leaf_turnover_rate>
+  <root_turnover_rate>0.33333</root_turnover_rate>
+  <b1Bl_large>0.0132</b1Bl_large>
+ </pft>
+ <pft>
+  <num>4</num>
+  <is_tropical>1</is_tropical>
+ </pft>
+ <pft>
+  <num>17</num>
+  <b2Rd>0.5</b2Rd>
+  <root_beta>0.0001</root_beta>
+ </pft>
+</config>
