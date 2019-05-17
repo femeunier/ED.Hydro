@@ -1,4 +1,4 @@
-# Prepare the template data
+# Prepare the Psitlp data
 
 #------------------------------------------------------------------------------#
 # Setup
@@ -14,8 +14,8 @@ bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php") # the path to my 
 #------------------------------------------------------------------------------#
 # Read in the data
 
-datapath <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Capacitance_Felicien_2-15-19/"
-datafile <- "capacitance_BETY"
+datapath <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Psitlp_Felicien_5-17-19/"
+datafile <- "Psitlp_BETY"
 
 dat_in <- read.csv(file.path(datapath, paste0(datafile,".csv")), na.strings = NaN,  stringsAsFactors = FALSE)
 

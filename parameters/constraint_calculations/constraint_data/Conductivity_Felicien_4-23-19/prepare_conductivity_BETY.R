@@ -201,6 +201,7 @@ write.csv(dat, file = tmp2)
 #------------------------------------------------------------------------------#
 # Species
 
+tmp2 <- file.path(datapath, "tmp", paste0(datafile,"_tmp2", ".csv"))
 dat <- read.csv(file = tmp2, na.strings = NaN,  stringsAsFactors = FALSE) %>%
   select(-one_of("X","X.1"))
 
@@ -262,6 +263,7 @@ write.csv(dat, file = tmp3)
 #------------------------------------------------------------------------------#
 # Preparation of data
 
+tmp3 <- file.path(datapath, "tmp", paste0(datafile,"_tmp3", ".csv"))
 dat <- read.csv(file = tmp3, na.strings = NaN,  stringsAsFactors = FALSE) %>% select(-one_of("X","X.1"))
 
 dat <- dat %>% mutate(ksat = as.numeric(ksat),
@@ -288,7 +290,7 @@ wood_Kmax_fit <- tbl(bety, "priors") %>%
 wood_Kmax_prior <- rdistn(wood_Kmax_fit)
 
 p <- prior_plot(prior = wood_Kmax_prior,
-                q = c(0,.975),
+                q = c(0,1),
                 plot_default = wood_Kmax_default,
                 title = sprintf("wood_Kmax: %s", wood_Kmax_fit$distn),
                 type = "data")
