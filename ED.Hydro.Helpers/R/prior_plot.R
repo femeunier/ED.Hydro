@@ -18,14 +18,14 @@ prior_plot <- function(prior, q = NA, plot_default = NA, title = "", type = "pri
   names(Set2colors) <- c("red", "blue", "green", "purple", "orange", "yellow", "brown", "pink")
 
   dist_colors        <- c(Set2colors[c("green", "blue", "orange", "purple")], "gray")
-  names(dist_colors) <- c("data", "equation", "mixed", "obs", "prior")
+  names(dist_colors) <- c("elic", "equation", "mixed", "obs", "prior")
   dist_colors
 
   line_colors <- Set2colors["blue"]
   names(line_colors) <- c("PFT3")
 
-  dist_labels <- c("Based on data", "Based on equations", "Observed data", "Based on data and equations", "Prior")
-  names(dist_labels) <- c("data", "equation", "mixed", "obs", "prior")
+  dist_labels <- c("Based on elicitation", "Based on equations","Based on elicitation and equations", "Observed data", "Prior")
+  names(dist_labels) <- c("elic", "equation", "mixed", "obs", "prior")
 
   p <- ggplot(plot_df) +
     geom_density(aes(x = var, fill = type), alpha = .3, color = NA) +
