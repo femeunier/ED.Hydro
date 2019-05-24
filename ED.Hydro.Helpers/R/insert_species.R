@@ -2,6 +2,7 @@
 #'
 #' @param sp
 #' @param case_accept_set
+#' @param insert_PFT
 #' @param bety
 #' @return sp
 #' @export
@@ -102,7 +103,7 @@ insert_species <- function(sp, case_accept_set, insert_PFT = FALSE, bety){
 
             final$in_PFT[j] <- dim(d)[1]==1
           }else if(nrow(d)==1){
-            print(sprintf("%j | %s already in PFT", j, final$scientificname[j]))
+            print(sprintf("%i | %s already in PFT", j, final$scientificname[j]))
             final$in_PFT[j] <- TRUE
           }
         }

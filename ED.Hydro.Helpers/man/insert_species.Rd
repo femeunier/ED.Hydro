@@ -4,7 +4,7 @@
 \alias{insert_species}
 \title{Find nearby sites in BETY}
 \usage{
-insert_species(sp, case_accept_set, bety)
+insert_species(sp, case_accept_set, insert_PFT = FALSE, bety)
 }
 \value{
 sp
