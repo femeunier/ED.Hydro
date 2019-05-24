@@ -16,11 +16,11 @@ wdns <- 1.000e3
 grav <- 9.80665
 MPa2m <- wdns / grav
 
-#------------------------------------------------------------------------------#
-# Read in the data
-
 datapath <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Conductivity_Felicien_4-23-19"
 datafile <- "conductivity_BETY"
+
+#------------------------------------------------------------------------------#
+# Read in the data
 
 dat_in <- read.csv(file.path(datapath, paste0(datafile,".csv")), na.strings = NaN,  stringsAsFactors = FALSE)
 
@@ -37,6 +37,9 @@ dat <- dat_in %>%
 dat <- dat[-grep("Eucalyptus", dat$species),]
 dat <- dat[-grep("Corymbia", dat$species),]
 
+# Remove study performed on roots
+dat <- dat[-grep("Domec et al. 2006a", dat$Ref),]
+
 # Remove plants that were grown in a greenhouse? Maybe?
 # Talk to Mike about this.
 dat <- dat[-grep("Vander Willigen et al. 2000", dat$Ref),]
@@ -45,8 +48,10 @@ dat <- dat[-grep("Feild et al. 2009 \\+ Feild \\& Isnard", dat$Ref),]
 # Remove data that I couldn't figure out where it came from
 dat <- dat[-grep("Cochard 2006", dat$Ref),]
 
-# Remove the data that is not published (remember to go back and ask about this later)
-dat <- dat[-which(dat$Ref == "Van der Sande & Markesteijn et al. unpublished data"),]
+# # Remove the data that is not published (remember to go back and ask about this later)
+# dat %>% filter(Ref == "Van der Sande & Markesteijn et al. unpublished data") %>% select(one_of("lat","lon"))
+# nearby_sites(9.28111111, -79.97451944, .1, bety = bety)
+# dat <- dat[-which(dat$Ref == "Van der Sande & Markesteijn et al. unpublished data"),]
 
 #------------------------------------------------------------------------------#
 # Fix data that is confirmed as having been copied over from papers incorrectly
@@ -106,6 +111,7 @@ refs[which(refs$Ref == "Zhu et al. 2017"),"doi"] <- "10.1093/treephys/tpx094"
 refs[which(refs$Ref == "Zotz et al. 1994"),"doi"] <- "10.1111/j.1469-8137.1994.tb04279.x"
 refs[which(refs$Ref == "Zotz et al. 1997"),"doi"] <- "10.1093/treephys/17.6.359"
 refs[which(refs$Ref == "Van der Sande et al. 2013 + unpublished data"),"doi"] <- "10.1007/s00442-012-2563-x"
+refs[which(refs$Ref == "Van der Sande & Markesteijn et al. unpublished data"),"citation_id"] <- 1000000066
 
 refs$doi <- str_trim(refs$doi) # because I always miss something
 
@@ -130,12 +136,15 @@ length(unique(refs$citation_id))
 
 dat <- left_join(dat,refs) %>% select(-one_of("Ref", "doi"))
 
+all(!is.na(dat$citation_id))
+
 tmp1 <- file.path(datapath, "tmp", paste0(datafile,"_tmp1", ".csv"))
 write.csv(dat, file = tmp1)
 
 #------------------------------------------------------------------------------#
 # Sites
 
+tmp1 <- file.path(datapath, "tmp", paste0(datafile,"_tmp1", ".csv"))
 dat <- read.csv(file = tmp1, na.strings = NaN,  stringsAsFactors = FALSE)
 
 # make a separate dataframe to work on getting sites in to the database
@@ -169,6 +178,10 @@ dat_site_cite[idx,"site_id"] <- 1000026718
 idx <- which(as.numeric(dat_site_cite$citation_id) == 1000000124 &
                dat_site_cite$lat == 9.283333333	 &
                dat_site_cite$lon == -79.975)
+dat_site_cite[idx,"site_id"] <- 2000000002
+
+idx <- which(as.numeric(dat_site_cite$citation_id) == 1000000124 &
+               dat_site_cite$lon == -79.85)
 dat_site_cite[idx,"site_id"] <- 2000000002
 
 ####
@@ -293,18 +306,20 @@ p <- prior_plot(prior = wood_Kmax_prior,
                 q = c(0,1),
                 plot_default = wood_Kmax_default,
                 title = sprintf("wood_Kmax: %s", wood_Kmax_fit$distn),
-                type = "data")
+                type = "prior")
 p + geom_density(data = dat, aes(x = wood_Kmax, fill = "obs"), alpha = .3, color = NA)
 
+min(wood_Kmax_prior) < min(dat$wood_Kmax, na.rm = TRUE)
+which(dat$wood_Kmax > max(wood_Kmax_prior))
 
 var <- "wood_Kmax"
 varid <- wood_Kmax_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
@@ -332,19 +347,23 @@ wood_psi50_fit <- wood_psi50_fit %>% filter(distn == "lnorm")
 wood_psi50_prior <- rdistn(wood_psi50_fit)
 p <- prior_plot(prior = wood_psi50_prior,
                 q = c(0,.975),
-                plot_default = wood_psi50_default,
+                plot_default = wood_psi50_default * (-1),
                 title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s", wood_psi50_fit$distn),
                 type = "prior")
 p + geom_density(data = dat, aes(x = wood_psi50, fill = "obs"), alpha = .3, color = NA)
+
+
+which(dat$wood_psi50 < min(wood_psi50_prior))
+which(dat$wood_psi50 > max(wood_psi50_prior))
 
 var <- "wood_psi50"
 varid <- wood_psi50_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
@@ -370,17 +389,20 @@ p <- prior_plot(prior = wood_Kexp_prior,
                 q = c(0,.975),
                 plot_default = wood_Kexp_default,
                 title = sprintf("wood_Kexp: %s", wood_Kexp_fit$distn),
-                type = "data")
+                type = "prior")
 p + geom_density(data = dat, aes(x = wood_Kexp, fill = "obs"), alpha = .3, color = NA)
+
+which(dat$wood_Kexp < min(wood_Kexp_prior))
+which(dat$wood_Kexp > max(wood_Kexp_prior))
 
 var <- "wood_Kexp"
 varid <- wood_Kexp_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
@@ -401,14 +423,17 @@ p <- prior_plot(prior = SLA_prior,
 
 p + geom_density(data = dat, aes(x = SLA, fill = "obs"), alpha = .3, color = NA)
 
+which(dat$SLA < min(SLA_prior))
+which(dat$SLA > max(SLA_prior))
+
 var <- "SLA"
 varid <- SLA_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
@@ -420,7 +445,7 @@ SLA_df <- df
 dat <- dat %>% mutate(wood_density = WD)
 
 wood_density_id <- tbl(bety, "variables") %>% filter(name == "wood_density") %>% pull(id)
-wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_density_id) %>% filter(id == 1000000281) %>% collect()
+wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_density_id) %>% filter(id == 1000000422) %>% collect()
 
 wood_density_prior <- rdistn(wood_density_fit)
 wood_density_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "rho")
@@ -431,16 +456,18 @@ p <- prior_plot(prior = wood_density_prior,
                 type = "prior")
 p + geom_density(data = dat, aes(x = wood_density, fill = "obs"), alpha = .3, color = NA)
 
-mean(dat$WD, na.rm = TRUE)
+which(dat$wood_density < min(wood_density_prior))
+which(dat$wood_density > max(wood_density_prior))
+range(dat$wood_density, na.rm = T)
 
 var <- "wood_density"
 varid <- wood_density_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 

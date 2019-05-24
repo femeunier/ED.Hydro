@@ -1,0 +1,296 @@
+"","Ptlp","WD","SLA","Organ","Biome","lon","lat","species","citation_id"
+"1",-1.83,0.883333333,NA,"Leaf","Tropical rainforest",99.78333333,7.56666667,"Irvingia malayana",1000000142
+"2",-1.15,0.59,NA,"Leaf","Tropical rainforest",102.3,2.96666667,"Mallotus penangensis",1000000142
+"3",-1.12,0.61,NA,"Leaf","Tropical rainforest",99.78333333,7.56666667,"Millettia atropurpurea",1000000142
+"4",-1.88,0.52,NA,"Leaf","Tropical rainforest",99.78333333,7.56666667,"Palaquium sumatranum",1000000142
+"5",-1.83,0.67,NA,"Leaf","Tropical rainforest",102.3,2.96666667,"Parashorea densiflora",1000000142
+"6",-1.42,0.712333333,NA,"Leaf","Tropical rainforest",99.78333333,7.56666667,"Quercus semiserrata",1000000142
+"7",-1.38,0.705,NA,"Leaf","Tropical rainforest",102.3,2.96666667,"Shorea guiso",1000000142
+"8",-0.93,0.425,NA,"Leaf","Tropical rainforest",102.3,2.96666667,"Shorea macroptera",1000000142
+"9",-1.1,0.405,NA,"Leaf","Tropical rainforest",102.3,2.96666667,"Shorea parvifolia",1000000142
+"10",-1.27,0.79,NA,"Leaf","Tropical rainforest",99.78333333,7.56666667,"Vatica odorata",1000000142
+"11",-1.8,0.613333333,NA,"Leaf","Tropical rainforest",102.3,2.96666667,"Xanthophyllum affine",1000000142
+"12",-1.246333333,0.52,NA,"Leaf","Tropical seasonal forest",101.574,21.6117,"Barringtonia pendula",1000000139
+"13",-3.12,0.86,5.555555556,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Quercus oleoides",1000000113
+"14",-1.37056928,NA,5.882352941,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Rhedera trinervis",1000000113
+"15",-2.21,0.414188909,6.25,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Simarouba glauca",1000000113
+"16",-1.39,0.305,14.7893413,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Bursera simaruba",1000000113
+"17",-1.3,0.696666667,NA,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Calycophyllum candidissimum",1000000113
+"18",-1.82,0.39,NA,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Enterolobium cyclocarpum",1000000113
+"19",-2.174006445,0.792334,NA,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Hymenaea courbaril",1000000113
+"20",-2.15,NA,NA,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Sweitenia macrophylla",1000000113
+"21",-1.6,0.6175,NA,"Leaf","Tropical seasonal forest",-85.56666667,10.86666667,"Gliricidia sepium",1000000143
+"22",-1.4,NA,NA,"Leaf","Tropical rainforest",101.7666667,21.9,"Michelia hypolampra",1000000118
+"23",-2.23,0.53,11.04,"Leaf","Tropical rainforest",101.7666667,21.9,"Celtis tetrandra",1000000118
+"24",-2.06,0.51,13.29,"Leaf","Tropical rainforest",101.7666667,21.9,"Ficus concinna",1000000118
+"25",-2.37,0.44,12.5,"Leaf","Tropical rainforest",101.7666667,21.9,"Harpullia cupanioides",1000000118
+"26",-2.26,0.55,12.08,"Leaf","Tropical rainforest",101.7666667,21.9,"Streblus asper",1000000118
+"27",-1.97,0.520307692,NA,"Leaf","Tropical rainforest",-79.85,9.15,"Cordia alliodora",1000000027
+"28",-2.16,0.520307692,NA,"Leaf","Tropical seasonal forest",-85.35,10.35,"Cordia alliodora",1000000027
+"29",-1.89,0.520307692,NA,"Leaf","Tropical rainforest",-79.85,9.15,"Cordia alliodora",1000000027
+"30",-1.86,0.520307692,NA,"Leaf","Tropical rainforest",-84,10.41666667,"Cordia alliodora",1000000027
+"31",-2.09,0.42,NA,"Leaf","Tropical seasonal forest",-85.35,10.35,"Cordia collococca",1000000027
+"32",-1.5,NA,NA,"Leaf","Tropical rainforest",-84,10.41666667,"Cordia cymosa",1000000027
+"33",-2.14,0.5,NA,"Leaf","Tropical rainforest",-85.35,10.35,"Cordia dentata",1000000027
+"34",-1.63,0.397,NA,"Leaf","Tropical rainforest",-79.85,9.15,"Cordia lasiocalyx",1000000027
+"35",-1.4,NA,NA,"Leaf","Tropical rainforest",-84,10.41666667,"Cordia lucidula",1000000027
+"36",-2,NA,NA,"Leaf","Tropical rainforest",-79.85,9.15,"Cordia panamensis",1000000027
+"37",-2.83,0.84,NA,"Leaf","Tropical seasonal forest",-105.05,19.5,"Forchhammeria pallida",1000000144
+"38",-1.96,0.668,NA,"Leaf","Tropical seasonal forest",-105.05,19.5,"Randia armata",1000000144
+"39",-3.48,0.67,NA,"Leaf","Tropical seasonal forest",-105.05,19.5,"Thouinidium decandrum",1000000144
+"40",-1.98,0.8,NA,"Leaf","Tropical seasonal forest",-105.05,19.5,"Trichilia trifolia",1000000144
+"41",-1.29,0.653,13.18256739,"Leaf","Tropical seasonal forest",101.7666667,21.9,"Bauhinia variegata",1000000145
+"42",-2.62,0.703,NA,"Leaf","Tropical seasonal forest",101.7666667,21.9,"Celtis philippensis",1000000145
+"43",-1.72,0.64,NA,"Leaf","Tropical seasonal forest",101.7666667,21.9,"Cleistanthus sumatranus",1000000145
+"44",-2.32,0.825,9.652509653,"Leaf","Tropical seasonal forest",-47.88333333,-15.93333333,"Hymenaea martiana",1000000101
+"45",-0.86,0.468,14.83679525,"Leaf","Tropical rainforest",105.25,21.93333333,"Ficus auriculata",1000000146
+"46",-1.23,0.3815,10.68376068,"Leaf","Tropical rainforest",105.25,21.93333333,"Ficus hispida",1000000146
+"47",-1.44,0.3626,19.92031873,"Leaf","Tropical rainforest",105.25,21.93333333,"Ficus racemosa",1000000146
+"48",-1.13,0.43,10.83926914,"Leaf","Tropical rainforest",-79.54694444,8.98561944,"Anacardium excelsum",1000000078
+"49",-1.73,0.702,NA,"Leaf","Tropical seasonal forest",-5.033333333,6.216666667,"Crossopteryx febrifuga",1000000147
+"50",-1.6,0.157516429,NA,"Leaf","Tropical seasonal forest",-79.85,9.15,"Ochroma pyramidale",1000000061
+"51",-1.28,0.211666667,7.762471166,"Leaf","Tropical seasonal forest",-79.85,9.15,"Pseudobombax septenatum",1000000061
+"52",-1.595426667,0.585142857,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Abarema jupunba",1000000148
+"53",-2.017666667,0.32,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Apeiba glabra",1000000148
+"54",-1.743106667,0.792,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Aspidosperma excelsum",1000000148
+"55",-2.1286,1.053666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Bocoa prouacensis",1000000148
+"56",-1.96012,1.053666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Bocoa prouacensis",1000000148
+"57",-2.306093333,1.053666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Bocoa prouacensis",1000000148
+"58",-2.227746667,1.053666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Bocoa prouacensis",1000000148
+"59",-1.6086,1.053666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Bocoa prouacensis",1000000148
+"60",-2.24924,1.053666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Bocoa prouacensis",1000000148
+"61",-2.08284,1.053666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Bocoa prouacensis",1000000148
+"62",-2.279746667,0.825142857,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Brosimum rubescens",1000000148
+"63",-1.744493333,0.5638125,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Carapa procera",1000000148
+"64",-2.0246,0.5638125,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Carapa procera",1000000148
+"65",-2.04124,0.5638125,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Carapa procera",1000000148
+"66",-1.8686,0.5638125,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Carapa procera",1000000148
+"67",-1.955266667,0.5638125,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Carapa procera",1000000148
+"68",-1.879693333,0.653571429,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Caryocar glabrum",1000000148
+"69",-2.054413333,0.82,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Cassipourea guianensis",1000000148
+"70",-1.4474,0.6714,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Chrysophyllum sanguinolentum",1000000148
+"71",-1.69596,0.54325,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Conceveiba guianensis",1000000148
+"72",-1.94972,0.409,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Cordia sagotii",1000000148
+"73",-1.8686,0.409,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Cordia sagotii",1000000148
+"74",-2.25548,0.77,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Couepia bracteosa",1000000148
+"75",-1.86756,0.77,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Couepia caryophylloides",1000000148
+"76",-1.971906667,0.505,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Couratari oblongifolia",1000000148
+"77",-1.751426667,0.505,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Couratari oblongifolia",1000000148
+"78",-2.13484,0.628,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Cupania scrobiculata",1000000148
+"79",-1.511533333,0.5912,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Dicorynia guianensis",1000000148
+"80",-1.58468,0.5912,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Dicorynia guianensis",1000000148
+"81",-2.344226667,0.5912,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Dicorynia guianensis",1000000148
+"82",-1.661293333,0.5912,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Dicorynia guianensis",1000000148
+"83",-1.4578,0.5912,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Dicorynia guianensis",1000000148
+"84",-1.808973333,0.73,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Diospyros carbonaria",1000000148
+"85",-1.60236,0.73,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Diospyros carbonaria",1000000148
+"86",-2.31372,0.736666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Drypetes variabilis",1000000148
+"87",-1.930306667,0.736666667,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Drypetes variabilis",1000000148
+"88",-2.11196,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"89",-1.9102,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"90",-2.256866667,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"91",-1.987853333,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"92",-1.994093333,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"93",-2.031533333,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"94",-2.04956,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"95",-2.17852,0.704,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eperua grandiflora",1000000148
+"96",-1.705666667,0.852083333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera coriacea",1000000148
+"97",-1.66476,0.852083333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera coriacea",1000000148
+"98",-2.028066667,0.852083333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera coriacea",1000000148
+"99",-1.71884,0.852083333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera coriacea",1000000148
+"100",-1.984386667,0.852083333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera coriacea",1000000148
+"101",-1.6814,0.852083333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera coriacea",1000000148
+"102",-2.014893333,0.852083333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera coriacea",1000000148
+"103",-1.7542,0.876,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Eschweilera grandiflora",1000000148
+"104",-1.780546667,0.87,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Guettarda acreana",1000000148
+"105",-1.996866667,0.716,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Gustavia hexapetala",1000000148
+"106",-1.958733333,0.716,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Gustavia hexapetala",1000000148
+"107",-2.014893333,0.716,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Gustavia hexapetala",1000000148
+"108",-1.750733333,0.716,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Gustavia hexapetala",1000000148
+"109",-1.917826667,0.716,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Gustavia hexapetala",1000000148
+"110",-2.26172,0.716,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Gustavia hexapetala",1000000148
+"111",-1.88628,0.925,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Hirtella glandulosa",1000000148
+"112",-1.442893333,0.79235,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Hymenaea courbaril",1000000148
+"113",-1.83012,0.572,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Iryanthera sagotiana",1000000148
+"114",-1.744493333,0.86,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis persistens",1000000148
+"115",-1.925453333,0.86,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis persistens",1000000148
+"116",-2.056493333,0.86,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis persistens",1000000148
+"117",-2.030146667,0.86,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis persistens",1000000148
+"118",-1.99964,0.86,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis persistens",1000000148
+"119",-1.946946667,0.86,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis persistens",1000000148
+"120",-1.944866667,0.86,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis persistens",1000000148
+"121",-2.19724,0.802,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis poiteaui",1000000148
+"122",-2.586893333,0.802,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis poiteaui",1000000148
+"123",-2.643053333,0.802,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis poiteaui",1000000148
+"124",-3.145026667,0.802,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis poiteaui",1000000148
+"125",-2.333133333,0.802,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Lecythis poiteaui",1000000148
+"126",-2.025986667,0.8874,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania alba",1000000148
+"127",-1.901186667,0.8874,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania alba",1000000148
+"128",-1.7438,0.8874,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania alba",1000000148
+"129",-2.19932,0.8874,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania alba",1000000148
+"130",-2.077293333,0.8874,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania alba",1000000148
+"131",-2.138306667,0.8874,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania alba",1000000148
+"132",-2.2222,0.8874,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania alba",1000000148
+"133",-2.123053333,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"134",-2.06828,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"135",-1.951106667,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"136",-2.016973333,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"137",-1.69804,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"138",-2.32828,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"139",-1.994786667,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"140",-2.202093333,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania canescens",1000000148
+"141",-2.1598,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania membranacea",1000000148
+"142",-2.262413333,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania membranacea",1000000148
+"143",-2.102253333,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania membranacea",1000000148
+"144",-1.973293333,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania membranacea",1000000148
+"145",-2.79316,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania membranacea",1000000148
+"146",-2.143853333,0.88,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licania membranacea",1000000148
+"147",-2.435053333,0.7475,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Licaria guianensis",1000000148
+"148",-2.36364,0.921363636,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Manilkara huberi",1000000148
+"149",-2.13276,0.921363636,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Manilkara huberi",1000000148
+"150",-1.611373333,0.786714286,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Minquartia guianensis",1000000148
+"151",-1.90604,0.62,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Neea floribunda",1000000148
+"152",-1.722306667,0.519,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Ocotea percurrens",1000000148
+"153",-1.817293333,0.56,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Perebea guianensis",1000000148
+"154",-1.688333333,0.395,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Pourouma tomentosa",1000000148
+"155",-1.926146667,0.942333333,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Pouteria cladantha",1000000148
+"156",-2.19932,0.964,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Pouteria filipes",1000000148
+"157",-1.8998,0.57,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium opacum",1000000148
+"158",-1.927533333,0.57,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium opacum",1000000148
+"159",-2.1182,0.57,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium opacum",1000000148
+"160",-2.23052,0.5575,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium sagotianum",1000000148
+"161",-2.27628,0.5575,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium sagotianum",1000000148
+"162",-2.32828,0.5575,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium sagotianum",1000000148
+"163",-2.312333333,0.5575,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium sagotianum",1000000148
+"164",-2.34076,0.685,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium trifoliolatum",1000000148
+"165",-2.283213333,0.685,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Protium trifoliolatum",1000000148
+"166",-1.77916,0.5796,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Qualea rosea",1000000148
+"167",-2.041933333,0.8165,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Talisia microphylla",1000000148
+"168",-1.915053333,0.7205,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Tapura capitulifera",1000000148
+"169",-1.950413333,0.7205,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Tapura capitulifera",1000000148
+"170",-1.661293333,0.7205,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Tapura capitulifera",1000000148
+"171",-1.657133333,0.47,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Theobroma subincanum",1000000148
+"172",-2.04332,0.47,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Theobroma subincanum",1000000148
+"173",-1.738946667,0.47,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Theobroma subincanum",1000000148
+"174",-2.109186667,0.47,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Theobroma subincanum",1000000148
+"175",-1.520546667,0.605,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Unonopsis rufescens",1000000148
+"176",-1.992013333,0.605,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Unonopsis rufescens",1000000148
+"177",-1.957346667,0.605,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Unonopsis rufescens",1000000148
+"178",-1.761826667,0.57,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Vataireopsis surinamensis",1000000148
+"179",-1.838093333,0.470125,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Virola michelii",1000000148
+"180",-1.644653333,0.470125,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Virola michelii",1000000148
+"181",-2.499533333,0.793625,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Vouacapoua americana",1000000148
+"182",-2.048866667,0.793625,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Vouacapoua americana",1000000148
+"183",-2.104333333,0.793625,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Vouacapoua americana",1000000148
+"184",-2.063426667,0.793625,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Vouacapoua americana",1000000148
+"185",-1.907426667,0.793625,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Vouacapoua americana",1000000148
+"186",-2.256866667,0.793625,NA,"Leaf","Tropical rainforest",-52.66666667,4.08333333,"Vouacapoua americana",1000000148
+"187",-0.995,0.384560171,10.78134125,"Leaf","Tropical rainforest",-79,9,"Anacardium excelsum",1000000149
+"188",-1.81,0.541821562,NA,"Leaf","Tropical rainforest",-79,9,"Miconia argentea",1000000149
+"189",-2.782178,0.74,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Aspidosperma cruenta",1000000102
+"190",-2.900261354,0.66,NA,"Leaf","Tropical rainforest",-79.54694444,8.98561944,"Chrysophllum cainito",1000000102
+"191",-2.038259321,0.4,NA,"Leaf","Tropical rainforest",-79.54694444,8.98561944,"Ficus insipida",1000000102
+"192",-3.051426366,0.67,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Manilkara bidentata",1000000102
+"193",-2.662673758,0.62,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Protium panamense",1000000102
+"194",-2.341414674,0.64,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Tachigalia versicolor",1000000102
+"195",-2.188606647,0.5,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Tapirira guianensis",1000000102
+"196",-2.53675004,0.57,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Trattinnickia aspera",1000000102
+"197",-2.301080569,0.56,NA,"Leaf","Tropical rainforest",-80.001385,9.322863,"Vochysia ferruginea",1000000102
+"198",-1.82,0.62,NA,"Leaf","Tropical rainforest",-158.0333333,21.35,"Coffea arabica",1000000150
+"199",-2.07,0.867692308,16.97792869,"Leaf","Tropical seasonal forest",-66.892248,10.495062,"Astronium graveolens",1000000151
+"200",-0.69,0.305,15.31393568,"Leaf","Tropical seasonal forest",-66.892248,10.495062,"Bursera simaruba",1000000151
+"201",-2.14,0.71225,19.49317739,"Leaf","Tropical seasonal forest",-66.892248,10.495062,"Sapindus saponaria",1000000151
+"202",-1.49,1.043333333,22.37136465,"Leaf","Tropical seasonal forest",-66.892248,10.495062,"Tabebuia chrysantha",1000000151
+"203",-2.03,0.78,NA,"Leaf","Tropical seasonal forest",-41.41666667,-22.2,"Byrsonima sericea",1000000162
+"204",-3.08,0.75,NA,"Leaf","Tropical seasonal forest",-41.41666667,-22.2,"Maytenus obtusifolia",1000000162
+"205",-1.88,0.47,NA,"Leaf","Tropical seasonal forest",-41.41666667,-22.2,"Ternstroemia brasiliensis",1000000162
+"206",-2.06,0.607,NA,"Leaf","Tropical rainforest",-118.446152,34.068858,"Hymenosporum flavum",1000000152
+"207",-1.93,0.653,13.12335958,"Leaf","Tropical seasonal forest",85.641074,27.61922,"Bauhinia variegata",1000000154
+"208",-0.81,0.44,NA,"Leaf","Tropical seasonal forest",79.45,29.38333333,"Cupressus torulosa",1000000141
+"209",-1.74,0.491,NA,"Leaf","Tropical seasonal forest",79.45,29.38333333,"Rhododendron arboreum",1000000141
+"210",-2.04,0.73,10.23292992,"Leaf","Tropical seasonal forest",79.45,29.38333333,"Shorea robusta",1000000141
+"211",-3.65,0.86,8.896797153,"Leaf","Tropical seasonal forest",-67.05,10.25,"Capparis verrucosa",1000000155
+"212",-4.08,0.88,6.798096533,"Leaf","Tropical seasonal forest",-67.05,10.25,"Morisonia americana",1000000155
+"213",-2.46,0.85,26.9541779,"Leaf","Tropical seasonal forest",-67.05,10.25,"Coursetia ferruginea",1000000156
+"214",-2.32,0.6,24.06639004,"Leaf","Tropical seasonal forest",-67.05,10.25,"Lonchocarpus dipteroneurus",1000000156
+"215",-2.51,NA,17.51313485,"Leaf","Tropical seasonal forest",-67.05,10.25,"Mansoa verrucifera",1000000156
+"216",-4.08,0.6,6.638217166,"Leaf","Tropical seasonal forest",-67.05,10.25,"Morisonia americana",1000000156
+"217",-1.89,0.67,NA,"Leaf","Tropical rainforest",-67.05,1.9,"Catostemma sancarlosianum",1000000157
+"218",-1.97,0.61,NA,"Leaf","Tropical rainforest",-67.05,1.9,"Heteropterys sp.",1000000157
+"219",-1.98,0.63,NA,"Leaf","Tropical rainforest",-67.05,1.9,"Pachira sordida",1000000157
+"220",-1.95,0.61,2.818382931,"Leaf","Tropical rainforest",-67.05,1.9,"Remijia morilloi",1000000157
+"221",-1.87,0.55,6.165950019,"Leaf","Tropical rainforest",-67.05,1.9,"Retiniphyllum concolor",1000000157
+"222",-1.28,0.653571429,NA,"Leaf","Tropical rainforest",-67.05,1.9,"Caryocar glabrum",1000000158
+"223",-1.36,NA,9.54992586,"Leaf","Tropical rainforest",-67.05,1.9,"Eperua leucantha",1000000158
+"224",-1.12,NA,NA,"Leaf","Tropical rainforest",-67.05,1.9,"Micranda sprucei",1000000158
+"225",-1.5,0.5105,NA,"Leaf","Tropical rainforest",-67.05,1.9,"Ocotea aciphylla",1000000158
+"226",-2.04,0.535989568,35,"Leaf","Tropical rainforest",-79.85,9.15,"Alseis blackiana",1000000159
+"227",-1.74,0.67,30.8,"Leaf","Tropical rainforest",-79.85,9.15,"Hybanthus prunifolius",1000000159
+"228",-1.41,0.62,14.7,"Leaf","Tropical rainforest",-79.85,9.15,"Licania platypus",1000000159
+"229",-1.84,0.726990909,12.3,"Leaf","Tropical rainforest",-79.85,9.15,"Ouratea lucens",1000000159
+"230",-1.86,0.56362,23.1,"Leaf","Tropical rainforest",-79.85,9.15,"Psychotria horizontalis",1000000159
+"231",-1.88,0.841537052,15.7,"Leaf","Tropical rainforest",-79.85,9.15,"Swartzia simplex",1000000159
+"232",-2.27,0.666457143,18.83239171,"Leaf","Tropical rainforest",-54.33333333,-25.61666667,"Balfourodendron riedelianum",1000000160
+"233",-1.28,0.4666,31.25,"Leaf","Tropical rainforest",-54.33333333,-25.61666667,"Cedrela fissilis",1000000160
+"234",-1.58,0.688,17.57469244,"Leaf","Tropical rainforest",-54.33333333,-25.61666667,"Cordia americana",1000000160
+"235",-1.85,0.794526667,23.98081535,"Leaf","Tropical rainforest",-54.33333333,-25.61666667,"Maclura tinctoria",1000000160
+"236",-1.36,0.74388,32.78688525,"Leaf","Tropical rainforest",-54.33333333,-25.61666667,"Peltophorum dubium",1000000160
+"237",-2.5,0.91,5.952380952,"Leaf","Tropical seasonal forest",-43.75,-22.25,"Bowdichia virgilioides",1000000161
+"238",-2.2,0.65,8.474576271,"Leaf","Tropical seasonal forest",-43.75,-22.25,"Caryocar brasiliense",1000000161
+"239",-2.73,0.705,15.92356688,"Leaf","Tropical seasonal forest",-43.75,-22.25,"Casearia sylvestris",1000000161
+"240",-2.63,0.45,6.711409396,"Leaf","Tropical seasonal forest",-43.75,-22.25,"Connarus suberosus",1000000161
+"241",-1.75,0.65,6.25,"Leaf","Tropical seasonal forest",-43.75,-22.25,"Piptocarpha rotundifolia",1000000161
+"242",-1.27,0.36,12.76,"Leaf","Tropical seasonal forest",-85.594,10.718,"Bursera simarouba",1000000109
+"243",-2.33,0.61,12.66,"Leaf","Tropical seasonal forest",-85.594,10.718,"Casearia corymbosa",1000000109
+"244",-2.68,0.64,21.41,"Leaf","Tropical seasonal forest",-85.594,10.718,"Casearia sylvestris",1000000109
+"245",-1.77,0.18,17.6,"Leaf","Tropical seasonal forest",-85.594,10.718,"Cochlospermum vitifolium",1000000109
+"246",-3.86,0.55,8.33,"Leaf","Tropical seasonal forest",-85.594,10.718,"Crescentia alata",1000000109
+"247",-2.28,0.6,15.45,"Leaf","Tropical seasonal forest",-85.594,10.718,"Cupania guatemalensis",1000000109
+"248",-2.59,0.38,7,"Leaf","Tropical seasonal forest",-85.594,10.718,"Enterolobium cyclocarpum",1000000109
+"249",-2.04,0.74,13.34,"Leaf","Tropical seasonal forest",-85.594,10.718,"Guazuma ulmifolia",1000000109
+"250",-1.68,0.84,11.68,"Leaf","Tropical seasonal forest",-85.594,10.718,"Hymenea courbaril",1000000109
+"251",-2.59,0.78,18.12,"Leaf","Tropical seasonal forest",-85.594,10.718,"Maclura tinctoria",1000000109
+"252",-2.4,0.68,27.69,"Leaf","Tropical seasonal forest",-85.594,10.718,"Myrospermum frutescens",1000000109
+"253",-2.4,0.64,14.15,"Leaf","Tropical seasonal forest",-85.594,10.718,"Piscidia carthagenensis",1000000109
+"254",-1.81,0.51,18.73,"Leaf","Tropical seasonal forest",-85.594,10.718,"Semialarium mexicanum",1000000109
+"255",-1.88,0.53,9.13,"Leaf","Tropical seasonal forest",-85.594,10.718,"Tabebuia rosea",1000000109
+"256",-1,0.56,NA,"Leaf","Tropical rainforest",101.7666667,21.9,"Baccaurea ramiflora",1000000135
+"257",-1.56,0.56,NA,"Leaf","Tropical rainforest",101.7666667,21.9,"Baccaurea ramiflora",1000000135
+"258",-1.15,0.51,NA,"Leaf","Tropical rainforest",101.7666667,21.9,"Bauhinia variegate",1000000135
+"259",-1.7,0.51,NA,"Leaf","Tropical rainforest",101.7666667,21.9,"Bauhinia variegate",1000000135
+"260",-1.28,0.52,NA,"Leaf","Tropical rainforest",101.7666667,21.9,"Syzygium szemaoense",1000000135
+"261",-1.77,0.52,NA,"Leaf","Tropical rainforest",101.7666667,21.9,"Syzygium szemaoense",1000000135
+"262",-2.1576697,0.513,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Albizia guachapele",1000000103
+"263",-2.904004036,0.697,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Calycophyllum candidissimum",1000000103
+"264",-2.080381587,0.464535059,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Simarouba glauca",1000000103
+"265",-1.523878946,0.33,NA,"Xylem","Tropical seasonal forest",-95.255601,38.954074,"Spondias purpurea",1000000103
+"266",-1.765703888,0.659035123,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Balfourodendron riedelianum",1000000104
+"267",-1.037239621,0.528022175,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Cabralea canjerana",1000000104
+"268",-0.609459516,0.491526273,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Cedrela fissilis",1000000104
+"269",-0.560636897,0.30827275,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Ceiba speciosa",1000000104
+"270",-1.344317635,0.59504569,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Chrysophyllum gonocarpum",1000000104
+"271",-2.345513715,0.508058826,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Cordia trichotoma",1000000104
+"272",-0.836263697,0.858303343,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Holocalyx balansae",1000000104
+"273",-0.834566828,0.697730064,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Lonchocarpus muehlbergianus",1000000104
+"274",-1.935477671,0.540559839,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Ocotea diospyrifolia",1000000104
+"275",-0.738389516,0.757215075,NA,"Xylem","Subtropical Forest",-54.13333333,-25.51666667,"Parapiptadenia rigida",1000000104
+"276",-0.96,0.35,8.47,"Xylem","Tropical rainforest",-79.55,8.98333333,"Anacardium excelsum",1000000071
+"277",-1.43,0.27,15.3,"Xylem","Tropical rainforest",-79.55,8.98333333,"Annona spraguei",1000000071
+"278",-2.66,0.37,15.7,"Xylem","Tropical rainforest",-79.55,8.98333333,"Antirrhea trichantha",1000000071
+"279",-2.82,0.41,14.1,"Xylem","Tropical rainforest",-79.55,8.98333333,"Astronium graveolens",1000000071
+"280",-1.78,0.37,NA,"Xylem","Tropical rainforest",-79.55,8.98333333,"Cordia alliodora",1000000071
+"281",-2.3,0.27,16.1,"Xylem","Tropical rainforest",-79.55,8.98333333,"Luehea seemannii",1000000071
+"282",-0.882677991,0.19,NA,"Xylem","Tropical rainforest",-79.846036,9.166666667,"Ochroma pyramidale",1000000061
+"283",-1.137595182,0.25,7.762471166,"Xylem","Tropical rainforest",-79.846036,9.166666667,"Pseudobombax septenatum",1000000061
+"284",-1.325050278,0.390097712,10.83926914,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Anacardium excelsum",1000000124
+"285",-2.94416607,0.520247451,NA,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Cordia alliodora",1000000124
+"286",-1.625012782,0.400137312,NA,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Ficus insipida",1000000124
+"287",-2.565804274,0.665210733,NA,"Xylem","Tropical rainforest",-80.001385,9.322863,"Manilkara bidentata",1000000124
+"288",-0.86,0.279688601,NA,"Xylem","Tropical rainforest",-79.54694444,8.98561944,"Schefflera morototoni",1000000124
+"289",-1.645464771,0.520305811,NA,"Xylem","Tropical rainforest",-80.001385,9.322863,"Tapirira guianensis",1000000124
+"290",-0.929645158,0.540195858,NA,"Xylem","Tropical rainforest",-80.001385,9.322863,"Trattinnickia aspera",1000000124
+"291",-1.563656816,0.559462486,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Blepharocalyx salicifolius",1000000153
+"292",-1.318232948,0.589641657,8.511380382,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Caryocar brasiliense",1000000153
+"293",-1.492074854,0.569652856,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Qualea parviflora",1000000153
+"294",-1.563656816,0.539473684,NA,"Xylem","Tropical seasonal forest",-47.88333333,-15.93333333,"Schefflera macrocarpa",1000000153
+"295",-0.861749918,0.456,NA,"Xylem","Tropical rainforest",-79.86666667,9.13333333,"Schefflera morototoni",1000000132

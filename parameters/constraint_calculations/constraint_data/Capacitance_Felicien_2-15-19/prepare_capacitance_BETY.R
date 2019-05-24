@@ -11,11 +11,11 @@ options(digits = 10) # I set digits to 10 so it's easier to read bety ids
 options(geonamesUsername = "ecowdery") # this can be anything, "pecan" probably works or just use mine
 bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php") # the path to my config.php
 
-#------------------------------------------------------------------------------#
-# Read in the data
-
 datapath <- "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Capacitance_Felicien_2-15-19/"
 datafile <- "capacitance_BETY"
+
+#------------------------------------------------------------------------------#
+# Read in the data
 
 dat_in <- read.csv(file.path(datapath, paste0(datafile,".csv")), na.strings = NaN,  stringsAsFactors = FALSE)
 
@@ -28,6 +28,8 @@ dat <- dat_in %>%
 # some of these decisions may be wrong and we can come back to them,
 # but if I don't feel comfortable adding it in to the database, I won't.
 
+# Remove study performed on roots
+dat <- dat[-grep("Domec et al. 2006a", dat$Ref),]
 
 #------------------------------------------------------------------------------#
 # References
@@ -45,10 +47,10 @@ refs[which(refs$Ref == "Werden et al 2018"),"doi"] <- "10.1093/treephys/tpx135"
 refs[which(refs$Ref == "Borchert & Pockman 2005"),"doi"] <- "10.1093/treephys/25.4.457"
 refs[which(refs$Ref == "Carrasco et al. 2014"),"doi"] <- "10.1093/treephys/tpu087"
 refs[which(refs$Ref == "De Guzman et al. 2016 + unpublished data"),"doi"] <- "10.1093/treephys/tpw086"
-refs[which(refs$Ref == "Domec et al. 2006a"),"doi"] <- "10.1111/j.1365-3040.2005.01397.x"
+# refs[which(refs$Ref == "Domec et al. 2006a"),"doi"] <- "10.1111/j.1365-3040.2005.01397.x"
 refs[which(refs$Ref == "Machado & Tyree 1994"),"doi"] <- "10.1093/treephys/14.3.219"
 refs[which(refs$Ref == "Meinzer et al. 2003"),"doi"] <- "10.1046/j.1365-3040.2003.01039.x"
-refs[which(refs$Ref == "Meinzer et al. 2008"),"doi"] <- "10.1007/s00442-008-0974-5"
+refs[which(refs$Ref == "Meinzer et al. 2008"),"doi"] <- "10.1111/j.1365-2435.2009.01577.x"
 refs[which(refs$Ref == "Scholz et al. 2007"),"doi"] <- "10.1093/treephys/27.4.551"
 refs[which(refs$Ref == "Tyree et al. 1991"),"doi"] <- "10.1104/pp.96.4.1105"
 
@@ -94,6 +96,10 @@ dat[which(dat$citation_id == 1000000103), "lon"] <- -85.127044
 dat[which(dat$citation_id == 1000000137 & dat$species == "Ficus insipida"), "lat"] <- 9.280225
 dat[which(dat$citation_id == 1000000137 & dat$species == "Ficus insipida"), "lon"] <- -79.975527
 
+idx <- which(as.numeric(dat$citation_id) == 1000000124 &
+               dat$lon == -79.85)
+dat[idx,"lon"] <- -79.5
+
 # make a separate dataframe to work on getting sites in to the database
 
 dat_site_cite <- dat %>%
@@ -109,8 +115,8 @@ dat_site_cite <- cite2site(dat_site_cite, interval = 0)
 dat_out_na <- dat_site_cite %>% filter(is.na(site_id)) %>%
   select(one_of("citation_id", "lat", "lon")) %>% distinct
 
-View(dat_out_na)
-View(dat_site_cite)
+# View(dat_out_na)
+# View(dat_site_cite)
 
 # One final coarse search
 dat_site_cite <- cite2site(dat_site_cite, interval = .4)
@@ -208,14 +214,17 @@ p <- prior_plot(prior = SLA_prior,
 
 p + geom_density(data = dat, aes(x = SLA, fill = "obs"), alpha = .3, color = NA)
 
+which(dat$SLA < min(SLA_prior))
+which(dat$SLA > max(SLA_prior))
+
 var <- "SLA"
 varid <- SLA_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
@@ -227,7 +236,7 @@ SLA_df <- df
 dat <- dat %>% mutate(wood_density = WD)
 
 wood_density_id <- tbl(bety, "variables") %>% filter(name == "wood_density") %>% pull(id)
-wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_density_id) %>% filter(id == 1000000281) %>% collect()
+wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_density_id) %>% filter(id == 1000000422) %>% collect()
 
 wood_density_prior <- rdistn(wood_density_fit)
 wood_density_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "rho")
@@ -238,16 +247,18 @@ p <- prior_plot(prior = wood_density_prior,
                 type = "prior")
 p + geom_density(data = dat, aes(x = wood_density, fill = "obs"), alpha = .3, color = NA)
 
-mean(dat$WD, na.rm = TRUE)
+which(dat$wood_density < min(wood_density_prior))
+which(dat$wood_density > max(wood_density_prior))
+range(dat$wood_density, na.rm = T)
 
 var <- "wood_density"
 varid <- wood_density_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
@@ -263,8 +274,8 @@ dat <- dat %>% mutate(water_cap =  case_when(
 ))
 
 dat <- dat %>% mutate( Cft_conv = case_when(
-  Organ == "Leaf" ~ Cft * 1/MPa2m * 1000,
-  Organ == "Xylem" ~ Cft * 1/(MPa2m * 1000 * .5)
+  Organ == "Leaf" ~ Cft * (1/MPa2m) * 1000,
+  Organ == "Xylem" ~ Cft * (1/MPa2m) * ((wdns/1000)/wood_density)
 ))
 
 ggplot(dat) + geom_density(aes(x = Cft_conv, col = Organ))
@@ -279,29 +290,32 @@ ggplot(dat) + geom_density(aes(x = leaf_water_cap)) + geom_density(aes(x = wood_
 
 
 ## Leaf Water Capacitance
-## Leaf: gH2O g-1 dry weight MPa-1
+## Leaf: g H2O g-1 dry weight MPa-1
 
 leaf_water_cap_id <- tbl(bety, "variables") %>% filter(name == "leaf_water_cap") %>% pull(id)
 leaf_water_cap_fit <- tbl(bety, "priors") %>% filter(variable_id == leaf_water_cap_id) %>% collect()
 leaf_water_cap_prior <- rdistn(leaf_water_cap_fit)
-leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")
+leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")*1000
 
-p <- prior_plot(prior = leaf_water_cap_prior/1000,
+p <- prior_plot(prior = leaf_water_cap_prior,
                 q = c(0,.975),
                 plot_default = leaf_water_cap_default,
                 title = sprintf("(leaf_water_cap): %s", leaf_water_cap_fit$distn),
                 type = "prior")
 
-p + geom_density(data = dat, aes(x = leaf_water_cap/1000, fill = "obs"), alpha = .3, color = NA)
+p + geom_density(data = dat, aes(x = leaf_water_cap, fill = "obs"), alpha = .3, color = NA)
+
+which(dat$leaf_water_cap < min(leaf_water_cap_prior))
+which(dat$leaf_water_cap > max(leaf_water_cap_prior))
 
 var <- "leaf_water_cap"
 varid <- leaf_water_cap_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
@@ -314,23 +328,41 @@ leaf_water_cap_df <- df
 wood_water_cap_id <- tbl(bety, "variables") %>% filter(name == "wood_water_cap") %>% pull(id)
 wood_water_cap_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_water_cap_id) %>% collect()
 wood_water_cap_prior <- rdistn(wood_water_cap_fit)
-wood_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_cap")
+wood_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_cap")*1000
 
-p <- prior_plot(prior = wood_water_cap_prior/1000,
+p <- prior_plot(prior = wood_water_cap_prior,
+                q = c(0,.99),
                 plot_default = wood_water_cap_default,
                 title = sprintf("(wood_water_cap): %s", wood_water_cap_fit$distn),
                 type = "prior")
 
 p + geom_density(data = dat, aes(x = wood_water_cap, fill = "obs"), alpha = .3, color = NA)
 
+dat$y <- 0
+
+p.dat <- as.data.frame(wood_water_cap_prior)
+
+ggplot() +
+  geom_density(data = p.dat, aes(x = wood_water_cap_prior), fill = "gray", alpha = .5, color = NA) +
+  geom_point(data = dat, aes(x = wood_water_cap, y = y, color = as.factor(citation_id)), alpha = .8) +
+  theme_bw() + xlim(0,24.5)
+
+ggplot() +
+  geom_histogram(data = dat, aes(x = wood_water_cap,  y=..density.., fill = as.factor(citation_id)), position = "stack", alpha = .8) +
+  geom_density(data = p.dat, aes(x = wood_water_cap_prior), fill = "black", alpha = .5, color = NA) +
+  theme_bw() + xlim(0,24.5)
+
+which(dat$wood_water_cap < min(wood_water_cap_prior))
+which(dat$wood_water_cap > max(wood_water_cap_prior))
+
 var <- "wood_water_cap"
 varid <- wood_water_cap_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
-  rename("var" = var) %>%
+  rename("value" = var) %>%
   na.omit() %>%
   distinct() %>%
-  mutate(treatment = 2000000012, trait_id = as.numeric(NA), var_id = varid)
+  mutate(treatment = 2000000012, trait_id = as.numeric(NA), variable_id = varid)
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 

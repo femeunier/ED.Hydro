@@ -6,7 +6,7 @@
 #' @return sp
 #' @export
 
-insert_species <- function(sp, case_accept_set, bety){
+insert_species <- function(sp, case_accept_set, insert_PFT = FALSE, bety){
 
   p1 <- !all(c("use", "proposed_bety_name", "reviewed", "bety_name") %in% c(names(sp), "bety_name"))
   p2 <- all(c("use", "proposed_bety_name", "reviewed", "bety_name") %in% c(names(sp), "bety_name"))
@@ -41,8 +41,8 @@ insert_species <- function(sp, case_accept_set, bety){
       sp$bety_name[idx] <- sp$proposed_bety_name[idx]
 
       final <- sp %>% mutate(bety_name = str_trim(bety_name)) %>%
-        mutate(scientificname = bety_name) %>%
-        mutate(test = bety_name) %>%
+        mutate(scientificname = str_to_sentence(bety_name)) %>%
+        mutate(test = scientificname) %>%
         separate(test, c("genus", "species"), sep = " ", extra = "drop") %>%
         mutate(bety_id = as.numeric(NA), in_PFT = as.logical(FALSE)) %>%
         select(one_of("submit_name", "genus", "species", "scientificname", "uri", "bety_id", "in_PFT"))
@@ -58,8 +58,13 @@ insert_species <- function(sp, case_accept_set, bety){
           print(sprintf("%i | %s already in as %.0f", i, final$scientificname[i], final$bety_id[i]))
         }else if(nrow(check) == 0){
 
-          insert.species.query <- sprintf("INSERT INTO species (genus, species, scientificname, notes, created_at, updated_at) VALUES('%s', '%s', '%s', '%s', NOW(), NOW()) RETURNING id;",
-                                          final$genus[i], final$species[i], final$scientificname[i], final$uri[i])
+          if(nchar(final$uri[i]) > 0){
+            insert.species.query <- sprintf("INSERT INTO species (genus, species, scientificname, notes, created_at, updated_at) VALUES('%s', '%s', '%s', '%s', NOW(), NOW()) RETURNING id;",
+                                            final$genus[i], final$species[i], final$scientificname[i], final$uri[i])
+          }else{
+            insert.species.query <- sprintf("INSERT INTO species (genus, species, scientificname, created_at, updated_at) VALUES('%s', '%s', '%s', NOW(), NOW()) RETURNING id;",
+                                            final$genus[i], final$species[i], final$scientificname[i])
+          }
           paste(insert.species.query)
           species_id <- db.query(insert.species.query, bety$con)
           species_id <- species_id$id
@@ -76,21 +81,30 @@ insert_species <- function(sp, case_accept_set, bety){
         }
       }
 
-      for(j in seq_along(final$in_PFT)){
-        if(!final$in_PFT[j]){
-          betyid <- final$bety_id[j]
-          d <- tbl(bety, "pfts_species") %>% filter(pft_id == pftid) %>% filter(specie_id == betyid) %>% collect()
-          if(nrow(d) == 0){
-            print(sprintf("%i | %s added to PFT", i, final$scientificname[i]))
-            insert.pft.query <- sprintf("INSERT INTO pfts_species (pft_id, specie_id, created_at, updated_at) VALUES(%.0f, %.0f, NOW(), NOW()) RETURNING id;",
-                                        pftid, final$bety_id[j])
-            db.query(insert.pft.query, bety$con)
-          }
-          d <- tbl(bety, "pfts_species") %>% filter(pft_id == pftid) %>% filter(specie_id == betyid) %>% collect()
+      if(insert_PFT){
+        print(sprintf("##############################################", pftid))
+        print(sprintf("Inserting species entries in to PFT %.0f", pftid))
+        print(sprintf("##############################################", pftid))
 
-          final$in_PFT[j] <- dim(d)[1]==1
-        }else if(nrow(d)==1){
-          final$in_PFT[j] <- TRUE
+        for(j in seq_along(final$in_PFT)){
+          if(!final$in_PFT[j]){
+            betyid <- final$bety_id[j]
+            d <- tbl(bety, "pfts_species") %>% filter(pft_id == pftid) %>% filter(specie_id == betyid) %>% collect()
+            if(nrow(d) == 0){
+
+              print(sprintf("%i | %s added to PFT", j, final$scientificname[j]))
+
+              insert.pft.query <- sprintf("INSERT INTO pfts_species (pft_id, specie_id, created_at, updated_at) VALUES(%.0f, %.0f, NOW(), NOW()) RETURNING id;",
+                                          pftid, final$bety_id[j])
+              db.query(insert.pft.query, bety$con)
+            }
+            d <- tbl(bety, "pfts_species") %>% filter(pft_id == pftid) %>% filter(specie_id == betyid) %>% collect()
+
+            final$in_PFT[j] <- dim(d)[1]==1
+          }else if(nrow(d)==1){
+            print(sprintf("%j | %s already in PFT", j, final$scientificname[j]))
+            final$in_PFT[j] <- TRUE
+          }
         }
       }
 
