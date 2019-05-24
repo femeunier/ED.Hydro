@@ -4,7 +4,7 @@
 \alias{insert_traits}
 \title{Insert traits in to the database ... we may already have this function. Who knows.}
 \usage{
-insert_traits(insert_dat, bety)
+insert_traits(insert_dat, check_only = FALSE, bety)
 }
 \arguments{
 \item{insert_dat}{dataframe}
