@@ -40,7 +40,7 @@ taxanomic_resolution <- function(sp = NA, species_all = NA, PFT_species, bety,
 
   for(i in i_range){
 
-    if(sp$case[i] %in% c(0, 13)){
+    if(sp$case[i] != 1 ){
       Sys.sleep(.4)
       print(paste0(i, ": ", sp$submit_name[i]))
 
@@ -181,7 +181,7 @@ taxanomic_resolution <- function(sp = NA, species_all = NA, PFT_species, bety,
 
       if(!is.na(out_file)){ write.csv(x = sp, file = out_file) }
 
-    } else {print(paste0(i, ": ", sp$submit_name[i], " already filled in."))}
+    } else {print(paste0(i, ": ", sp$submit_name[i], " already case 1."))}
 
   } # End loop
 
