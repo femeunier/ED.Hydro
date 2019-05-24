@@ -9,7 +9,7 @@ variables <- c(
   "leaf_water_sat", "wood_water_sat",
   "leaf_water_cap", "wood_water_cap",
   "leaf_psi_min", "wood_psi_min",
-  "leaf_psi_tlp",
+  "leaf_psi_tlp", "wood_psi_tlp",
   "wood_Kmax",
   "wood_psi50",
   "wood_Kexp",
@@ -41,3 +41,4 @@ forceupdate = FALSE
 get.trait.data.pft(pft, modeltype, dbfiles, dbcon, trait.names, forceupdate = TRUE)
 
 load(file.path(pft$outdir, "trait.data.Rdata"))
+
