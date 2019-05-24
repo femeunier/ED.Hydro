@@ -35,9 +35,10 @@ prior_load_data <- function(download = FALSE, subset = TRUE){
     full_join(., ED, by = "ED_name")
   names(priors) <- str_replace_all(names(priors) ," ",".")
   names(priors)[names(priors) == "low0.25"] <- "low.25" # Fixing a typo
+  priors <- priors %>% mutate(C_name = paste(Christoffersen_name, Tissue, sep = "_"))
 
   if(subset){
-    variables <- c(
+    ED_variables <- c(
       "leaf_elastic_mod", "wood_elastic_mod",
       "leaf_psi_osmotic", "wood_psi_osmotic",
       "rwc_tlp_wood",
@@ -50,7 +51,9 @@ prior_load_data <- function(download = FALSE, subset = TRUE){
       "wood_psi50",
       "wood_Kexp"
     )
-    priors <- priors %>% filter(ED_name %in% variables)
+    C_variables <- c("avuln_node_stem")
+
+    priors <- priors %>% filter(ED_name %in% ED_variables | C_name %in% C_variables)
     # left_join(data.frame(variables = variables, stringsAsFactors = FALSE),
     #           priors,
     #           by = c("variables" = "ED_name"))
