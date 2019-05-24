@@ -9,6 +9,8 @@
 
 insert_species <- function(sp, case_accept_set, insert_PFT = FALSE, bety){
 
+  #test
+
   p1 <- !all(c("use", "proposed_bety_name", "reviewed", "bety_name") %in% c(names(sp), "bety_name"))
   p2 <- all(c("use", "proposed_bety_name", "reviewed", "bety_name") %in% c(names(sp), "bety_name"))
 
