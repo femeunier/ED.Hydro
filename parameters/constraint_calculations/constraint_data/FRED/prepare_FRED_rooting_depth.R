@@ -1,3 +1,15 @@
+# For the root_beta, if you can observations of both Rooting depth (F00954) and Rooting depth_Extrapolated 50 percent rooting depth (or Rooting depth_Extrapolated 95 percent rooting depth) you can derive it from: root_beta = exp(log(1-alpha)*z_max/z_alpha)
+
+# where alpha is the fraction (0.5 or 0.95), z_max is the rooting_depth (F00954) and z_alpha is the corresponding rooting depth at a certain depth (F00959 for alpha = 0.5 or F00960 for alpha = 0.95)
+
+
+ID2name <- function(FRED_in, id){
+  return(names(FRED_in)[which(FRED_in[3,] == id)])
+}
+name2ID <- function(FRED_in, name){
+  return(FRED_in[3,name])
+}
+
 # Prepare the FRED data
 
 #------------------------------------------------------------------------------#
@@ -17,6 +29,10 @@ datafile <- "FRED2_20180518"
 FRED_in <- read_csv(paste0(file.path(datapath,datafile),".csv"))
 FRED_in %>% dim()
 FRED_in %>% distinct() %>% dim()
+
+library(ggplot2)
+ggplot(FRED_in) + geom_density(aes(x = as.numeric(`Specific root area (SRA)`)))
+
 
 FRED_main <- FRED_in[-(1:4),]
 names(FRED_main) <- str_replace_all(names(FRED_main), "([[:punct:]])|\\s+","_")
@@ -47,7 +63,10 @@ ident <- c(
 ) %>% str_replace_all("([[:punct:]])|\\s+","_")
 
 traits <- c(
-  "Fine root mass/leaf mass ratio"
+  "Rooting depth",
+  "Rooting depth_Extrapolated 50 percent rooting depth",
+  "Rooting depth_Extrapolated 95 percent rooting depth"
+
 ) %>% str_replace_all("([[:punct:]])|\\s+","_")
 
 keep_cols <- c(traits, meta, ident)
@@ -56,19 +75,60 @@ keep_cols %in% names(FRED_main)
 FRED_main <- FRED_main %>% dplyr::select(one_of(keep_cols))
 FRED_main <- clean_NAs(FRED_main, traits)
 
-dat <- FRED_main %>%
+dat_ready <- FRED_main %>%
   mutate(lat = as.numeric(Latitude_main), Latitude_main = NULL,
          lon = as.numeric(Longitude_Main), Longitude_Main = NULL,
-         fineroot2leaf = as.numeric(Fine_root_mass_leaf_mass_ratio)) %>%
-  rename(doi = Data_source_DOI) %>%
+         rooting_depth = as.numeric(Rooting_depth),
+         rooting_depth_50 = as.numeric(Rooting_depth_Extrapolated_50_percent_rooting_depth),
+         rooting_depth_95 = as.numeric(Rooting_depth_Extrapolated_95_percent_rooting_depth)) %>%
+  mutate(doi = case_when(!is.na(Data_source_DOI) ~ Data_source_DOI,
+                         is.na(Data_source_DOI) ~ Data_set_DOI)) %>%
   filter(Climate_PFT_Biome_equivalent_Poulter %in% c("tropical", "temperate"))
 
-ggplot(dat) +
-  geom_density(aes(x = fineroot2leaf, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
+
+# For the root_beta, if you can observations of both Rooting depth (F00954) and Rooting depth_Extrapolated 50 percent rooting depth (or Rooting depth_Extrapolated 95 percent rooting depth) you can derive it from: root_beta = exp(log(1-alpha)*z_max/z_alpha)
+
+# where alpha is the fraction (0.5 or 0.95), z_max is the rooting_depth (F00954) and z_alpha is the corresponding rooting depth at a certain depth (F00959 for alpha = 0.5 or F00960 for alpha = 0.95)
+
+dat.50 <- dat_ready %>%
+  mutate(z_max = rooting_depth,
+         alpha = 0.5,
+         z_alpha = rooting_depth_50,
+         root_beta = exp(log(1-alpha)*z_max/z_alpha)
+  ) %>%
+  select(one_of("lat","lon", "Climate_Koeppen_Geiger_classification", "Climate_PFT_Biome_equivalent_Poulter",
+                "root_beta","Accepted_genus_TPL", "Accepted_species_TPL",
+                "Plant_taxonomy_Genus", "Plant_taxonomy_Species", "doi"))
+
+dat.95 <- dat_ready %>%
+  mutate(z_max = rooting_depth,
+         alpha = 0.95,
+         z_alpha = rooting_depth_95,
+         root_beta = exp(log(1-alpha)*z_max/z_alpha)
+  ) %>%
+  select(one_of("lat","lon", "Climate_Koeppen_Geiger_classification", "Climate_PFT_Biome_equivalent_Poulter",
+                "root_beta","Accepted_genus_TPL", "Accepted_species_TPL",
+                "Plant_taxonomy_Genus", "Plant_taxonomy_Species", "doi"))
+
+
+test <- dat_ready %>% filter(!is.na(rooting_depth))
+sum(!is.na(test$Rooting_depth_Extrapolated_50_percent_rooting_depth))
+sum(!is.na(test$Rooting_depth_Extrapolated_95_percent_rooting_depth))
+
+
+
+
+ggplot(dat%>% filter(Climate_PFT_Biome_equivalent_Poulter == "tropical")) +
+  geom_density(aes(x = rooting_depth_50, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
   xlim(0,1) + theme_bw() + theme(legend.position = "bottom")
 
+ggplot(dat%>% filter(Climate_PFT_Biome_equivalent_Poulter == "tropical")) +
+  geom_density(aes(x = rooting_depth_95, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
+  xlim(0,1) + theme_bw() + theme(legend.position = "bottom")
+
+
 ggplot(dat %>% filter(Climate_PFT_Biome_equivalent_Poulter == "tropical")) +
-  geom_density(aes(x = fineroot2leaf, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
+  geom_density(aes(x = rooting_depth, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
   xlim(0,1) + theme_bw() + theme(legend.position = "bottom")
 
 length(which(dat$Climate_PFT_Biome_equivalent_Poulter == "tropical"))
@@ -85,9 +145,9 @@ PFT_species <- tbl(bety, "pfts") %>% dplyr::rename(pft_id = id) %>% filter(pft_i
   collect()
 
 dat <- dat %>% mutate(gen = case_when(!is.na(Accepted_genus_TPL) ~ Accepted_genus_TPL,
-                                        is.na(Accepted_genus_TPL) ~ Plant_taxonomy_Genus),
+                                      is.na(Accepted_genus_TPL) ~ Plant_taxonomy_Genus),
                       spec = case_when(!is.na(Accepted_species_TPL) ~ Accepted_species_TPL,
-                                         is.na(Accepted_species_TPL) ~ Plant_taxonomy_Species),
+                                       is.na(Accepted_species_TPL) ~ Plant_taxonomy_Species),
                       gen = case_when(is.na(gen) ~ "", TRUE ~ gen),
                       spec= case_when(is.na(spec) ~ "", TRUE ~ spec),
                       species = str_trim(paste(gen, spec))) %>%

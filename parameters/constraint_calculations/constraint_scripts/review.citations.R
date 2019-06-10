@@ -53,6 +53,7 @@ refs[which(refs$Ref == "Meinzer et al. 2003"),"doi"] <- "10.1046/j.1365-3040.200
 
 # refs[which(refs$Ref == "Meinzer et al. 2008"),"doi"] <- "10.1007/s00442-008-0974-5"
 refs[which(refs$Ref == "Meinzer et al. 2008"),"doi"] <- "10.1111/j.1365-2435.2009.01577.x"
+refs[which(refs$Ref == "Meinzer et al 2008"),"doi"] <- "10.1093/treephys/28.11.1609"
 
 
 refs[which(refs$Ref == "Scholz et al. 2007"),"doi"] <- "10.1093/treephys/27.4.551"

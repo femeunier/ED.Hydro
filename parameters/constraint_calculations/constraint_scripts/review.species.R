@@ -85,35 +85,35 @@ sp[which(sp$submit_name == "Zygogynum pomiferum"), "reviewed"]  <- TRUE
 sp[which(sp$submit_name == "Zygogynum queenslandianum"), "reviewed"]  <- TRUE
 sp[which(sp$submit_name == "Zygogynum semecarpoides"), "reviewed"]  <- TRUE
 
-submit_name case
-1       antirrhea trichantha    7
-2       aspidosperma cruenta    7
-3         bauhinia variegate    7
-4          bursera simarouba    7
-5       chrysophllum cainito    7
-6          hymenea courbaril    7
-7           micranda sprucei    7
-8          rhedera trinervis    7
-9      sweitenia macrophylla    7
-10          heteropterys sp.    8
-11              shorea guiso    8
-12         shorea parvifolia    8
-13      barringtonia pendula   11
-14 catostemma sancarlosianum   11
-15          cordia americana   11
-16    crossopteryx febrifuga   11
-17         irvingia malayana   11
-18      maytenus obtusifolia   11
-19           pachira sordida   11
-20      palaquium sumatranum   11
-21     rhododendron arboreum   11
-22         shorea macroptera   11
-23     tachigalia versicolor   11
-24 ternstroemia brasiliensis   11
-25     thouinidium decandrum   11
-26            vatica odorata   11
-27      mallotus penangensis   12
-28       michelia hypolampra   12
-29    millettia atropurpurea   12
-30     parashorea densiflora   12
-31       quercus semiserrata   12
+sp[which(sp$submit_name == "agathis kinabaluensis"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "aglaia squamulosa"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "cinnamomum subcuneatum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "dacrycarpus imbricatus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "dacrydium pectinatum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus clementianus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus confertus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus rigidus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "litsea ochracea"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "madhuca endertii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "payena microphylla"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium castaneum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium kunstleri"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium napiforme"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium pachysepalum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium subdecussatum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "tristaniopsis elliptica"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "xanthophyllum tenue"), "reviewed"]  <- TRUE
+
+sp[which(sp$submit_name == "ternstroemia coriacea"), "bety_name"] <- "ternstroemia coriacea"
+sp[which(sp$submit_name == "ternstroemia coriacea"), "reviewed"]  <- TRUE
+
+sp[which(sp$submit_name == "weinmannia blumei"), "bety_name"] <- "weinmannia blumei"
+sp[which(sp$submit_name == "weinmannia blumei"), "reviewed"]  <- TRUE
+
+sp[which(sp$submit_name == "dacrydium gracile"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus lampadarius"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "magnolia carsonii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "phyllocladus hypophyllus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "podocarpus gibbsii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "quercus lowii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "tetractomia tetrandra"), "reviewed"]  <- TRUE

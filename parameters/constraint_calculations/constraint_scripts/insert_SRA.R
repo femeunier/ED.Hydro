@@ -1,24 +1,16 @@
 # DONE
 
-# SLA data
+# SRA data
 
 library(ED.Hydro.Helpers)
 bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php") # the path to my config.php
 
 d1 <- read.csv(
-  "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Capacitance_Felicien_2-15-19/capacitance_BETY_SLA.csv",
-  stringsAsFactors = FALSE) %>%
-  select(-X)
-d2 <- read.csv(
-  "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Conductivity_Felicien_4-23-19/conductivity_BETY_SLA.csv",
-  stringsAsFactors = FALSE) %>%
-  select(-X)
-d3 <- read.csv(
-  "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/Psitlp_Felicien_5-17-19/Psitlp_BETY_SLA.csv",
+  "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/FRED/FRED2_20180518_SRA.csv",
   stringsAsFactors = FALSE) %>%
   select(-X)
 
-dat <- rbind.data.frame(d1,d2,d3)
+dat <- rbind.data.frame(d1)
 
 # checks
 
@@ -36,22 +28,28 @@ insert_dat <- insert_dat %>% drop_na(-trait_id)
 
 # Double check the data looks ok against the database
 
-SLA_id <- tbl(bety, "variables") %>% filter(name == "SLA") %>% pull(id)
-SLA_fit <- tbl(bety, "priors") %>% filter(variable_id == SLA_id) %>% filter(id == 142) %>% collect()
-SLA_prior <- data.frame(x = rdistn(SLA_fit, n = 100000))
+pftid <- 1000000131
+pft_priors <- tbl(bety,"pfts_priors") %>% filter(pft_id == pftid) %>% pull(prior_id)
+
+SRA_id <- tbl(bety, "variables") %>% filter(name == "SRA") %>% pull(id)
+SRA_fit <- tbl(bety, "priors") %>% filter(variable_id == SRA_id) %>%
+  filter(id %in% pft_priors) %>% collect()
+SRA_prior <- data.frame(x = rdistn(SRA_fit, n = 100000))
 
 insert_dat$y <- 0
 
-ggplot() + geom_density(data = SLA_prior, aes(x = x), fill = "black", alpha = .3) +
+ggplot() +
+  geom_density(data = SRA_prior, aes(x = x), fill = "black", alpha = .3) +
   geom_density(data = insert_dat, aes(x = value), fill = "darkblue", alpha = .5, color = NA) +
-  geom_point(data = insert_dat, aes(x = value, y = y, color = as.factor(citation_id)), shape = "|", size = 10) + theme(legend.position="right", legend.direction="vertical")
+  geom_point(data = insert_dat, aes(x = value, y = y, color = as.factor(species_id)), shape = "|", size = 10) + theme(legend.position="bottom")
+
 
 
 # Check if the data falls outside of the boudns of the prior and if that is
 # actually a serious violation of the assumtions
 
-which(insert_dat$value < min(SLA_prior))
-which(insert_dat$value > max(SLA_prior))
+which(insert_dat$value < min(SRA_prior))
+which(insert_dat$value > max(SRA_prior))
 
 # First just do a check to see how much of the data is already in bety
 # Also a sanity check to make sure I'm not about to send in a bunch of duplicates

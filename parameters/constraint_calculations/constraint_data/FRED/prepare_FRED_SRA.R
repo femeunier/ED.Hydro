@@ -1,3 +1,10 @@
+ID2name <- function(FRED_in, id){
+  return(names(FRED_in)[which(FRED_in[3,] == id)])
+}
+name2ID <- function(FRED_in, name){
+  return(FRED_in[3,name])
+}
+
 # Prepare the FRED data
 
 #------------------------------------------------------------------------------#
@@ -17,6 +24,7 @@ datafile <- "FRED2_20180518"
 FRED_in <- read_csv(paste0(file.path(datapath,datafile),".csv"))
 FRED_in %>% dim()
 FRED_in %>% distinct() %>% dim()
+
 
 FRED_main <- FRED_in[-(1:4),]
 names(FRED_main) <- str_replace_all(names(FRED_main), "([[:punct:]])|\\s+","_")
@@ -47,7 +55,8 @@ ident <- c(
 ) %>% str_replace_all("([[:punct:]])|\\s+","_")
 
 traits <- c(
-  "Fine root mass/leaf mass ratio"
+  "Specific root area (SRA)"
+
 ) %>% str_replace_all("([[:punct:]])|\\s+","_")
 
 keep_cols <- c(traits, meta, ident)
@@ -56,20 +65,29 @@ keep_cols %in% names(FRED_main)
 FRED_main <- FRED_main %>% dplyr::select(one_of(keep_cols))
 FRED_main <- clean_NAs(FRED_main, traits)
 
-dat <- FRED_main %>%
+dat_ready <- FRED_main %>%
   mutate(lat = as.numeric(Latitude_main), Latitude_main = NULL,
          lon = as.numeric(Longitude_Main), Longitude_Main = NULL,
-         fineroot2leaf = as.numeric(Fine_root_mass_leaf_mass_ratio)) %>%
-  rename(doi = Data_source_DOI) %>%
-  filter(Climate_PFT_Biome_equivalent_Poulter %in% c("tropical", "temperate"))
+         Specific_root_area = as.numeric(Specific_root_area__SRA_),
+         doi = case_when(!is.na(Data_source_DOI) ~ Data_source_DOI,
+                         is.na(Data_source_DOI) ~ Data_set_DOI))
+
+# Felicien and I have decieded to take all the species that are
+# Climate_Koeppen-Geiger classification: Af an Am
+# and add them to the analysis.
+
+# dat <- dat_ready %>% filter(biome == "tropical")
+dat <- dat_ready %>%
+  select(one_of("lat","lon", "Climate_Koeppen_Geiger_classification", "Climate_PFT_Biome_equivalent_Poulter",
+                "Specific_root_area","Accepted_genus_TPL", "Accepted_species_TPL",
+                "Plant_taxonomy_Genus", "Plant_taxonomy_Species", "doi")) %>%
+  filter(Climate_Koeppen_Geiger_classification %in% c("Af", "Am"))
+
 
 ggplot(dat) +
-  geom_density(aes(x = fineroot2leaf, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
-  xlim(0,1) + theme_bw() + theme(legend.position = "bottom")
+  geom_density(aes(x = Specific_root_area, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
+  theme_bw() + theme(legend.position = "bottom")
 
-ggplot(dat %>% filter(Climate_PFT_Biome_equivalent_Poulter == "tropical")) +
-  geom_density(aes(x = fineroot2leaf, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
-  xlim(0,1) + theme_bw() + theme(legend.position = "bottom")
 
 length(which(dat$Climate_PFT_Biome_equivalent_Poulter == "tropical"))
 length(which(dat$Climate_Koeppen_Geiger_classification %in% c("Af", "Am")))
@@ -85,27 +103,19 @@ PFT_species <- tbl(bety, "pfts") %>% dplyr::rename(pft_id = id) %>% filter(pft_i
   collect()
 
 dat <- dat %>% mutate(gen = case_when(!is.na(Accepted_genus_TPL) ~ Accepted_genus_TPL,
-                                        is.na(Accepted_genus_TPL) ~ Plant_taxonomy_Genus),
+                                      is.na(Accepted_genus_TPL) ~ Plant_taxonomy_Genus),
                       spec = case_when(!is.na(Accepted_species_TPL) ~ Accepted_species_TPL,
-                                         is.na(Accepted_species_TPL) ~ Plant_taxonomy_Species),
+                                       is.na(Accepted_species_TPL) ~ Plant_taxonomy_Species),
                       gen = case_when(is.na(gen) ~ "", TRUE ~ gen),
-                      spec= case_when(is.na(spec) ~ "", TRUE ~ spec),
+                      spec = case_when(is.na(spec) ~ "", TRUE ~ spec),
                       species = str_trim(paste(gen, spec))) %>%
   select(-one_of("Accepted_genus_TPL", "Accepted_species_TPL",
                  "Plant_taxonomy_Genus", "Plant_taxonomy_Species", "gen", "spec"))
 dat <- dat %>% filter(species != "")  # some data doesn't have any species identification
 
-
-# Felicien and I have decieded to take all the species that are
-# Climate_Koeppen-Geiger classification: Af an Am
-# and add them to the analysis.
-
-# dat <- dat %>% filter(biome == "tropical")
-dat <- dat %>% filter(Climate_Koeppen_Geiger_classification %in% c("Af", "Am"))
-
 ggplot(dat) +
-  geom_density(aes(x = fineroot2leaf, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
-  xlim(0,1) + theme_bw() + theme(legend.position = "bottom")
+  geom_density(aes(x = Specific_root_area, fill = Climate_Koeppen_Geiger_classification), alpha = .3) +
+  theme_bw() + theme(legend.position = "bottom")
 
 species_all <- sort(unique(tolower(dat$species)))
 sp <- taxanomic_resolution(species_all = species_all,
@@ -117,8 +127,41 @@ ggplot(sp) + geom_bar(aes(x = as.factor(case)))
 case_accept_set = c(7,8,12)
 sp <- insert_species(sp, case_accept_set, bety)
 
-idx <- which(!sp$reviewed)
-sp$reviewed[idx] <- TRUE
+
+
+
+sp[which(sp$submit_name == "agathis kinabaluensis"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "aglaia squamulosa"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "cinnamomum subcuneatum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "dacrycarpus imbricatus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "dacrydium pectinatum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus clementianus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus confertus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus rigidus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "litsea ochracea"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "madhuca endertii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "payena microphylla"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium castaneum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium kunstleri"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium napiforme"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium pachysepalum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "syzygium subdecussatum"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "tristaniopsis elliptica"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "xanthophyllum tenue"), "reviewed"]  <- TRUE
+
+sp[which(sp$submit_name == "ternstroemia coriacea"), "bety_name"] <- "ternstroemia coriacea"
+sp[which(sp$submit_name == "ternstroemia coriacea"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "weinmannia blumei"), "bety_name"] <- "weinmannia blumei"
+sp[which(sp$submit_name == "weinmannia blumei"), "reviewed"]  <- TRUE
+
+sp[which(sp$submit_name == "dacrydium gracile"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "lithocarpus lampadarius"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "magnolia carsonii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "phyllocladus hypophyllus"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "podocarpus gibbsii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "quercus lowii"), "reviewed"]  <- TRUE
+sp[which(sp$submit_name == "tetractomia tetrandra"), "reviewed"]  <- TRUE
+
 
 sp <- insert_species(sp, case_accept_set, insert_PFT = TRUE, bety)
 
@@ -196,34 +239,34 @@ dat <- read.csv(file = tmp3, na.strings = NaN,  stringsAsFactors = FALSE) %>% se
 
 dat$y <- 0
 
+library(udunits2)
+dat <- dat %>% mutate(SRA =  udunits2::ud.convert(dat$Specific_root_area, "cm2 g-1", "m2 kg-1"))
+
 
 pft_priors <- tbl(bety,"pfts_priors") %>% filter(pft_id == pftid) %>% pull(prior_id)
 
 
-fineroot2leaf_id <- tbl(bety, "variables") %>% filter(name == "fineroot2leaf") %>% pull(id)
-fineroot2leaf_fit <- tbl(bety, "priors") %>% filter(variable_id == fineroot2leaf_id)  %>% filter(id %in% possible_priors) %>% collect()
+SRA_id <- tbl(bety, "variables") %>% filter(name == "SRA") %>% pull(id)
+SRA_fit <- tbl(bety, "priors") %>% filter(variable_id == SRA_id)  %>% filter(id %in% pft_priors) %>% collect()
 
+SRA_prior <- rdistn(SRA_fit, n = 100000)
+SRA_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "SRA")
 
+max(SRA_prior) > max(dat$SRA, na.rm = TRUE)
 
-fineroot2leaf_prior <- rdistn(fineroot2leaf_fit, n = 100000)
-fineroot2leaf_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "q")
-
-max(fineroot2leaf_prior) > max(dat$fineroot2leaf, na.rm = TRUE)
-
-
-p <- prior_plot(prior = fineroot2leaf_prior,
+p <- prior_plot(prior = SRA_prior,
                 q = c(0,.95),
-                plot_default = fineroot2leaf_default,
-                title = sprintf("(fineroot2leaf): %s", fineroot2leaf_fit$distn),
+                plot_default = SRA_default,
+                title = sprintf("(SRA): %s", SRA_fit$distn),
                 type = "prior")
 
-p + geom_density(data = dat, aes(x = fineroot2leaf, fill = "obs"), alpha = .3, color = NA) + geom_point(data = dat, aes(x = fineroot2leaf, y = y))
+p + geom_density(data = dat, aes(x = SRA, fill = "obs"), alpha = .3, color = NA) + geom_point(data = dat, aes(x = SRA, y = y))
 
-which(dat$fineroot2leaf < min(fineroot2leaf_prior))
-which(dat$fineroot2leaf > max(fineroot2leaf_prior))
+which(dat$SRA < min(SRA_prior))
+which(dat$SRA > max(SRA_prior))
 
-var <- "fineroot2leaf"
-varid <- fineroot2leaf_id
+var <- "SRA"
+varid <- SRA_id
 df <- dat %>%
   select(one_of(var, "species_id", "citation_id", "site_id")) %>%
   rename("value" = var) %>%
@@ -233,8 +276,9 @@ df <- dat %>%
 
 write.csv(df, file.path(datapath, paste0(datafile,"_",var,".csv")))
 
-
-plot_dat <- dat %>% mutate(mean = Fine_root_mass_leaf_mass_ratio)
+library(grid)
+library(gridExtra)
+plot_dat <- dat %>% mutate(mean = SRA)
 
 
 p <- ggplot(plot_dat)
@@ -243,13 +287,13 @@ p1 <- p +
   geom_density(aes(x = mean)) +
   coord_flip()  +
   scale_y_reverse() +
-  xlab("fineroot2leaf") +
+  xlab("SRA") +
   geom_vline(aes(xintercept = mean(mean)), size = 1, color = "gray")
 
 p2 <- p +
   geom_boxplot(aes(x = as.factor(site_id), y = mean)) +
   geom_jitter(aes(x = as.factor(site_id), y = mean, color = as.factor(citation_id)), width = .05, size = 3, alpha = .4) +
-  xlab("Site id") + ylab("fineroot2leaf") +
+  xlab("Site id") + ylab("SRA") +
   theme(legend.title = element_blank())
 
 
