@@ -2,19 +2,23 @@
 #'
 #' @param wf_id
 #' @param var
+#' @param path_to_config
 #' @param REDO
 #' @export
 
-prep_VCD <- function(wf_id, var, REDO = FALSE){
+prep_VCD <- function(wf_id, var, path_to_config = NA, REDO = FALSE){
 
-  base_path <- sprintf("/fs/data2/output/PEcAn_%i", wf_id)
-  original_xml <- file.path(base_path, "pecan.CONFIGS.xml")
-  new_xml <- sprintf("/fs/data2/output/PEcAn_%i/pecan.CONFIGS.NPP.xml", wf_id)
+  if(is.na(path_to_config)){ # assume we're on test-pecan and auto generate the file path
+    path_to_config <- sprintf("/fs/data2/output/PEcAn_%i", wf_id)
+  }
+
+  original_xml <- file.path(path_to_config, "pecan.CONFIGS.xml")
+  new_xml <- file.path(path_to_config, "pecan.CONFIGS.NPP.xml")
   file.copy(original_xml, new_xml, overwrite = REDO)
   tx  <- readLines(new_xml)
 
   for(i in seq_along(var)){
-    new_file <- paste0("/fs/data2/output/PEcAn_",wf_id,"/pecan.CONFIGS.",var[i],".xml")
+    new_file <- paste0(path_to_config, "/pecan.CONFIGS.",var[i],".xml")
 
     check <- file.exists(new_file)
     if(REDO){check <- FALSE}

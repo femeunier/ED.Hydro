@@ -4,7 +4,7 @@
 \alias{prep_VCD}
 \title{Perform UA and SA}
 \usage{
-prep_VCD(wf_id, var, REDO = FALSE)
+prep_VCD(wf_id, var, path_to_config = NA, REDO = FALSE)
 }
 \description{
 Perform UA and SA
