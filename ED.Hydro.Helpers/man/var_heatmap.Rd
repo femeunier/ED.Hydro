@@ -6,8 +6,8 @@
 \usage{
 var_heatmap(PD.ALL, var_vector, full_range, keep.traits, color_range,
   barplot_facet = TRUE, title = "",
-  fpath = "/fs/data3/ecowdery/ED.Hydro/figures/", plot.width,
-  plot.height)
+  fpath = "/fs/data3/ecowdery/ED.Hydro/figures/", plot.width = 12,
+  plot.height = 13.5)
 }
 \description{
 Variance Heatmap
