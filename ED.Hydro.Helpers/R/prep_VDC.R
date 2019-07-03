@@ -6,7 +6,7 @@
 #' @param REDO
 #' @export
 
-prep_VCD <- function(wf_id, var, path_to_config = NA, REDO = FALSE){
+prep_VDC <- function(wf_id, var, path_to_config = NA, REDO = FALSE){
 
   if(is.na(path_to_config)){ # assume we're on test-pecan and auto generate the file path
     path_to_config <- sprintf("/fs/data2/output/PEcAn_%i", wf_id)

@@ -126,8 +126,8 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, keep.traits, color_range
     gt2$heights[a] = 3*gt2$heights[a]
     grid.draw(gt2)
 
-    fname <- paste("heatmap", paste(unique(PD.sub$wf_id), collapse = "."),
-                   unique(na.omit(PD.sub$met.type)),"bar", "png", sep= "." )
+    fname <- paste("heatmap.bar", paste(unique(PD.sub$wf_id), collapse = "."),
+                   unique(na.omit(PD.sub$met.type)), "png", sep= "." )
     ggsave(file.path(fpath,fname), gt2, width = plot.width, height = plot.height)
   }
 
@@ -137,8 +137,7 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, keep.traits, color_range
   trait_colors <- c(Set1_color2hex("red"), Set1_color2hex("blue"),
                     Set1_color2hex("yellow"), Set1_color2hex("green"),
                     Set1_color2hex("purple"))
-  names(trait_colors) <- c( "Allocation", "Hydraulics", "Photo.",
-                            "Radiation", "Resp.")
+  names(trait_colors) <- c("Alloc. + Allom.", "Hydraulics", "Photo. + S.C.", "Radiation", "Resp. + Turnovr")
 
   base2 <- ggplot() +
     theme_classic() +

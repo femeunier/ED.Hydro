@@ -23,7 +23,7 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
 
     for(j in seq_along(model$wf_id)){
       conf_file <- paste0("/fs/data2/output/PEcAn_",model$wf_id[j],"/pecan.CONFIGS.",var[i],".xml")
-      settings <- PEcAn.settings::read.settings(conf_file)
+      settings <- read.settings(conf_file)
       SA_file <- sprintf("/fs/data2/output/PEcAn_%s/sensitivity.results.%s.%s.%s.%s.Rdata",
                          settings$workflow$id,
                          settings$sensitivity.analysis$ensemble.id,
