@@ -1,0 +1,8 @@
+rsync -Pavze ssh ecowdery@geo.bu.edu:remote_file where_I_want_the_file_to_go_local
+
+
+rsync -Pavzer ssh ecowdery@geo.bu.edu:/projectnb/dietzelab/pecan.data/output//ecowdery/1000010481/out/1002655251/ /fs/data2/output//PEcAn_1000010481/out/1002655251/.
+
+/projectnb/dietzelab/pecan.data/output//ecowdery/1000010481/out/
+/fs/data2/output//PEcAn_1000010481/
+
