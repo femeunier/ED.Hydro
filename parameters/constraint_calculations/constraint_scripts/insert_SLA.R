@@ -20,6 +20,10 @@ d3 <- read.csv(
 
 dat <- rbind.data.frame(d1,d2,d3)
 
+# THIS IS REALLY CHEATING AND SHOULDN'T BE DONE HERE
+# SLA NEEDS TO BE MULTIPLIED BY .48
+dat$value <- dat$value *.48
+
 # checks
 
 unique(dat$variable_id)
