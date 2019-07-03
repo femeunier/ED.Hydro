@@ -6,7 +6,8 @@
 #' @param PDF
 #' @export
 
-plot_VCD <- function(model, var, plot, PDF){
+plot_VCD <- function(model, var, keep.traits, plot, PDF,
+                     fpath = "/fs/data3/ecowdery/ED.Hydro/figures"){
   # namedcolors <- brewer.pal(3, "Set1")
   namedcolors <- c(brewer.pal(3, "Set1")[1:2], "grey40", "black")
   # namedcolors <- c("#c23c81", "#238a8d", "grey40", "black")
@@ -63,7 +64,7 @@ plot_VCD <- function(model, var, plot, PDF){
     if(plot){
 
       plot.data <- plot.data %>% mutate(new.labels = case_when(
-        trait.labels == "Aboveground Fraction of Structural Biomass" ~ "AGB Allocation",
+        trait.labels == "Aboveground Fraction of Structural Biomass" ~ "Frac Biomass Aboveground",
         trait.labels == "leaf NIR reflectance" ~ "Leaf NIR reflectance",
         trait.labels == "leaf NIR transmittance" ~ "Leaf NIR transmittance",
         trait.labels == "leaf VIS reflectance" ~ "Leaf VIS reflectance",
@@ -72,48 +73,6 @@ plot_VCD <- function(model, var, plot, PDF){
         trait.labels == "Rooting depth allometry intercept" ~ "Root depth allom. int.",
         TRUE ~ as.character(trait.labels)
       ))
-
-      # Setup grouping of parameters
-
-      traits_hydro <- c("Water Conductance",
-                        "Leaf water cap",
-                        "Wood water cap",
-                        "Kmax",
-                        "Kexp",
-                        "p50",
-                        "leaf_psi_tlp")
-      traits_photo <- c("Specific Leaf Area",
-                        "Vcmax",
-                        "Specific Root Area")
-      traits_alloc <- c("AGB Allocation",
-                        "Fine Root Allocation",
-                        "Root depth allom. int.",
-                        "Root depth allom. slope")
-      traits_radtn <- c("Leaf orientation",
-                        "Leaf NIR reflectance",
-                        "Leaf NIR transmittance",
-                        "Leaf VIS reflectance",
-                        "Leaf VIS transmittance")
-      traits_respr <- c("Growth Respiration",
-                        "Veg. Resp. Q10")
-
-      keep.traits <- data.frame(
-        new.labels = c(
-          traits_hydro,
-          traits_photo,
-          traits_alloc,
-          traits_radtn,
-          traits_respr
-        ),
-
-        trait.type = c(
-          rep("Hydraulics",length(traits_hydro)),
-          rep("Photo.",length(traits_photo)),
-          rep("Allocation",length(traits_alloc)),
-          rep("Radiation",length(traits_radtn)),
-          rep("Resp.",length(traits_respr))
-        )
-      )
 
       plot.data <- left_join(keep.traits, plot.data, by = "new.labels")
       plot.data$new.labels <- factor(plot.data$new.labels, levels = rev(unique(plot.data$new.labels)))
@@ -136,8 +95,10 @@ plot_VCD <- function(model, var, plot, PDF){
           panel.grid.minor = element_blank(),
           panel.border = element_blank())
 
-      cv.plot <-  base.plot + ggtitle("Coefficient of Variance (log)") + geom_hline(yintercept = 0) +
-        geom_pointrange(aes(x = points, y = coef.vars, ymin = 0, ymax = coef.vars, color = cv_color),
+      cv.plot <-  base.plot + ggtitle("Coefficient of Variance (log(abs(x)))") +
+        geom_hline(yintercept = 0) +
+        geom_pointrange(aes(x = points, y = coef.vars, ymin = 0,
+                            ymax = coef.vars, color = cv_color),
                         alpha = .7, size = 1.25) +
         scale_y_continuous(labels = function(x) sprintf("%.2e", x)) +
         xlim(1, max(plot.data$points)) +
@@ -146,7 +107,8 @@ plot_VCD <- function(model, var, plot, PDF){
 
       el.plot <- base.plot + ggtitle("Elasticity") +
         geom_hline(yintercept = 0) +
-        geom_pointrange(aes(x = points, y = elasticities, ymin = 0, ymax = elasticities, color = el_color),
+        geom_pointrange(aes(x = points, y = elasticities, ymin = 0,
+                            ymax = elasticities, color = el_color),
                         alpha = .7, size = 1.25) +
         xlim(1, max(plot.data$points)) +
         theme(legend.position="none") +
@@ -154,14 +116,16 @@ plot_VCD <- function(model, var, plot, PDF){
 
       pv.plot <- base.plot + ggtitle("Variance") +
         geom_hline(yintercept = 0) +
-        geom_pointrange(aes(x = points, variances, ymin = 0, ymax = variances, color = pv_color),
+        geom_pointrange(aes(x = points, variances, ymin = 0,
+                            ymax = variances, color = pv_color),
                         alpha = .7, size = 1.25) +
         xlim(1, max(plot.data$points)) +
         scale_color_manual("pv_color", values = namedcolors) +
         theme(legend.justification=c(1,0), legend.position=c(1,0))
 
       trait.plot <- base.plot + ggtitle("Parameter")  +
-        geom_text(aes(y = 1, x = points, label = new.labels, hjust = 1, color = label_color)) +
+        geom_text(aes(y = 1, x = points, label = new.labels, hjust = 1,
+                      color = label_color)) +
         scale_y_continuous(breaks = c(0, 0), limits = c(0, 1)) +
         xlim(0, max(plot.data$points)) +
         theme(axis.text.x = element_blank()) +
@@ -171,7 +135,6 @@ plot_VCD <- function(model, var, plot, PDF){
       title1=textGrob(var[i], gp=gpar(fontsize=24, fontface="bold"))
 
       if(PDF){
-        fpath <- "/fs/data3/ecowdery/ED.Hydro/figures"
         fname <- paste(c("VDC",unique(model$wf_id),var[i],unique(model$met.type),"png"), collapse = ".")
         # pdf(file.path(fpath,fname), width = 11, height = 8)
         # dev.off()

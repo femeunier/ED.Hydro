@@ -1,4 +1,4 @@
-#' VAriance Heatmap
+#' Variance Heatmap
 #'
 #' @param PD.ALL
 #' @param var_vector
@@ -6,12 +6,18 @@
 #' @param color_range
 #' @param plot.width
 #' @param plot.height
+#' @param keep.traits
 #' @export
 
-var_heatmap <- function(PD.ALL, var_vector, full_range, color_range, plot.width, plot.height){
+var_heatmap <- function(PD.ALL, var_vector, full_range, keep.traits, color_range,
+                        barplot_facet = TRUE, title = "",
+                        fpath = "/fs/data3/ecowdery/ED.Hydro/figures/",
+                        plot.width = 12, plot.height = 13.5){
+
+  # Rework any of the labels, in case they are too long for the plot
 
   PD.ALL <- PD.ALL %>% mutate(new.labels = case_when(
-    trait.labels == "Aboveground Fraction of Structural Biomass" ~ "AGB Allocation",
+    trait.labels == "Aboveground Fraction of Structural Biomass" ~ "Frac Biomass Aboveground",
     trait.labels == "leaf NIR reflectance" ~ "Leaf NIR reflectance",
     trait.labels == "leaf NIR transmittance" ~ "Leaf NIR transmittance",
     trait.labels == "leaf VIS reflectance" ~ "Leaf VIS reflectance",
@@ -21,52 +27,13 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, color_range, plot.width,
     TRUE ~ as.character(trait.labels)
   ))
 
+  # A lot of factor wrangling, here we "refactor" a lot so that factors will
+  # show up in the order that we want them to in the plot
+  # For example Hydro, Photo, and so on
+  # Also introducing new factors "Total_hydro" and "Total"
 
-  # Pick the variables
   PD.ALL <- PD.ALL %>% filter(.,var %in% var_vector)
   PD.ALL$var <- as.factor(PD.ALL$var) %>% factor(levels = var_vector)
-
-  # Setup grouping of parameters
-
-  traits_hydro <- c("Water Conductance",
-                    "Leaf water cap",
-                    "Wood water cap",
-                    "Kmax",
-                    "Kexp",
-                    "p50",
-                    "leaf_psi_tlp")
-  traits_photo <- c("Specific Leaf Area",
-                    "Vcmax",
-                    "Specific Root Area")
-  traits_alloc <- c("AGB Allocation",
-                    "Fine Root Allocation",
-                    "Root depth allom. int.",
-                    "Root depth allom. slope")
-  traits_radtn <- c("Leaf orientation",
-                    "Leaf NIR reflectance",
-                    "Leaf NIR transmittance",
-                    "Leaf VIS reflectance",
-                    "Leaf VIS transmittance")
-  traits_respr <- c("Growth Respiration",
-                    "Veg. Resp. Q10")
-
-  keep.traits <- data.frame(
-    new.labels = c(
-      traits_hydro,
-      traits_photo,
-      traits_alloc,
-      traits_radtn,
-      traits_respr
-    ),
-
-    trait.type = c(
-      rep("Hydraulics",length(traits_hydro)),
-      rep("Photo.",length(traits_photo)),
-      rep("Allocation",length(traits_alloc)),
-      rep("Radiation",length(traits_radtn)),
-      rep("Resp.",length(traits_respr))
-    )
-  )
 
   PD.sub <- left_join(keep.traits, PD.ALL, by = "new.labels")
   PD.sub$new.labels <- factor(PD.sub$new.labels, levels = rev(unique(PD.sub$new.labels)))
@@ -74,8 +41,7 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, color_range, plot.width,
   PD.sub$trait.labels <- factor( PD.sub$trait.type, levels = c(
     "Hydraulics", "Photo.", "Allocation", "Radiation", "Resp.", "Total_hydro", "Total"
   ))
-
-  totals <- list()
+  totals <- list() # Sanity check
 
   total_var <- PD.sub %>% dplyr::group_by(model.type, var) %>% dplyr::summarise(total = sum(variances))
   total_var$model.type <- factor(total_var$model.type , levels = c("ORIG", "HYDRO"))
@@ -84,89 +50,105 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, color_range, plot.width,
 
   total_var
 
-  for(t in c("traits_hydro", "traits_photo", "traits_alloc", "traits_radtn", "traits_respr")){
-    n <- paste0("Total_", strsplit(t, "_") %>% unlist %>% .[2])
-    tt <- eval(parse(text = t))
-    dat <- PD.sub %>% filter(new.labels %in% tt) %>%
-      dplyr::group_by(model.type, var) %>% dplyr::summarise(total = sum(variances))
-    dat$model.type <- factor(dat$model.type , levels = c("ORIG", "HYDRO"))
-    dat$trait.type <- n
-    totals[[n]] <- dat
+  # Calculate the total variance in each column.
+  # If barplot_facet = TRUE, this will be displayed in the
+  # "Total" facet at the bottom of the plot.
+
+  # Calculating totals of variances for the other more detailed bar plot,
+  # may want to revisit this one
+  tv <- PD.sub %>% group_by(model.type, trait.type, var) %>% dplyr::summarize(total = sum(variances))
+
+  if(barplot_facet){
+    PD.sub2 <- rbind.fill(PD.sub, totals[["Total"]])
+    PD.sub2$new.labels <- addLevel(PD.sub2$new.labels, "")
+    PD.sub2[which(PD.sub2$trait.type == "Total"),"new.labels"] <- ""
   }
-  tv <- do.call(rbind, totals)
 
-
-  trait_colors <- c("red", "blue", "gray70", "gray75", "gray80") #, "gray85")
-  names(trait_colors) <- c( "Total_alloc", "Total_hydro", "Total_photo",
-                            "Total_radtn", "Total_respr") #, "Total_trnov")
-
-  # PD.sub <- rbind.fill(PD.sub, totals[["Total_hydro"]])
-  # PD.sub <- rbind.fill(PD.sub, totals[["Total"]])
-
-  ####################
+  #########################################################
   # Time to plot!
-
-  # rescale_vec <- c(min(full_range),1e-20,1e-15,1e-10,1e-11,7e-6,max(full_range))
-  # n = 7
-  # n <- length(colorvec)
-  # rescale_vec <- exp(seq(log(min(PD.ALL$variances)), log(max(PD.ALL$variances)), length.out = n))
-
-  # color_range <- c(2.027377e-32, 3.882505e-10, 7.435148e-8, 1.423860e-07 , 2.726747e-6, 5.221826e-2, 1.000000e+00)
 
   rescale_vec <- color_range
 
-  base <- ggplot(PD.sub)  +
-    theme_classic() +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  themes <- theme_classic() +
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
           axis.ticks = element_blank(),
           axis.line = element_blank(),
           panel.border = element_blank(),
+          plot.title = element_text(size=18, face="bold"),
           axis.title = element_blank(),
-          axis.text = element_text(size = 16),
-          strip.text.x = element_text(size = 18),
+          axis.text = element_text(size = 14),
+          strip.text.x = element_text(size = 16),
           strip.text.y = element_text(size = 12),
-          legend.title = element_text(size = 16),
+          legend.title = element_text(size = 18),
           legend.text = element_text(size = 12),
-          legend.key.height = unit(5, "line"), legend.key.width = unit(2, "line"))
-  # base <- ggplot(PD.sub) +
-  #   viridis::scale_fill_viridis(direction = -1, guide = "colorbar",
-  #                               limits=c(min(full_range),max(full_range))) +
-  #   theme(legend.key.height = unit(7, "line"))
+          legend.key.height = unit(5, "line"),
+          legend.key.width = unit(2, "line"))
 
-  heatmap <- base +
-    geom_tile(aes(y= new.labels, x = model.type, fill = variances)) +
+  heatmap <- ggplot(PD.sub) + themes +
+    geom_tile(data = PD.sub, aes(y= new.labels, x = model.type, fill = variances)) +
     viridis::scale_fill_viridis(values = rescale(rescale_vec), direction = -1,
                                 limits=c(min(full_range),max(full_range)), na.value="white",
                                 guide = "colorbar", name = "Normailized \nVariance") +
-    # geom_text(aes(y= new.labels, x = model.type, label = sprintf("%.1e",variances))) +
-    # ylab("Parameters") +
-    # xlab("Version of ED") +
-    # ggtitle("Variance") +
+    ggtitle(title) +
     facet_grid(factor(trait.type, levels = c(
-      "Hydraulic", "Photo.", "Allocation", "Radiation", "Resp.", "Total_hydro", "Total"
+      "Hydraulics", "Photo.", "Allocation", "Radiation", "Resp."
     )) ~ var, space = "free", scales = "free")
+  # Other things I have added to the plot in the past ...
+  # geom_text(aes(y= new.labels, x = model.type, label = sprintf("%.1e",variances))) +
+  # ylab("Parameters") +
+  # xlab("Version of ED") +
 
-  # geom_pointrange(aes(x = model.type, y = total, ymin=0, ymax=total),shape ="_", size = 4)
-
-
-  gt <- heatmap
-  # Below is what I would use if I wanted to add the barplot under the facets
   gt <- ggplot_gtable(ggplot_build(heatmap))
-  # gtable_show_layout(gt)
-  gt$heights[20] = 3*gt$heights[20]
-  gt$heights[22] = 3*gt$heights[22]
-  grid.draw(gt)
 
-  fpath <- "/fs/data3/ecowdery/ED.Hydro/figures/"
-  fname <- paste("heatmap", paste(unique(na.omit(PD.sub$wf_id)), collapse = "."), unique(na.omit(PD.sub$met.type)), "png", sep= "." )
+  fname <- paste("heatmap", paste(unique(na.omit(PD.sub$wf_id)), collapse = "."),
+                 unique(na.omit(PD.sub$met.type)), "png", sep= "." )
   ggsave(file.path(fpath,fname), gt, width = plot.width, height = plot.height)
+
+  if(barplot_facet){
+
+    heatmap2 <- ggplot(PD.sub2) + themes +
+      geom_tile(data = PD.sub, aes(y= new.labels, x = model.type, fill = variances)) +
+      viridis::scale_fill_viridis(values = rescale(rescale_vec), direction = -1,
+                                  limits=c(min(full_range),max(full_range)), na.value="white",
+                                  guide = "colorbar", name = "Normailized \nVariance") +
+      ggtitle(title) +
+      facet_grid(factor(trait.type, levels = c(
+        "Hydraulics", "Photo. + S.C.", "Alloc. + Allom.", "Radiation", "Resp. + Turnovr", "Total"
+      )) ~ var, space = "free", scales = "free") +
+      geom_bar(aes(x = model.type, y = total), stat = "identity")
+
+    gt2 <- ggplot_gtable(ggplot_build(heatmap2))
+
+
+    # gtable_height(gt)
+    # gtable_show_layout(gt)
+    a = 18
+    gt2$heights[a] = 3*gt2$heights[a]
+    grid.draw(gt2)
+
+    fname <- paste("heatmap", paste(unique(PD.sub$wf_id), collapse = "."),
+                   unique(na.omit(PD.sub$met.type)),"bar", "png", sep= "." )
+    ggsave(file.path(fpath,fname), gt2, width = plot.width, height = plot.height)
+  }
+
+  #########################################
+  # OH HEY BONUS PLOT
+
+  trait_colors <- c(Set1_color2hex("red"), Set1_color2hex("blue"),
+                    Set1_color2hex("yellow"), Set1_color2hex("green"),
+                    Set1_color2hex("purple"))
+  names(trait_colors) <- c( "Allocation", "Hydraulics", "Photo.",
+                            "Radiation", "Resp.")
 
   base2 <- ggplot() +
     theme_classic() +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
           axis.ticks = element_blank(),
           axis.line = element_blank(),
           panel.border = element_blank(),
+          plot.title = element_text(size=18, face="bold"),
           axis.title = element_blank(),
           axis.text = element_text(size = 16),
           strip.text.x = element_text(size = 18),
@@ -174,55 +156,43 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, color_range, plot.width,
           legend.title = element_text(size = 16),
           legend.text = element_text(size = 12))
 
-  b1 <- base2 +
-    geom_bar(data = tv %>% filter(trait.type == "Total_hydro"),
+  b1 <- base2 + ggtitle(title) +
+    geom_bar(data = tv %>% filter(trait.type == "Hydraulics"),
              aes(x = model.type, y = total, fill = trait.type), stat = "identity") +
     scale_fill_manual("trait.type", values = trait_colors) +
     facet_grid(~ var)
 
   b2 <- base2 +
-    geom_bar(data = tv %>% filter(!trait.type == "Total"),
+    geom_bar(data = tv,
              aes(x = model.type, y = total, fill = trait.type), stat = "identity") +
     scale_fill_manual("trait.type", values = trait_colors) +
     facet_grid(~ var)
 
-  gt2 <- grid.arrange(b1,b2, ncol = 1)
+  gt3 <- arrangeGrob(b1,b2, ncol = 1)
 
-  fpath <- "/fs/data3/ecowdery/ED.Hydro/figures/"
-  fname <- paste("barplot", paste(unique(na.omit(PD.sub$wf_id)), collapse = "."), unique(na.omit(PD.sub$met.type)), "png", sep= "." )
-  ggsave(file.path(fpath,fname), gt2, width = plot.width, height = plot.height)
-
-  return(gt)
-  # hist_all <- ggplot(total_var) + geom_pointrange(data = total_var, aes(x = model.type, y = total, ymin=0, ymax=total),shape ="_", size = 4) +
-  #   # geom_bar(aes(x = model.type, y = total), stat = "identity") +
-  #   facet_grid(~var, scale = "free") + scale_y_continuous(trans = "log") + theme(strip.text = element_blank())
-  #
-  # p <- grid.arrange(heatmap + theme(axis.text.x = element_blank()), hist_all,
-  #                   layout_matrix = rbind(
-  #                     c(1, 1, 1, 1, 1),
-  #                     c(1, 1, 1, 1, 1),
-  #                     c(1, 1, 1, 1, 1),
-  #                     c(1, 1, 1, 1, 1),
-  #                     c(1, 1, 1, 1, 1),
-  #                     c(1, 1, 1, 1, 1),
-  #                     c(2, 2, 2, 2, NA)))
-  #
-
-  # fpath <- "/fs/data3/ecowdery/ED.Hydro/figures/"
-  # fname <- paste("heatmap", paste(unique(PD.sub$wf_id), collapse = "."), unique(PD.sub$met.type), "pdf", sep= "." )
-  # pdf(file.path(fpath,fname), width = 11, height = 12)
-  # grid.arrange(heatmap + theme(axis.text.x = element_blank()), hist_all,
-  #              layout_matrix = rbind(
-  #                c(1, 1, 1, 1, 1),
-  #                c(1, 1, 1, 1, 1),
-  #                c(1, 1, 1, 1, 1),
-  #                c(1, 1, 1, 1, 1),
-  #                c(1, 1, 1, 1, 1),
-  #                c(1, 1, 1, 1, 1),
-  #                c(2, 2, 2, 2, NA)))
-  # dev.off()
-
+  fname <- paste("barplot", paste(unique(na.omit(PD.sub$wf_id)), collapse = "."),
+                 unique(na.omit(PD.sub$met.type)), "png", sep= "." )
+  ggsave(file.path(fpath,fname), gt3, width = plot.width, height = plot.height)
 }
+
+
+# # return(gt)
+# hist_all <- ggplot(total_var) + geom_pointrange(data = total_var, aes(x = model.type, y = total, ymin=0, ymax=total),shape ="_", size = 4) +
+#   # geom_bar(aes(x = model.type, y = total), stat = "identity") +
+#   facet_grid(~var, scale = "free") + scale_y_continuous(trans = "log") + theme(strip.text = element_blank())
+#
+# p <- grid.arrange(heatmap + theme(axis.text.x = element_blank()), hist_all,
+#                   layout_matrix = rbind(
+#                     c(1, 1, 1, 1, 1),
+#                     c(1, 1, 1, 1, 1),
+#                     c(1, 1, 1, 1, 1),
+#                     c(1, 1, 1, 1, 1),
+#                     c(1, 1, 1, 1, 1),
+#                     c(1, 1, 1, 1, 1),
+#                     c(2, 2, 2, 2, NA)))
+# p
+
+
 
 #  regional veg model with emergent ecological properties and explicit biogeophysical cycles
 
@@ -232,12 +202,12 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, color_range, plot.width,
 # Attempt at rainbow
 # colorvec <- c('#dafbff', '#abdda4',  '#ffffbf', '#fdae61', '#d7191c')
 # PANK (https://www.invisionapp.com/inside-design/finding-the-right-color-palettes-for-data-visualizations/)
-colorvec <- paste0("#", c("f5aea1", "ea628a", "a83890", "a83890", "3d1058"))
+# colorvec <- paste0("#", c("f5aea1", "ea628a", "a83890", "a83890", "3d1058"))
 # BLUE (https://www.invisionapp.com/inside-design/finding-the-right-color-palettes-for-data-visualizations/)
-colorvec <- paste0("#", c("b6decb","b6decb", "3683b8", "244794", "151c65"))
-colorvec <- c(paste0("#", c("dcecc8","75c6d0", "3893c1", "26539b", "11154c")))
+# colorvec <- paste0("#", c("b6decb","b6decb", "3683b8", "244794", "151c65"))
+# colorvec <- c(paste0("#", c("dcecc8","75c6d0", "3893c1", "26539b", "11154c")))
 # GREEN (http://tristen.ca/hcl-picker/#/hlc/5/0.79/263039/D4F68F)
-colorvec <- rev(unlist(strsplit("#263039,#365F62,#4F927F,#83C68B,#D4F68F", ",")))
+# colorvec <- rev(unlist(strsplit("#263039,#365F62,#4F927F,#83C68B,#D4F68F", ",")))
 
 
 # n = 7

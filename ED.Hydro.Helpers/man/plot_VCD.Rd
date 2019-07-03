@@ -4,7 +4,8 @@
 \alias{plot_VCD}
 \title{Prepare VCD data and make plots}
 \usage{
-plot_VCD(model, var, plot, PDF)
+plot_VCD(model, var, keep.traits, plot, PDF,
+  fpath = "/fs/data3/ecowdery/ED.Hydro/figures")
 }
 \description{
 Prepare VCD data and make plots

@@ -2,11 +2,13 @@
 % Please edit documentation in R/var_heatmap.R
 \name{var_heatmap}
 \alias{var_heatmap}
-\title{VAriance Heatmap}
+\title{Variance Heatmap}
 \usage{
-var_heatmap(PD.ALL, var_vector, full_range, color_range, plot.width,
+var_heatmap(PD.ALL, var_vector, full_range, keep.traits, color_range,
+  barplot_facet = TRUE, title = "",
+  fpath = "/fs/data3/ecowdery/ED.Hydro/figures/", plot.width,
   plot.height)
 }
 \description{
-VAriance Heatmap
+Variance Heatmap
 }
