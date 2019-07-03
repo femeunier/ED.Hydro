@@ -34,7 +34,6 @@ var_heatmap <- function(PD.ALL, var_vector, full_range, keep.traits, color_range
 
   PD.ALL <- PD.ALL %>% filter(.,var %in% var_vector)
   PD.ALL$var <- as.factor(PD.ALL$var) %>% factor(levels = var_vector)
-
   PD.sub <- left_join(keep.traits, PD.ALL, by = "new.labels")
   PD.sub$new.labels <- factor(PD.sub$new.labels, levels = rev(unique(PD.sub$new.labels)))
   PD.sub$model.type <- factor(PD.sub$model.type , levels = c("ORIG", "HYDRO"))

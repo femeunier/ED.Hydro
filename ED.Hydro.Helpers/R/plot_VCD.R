@@ -8,6 +8,7 @@
 
 plot_VCD <- function(model, var, keep.traits, plot, PDF,
                      fpath = "/fs/data3/ecowdery/ED.Hydro/figures"){
+
   # namedcolors <- brewer.pal(3, "Set1")
   namedcolors <- c(brewer.pal(3, "Set1")[1:2], "grey40", "black")
   # namedcolors <- c("#c23c81", "#238a8d", "grey40", "black")
