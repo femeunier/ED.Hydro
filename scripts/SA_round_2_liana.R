@@ -27,25 +27,22 @@ for(wf_id in wf_ids){
   )
 }
 
-
-
-
 ################################################################################
 # Create variance decomposition plots
-
 
 plot = TRUE
 PDF = TRUE
 
 model <- data.frame(
   wf_id =  wf_ids,
-  model.type = c("ORIG", "HYDRO"),
+  model.type = c("Prior", "Posterior"),
   met.type = c("water", "water"),
   stringsAsFactors = FALSE
 )
 model <- model %>% mutate(title = sprintf("%s (%.0f)", model.type, wf_id))
 
-PD_model <- plot_VCD(model, var, keep.traits, plot= TRUE, PDF=TRUE, fpath)
+PD_model <- plot_VDC(model, var, keep.traits, plot= TRUE, PDF=TRUE, fpath,
+                     "/home/carya/output/PEcAn_")
 
 for(v in var){
   max_var <- max(PD_model %>% filter(var == v) %>% pull(variances))

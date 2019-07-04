@@ -7,7 +7,11 @@
 #' @export
 
 plot_VDC <- function(model, var, keep.traits, plot, PDF,
-                     fpath = "/fs/data3/ecowdery/ED.Hydro/figures"){
+                     fpath = "/fs/data3/ecowdery/ED.Hydro/figures",path_to_config = NA){
+
+  if(is.na(path_to_config)){ # assume we're on test-pecan and auto generate the file path
+    path_to_config <- sprintf("/fs/data2/output/PEcAn_%i", wf_id)
+  }
 
   # namedcolors <- brewer.pal(3, "Set1")
   namedcolors <- c(brewer.pal(3, "Set1")[1:2], "grey40", "black")
@@ -22,14 +26,15 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
     plot_data[[var[i]]] <- list()
 
     for(j in seq_along(model$wf_id)){
-      conf_file <- paste0("/fs/data2/output/PEcAn_",model$wf_id[j],"/pecan.CONFIGS.",var[i],".xml")
+      conf_file <- paste0(path_to_config,model$wf_id[j],"/pecan.CONFIGS.",var[i],".xml")
       settings <- PEcAn.settings::read.settings(conf_file)
-      SA_file <- sprintf("/fs/data2/output/PEcAn_%s/sensitivity.results.%s.%s.%s.%s.Rdata",
-                         settings$workflow$id,
+      SA_file <- paste0(path_to_config,
+                        sprintf("%s/sensitivity.results.%s.%s.%s.%s.Rdata",
+                         model$wf_id[j],
                          settings$sensitivity.analysis$ensemble.id,
                          settings$sensitivity.analysis$variable,
                          settings$sensitivity.analysis$start.year,
-                         settings$sensitivity.analysis$end.year)
+                         settings$sensitivity.analysis$end.year))
       load(SA_file)
 
       pft <- names(sensitivity.results) # Assuming there is only one
