@@ -12,8 +12,8 @@ prep_VDC <- function(wf_id, var, path_to_config = NA, REDO = FALSE){
     path_to_config <- sprintf("/fs/data2/output/PEcAn_%i", wf_id)
   }
 
-  original_xml <- file.path(path_to_config, "pecan.CONFIGS.xml")
-  new_xml <- file.path(path_to_config, "pecan.CONFIGS.NPP.xml")
+  original_xml <- file.path(path_to_config, "pecan_mod.CONFIGS.xml")
+  new_xml <- file.path(path_to_config, "pecan_mod.CONFIGS.NPP.xml")
   file.copy(original_xml, new_xml, overwrite = REDO)
   tx  <- readLines(new_xml)
 

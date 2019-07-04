@@ -12,11 +12,8 @@ Depends:
   PEcAn.DB,
   tidyverse
 Imports:
-  googledrive,
-  googlesheets4,
   gridExtra,
   readr,
-  SHELF,
   taxize,
   XML
 RoxygenNote: 6.1.1

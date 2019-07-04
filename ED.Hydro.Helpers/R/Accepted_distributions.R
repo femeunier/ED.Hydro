@@ -20,5 +20,5 @@ accepted_dists <- c(
 # "cauchy",  # Cauchy
 # "f",       # F
 
-save(file = "/fs/data3/ecowdery/ED.Hydro/parameters/prior_calculations/prior_data/accepted_dists.Rdata", accepted_dists)
-load("/fs/data3/ecowdery/ED.Hydro/parameters/prior_calculations/prior_data/accepted_dists.Rdata")
+save(file = "/home/carya/R/ED.Hydro/ED.Hydro/ED.Hydro/parameters/prior_calculations/prior_data/accepted_dists.Rdata", accepted_dists)
+load("/home/carya/R/ED.Hydro/ED.Hydro/ED.Hydro/parameters/prior_calculations/prior_data/accepted_dists.Rdata")
