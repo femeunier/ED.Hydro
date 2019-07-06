@@ -7,12 +7,20 @@
 #' @export
 
 plot_VDC <- function(model, var, keep.traits, plot, PDF,
-                     fpath = "/fs/data3/ecowdery/ED.Hydro/figures"){
+                     fpath = "/fs/data3/ecowdery/ED.Hydro/figures",path_to_config = NA){
+
+  if(is.na(path_to_config)){ # assume we're on test-pecan and auto generate the file path
+    path_to_config <- sprintf("/fs/data2/output/PEcAn_%i", wf_id)
+  }
+
+  normalize <- function(x){
+    return((x/max(x)))
+  }
 
   # namedcolors <- brewer.pal(3, "Set1")
   namedcolors <- c(brewer.pal(3, "Set1")[1:2], "grey40", "black")
   # namedcolors <- c("#c23c81", "#238a8d", "grey40", "black")
-  names(namedcolors) <- c("ORIG", "HYDRO", "No_Diff", "Shared")
+  #names(namedcolors) <- c("ORIG", "HYDRO", "No_Diff", "Shared")
 
   plot_data <- list()
   PD <- list()
@@ -22,14 +30,15 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
     plot_data[[var[i]]] <- list()
 
     for(j in seq_along(model$wf_id)){
-      conf_file <- paste0("/fs/data2/output/PEcAn_",model$wf_id[j],"/pecan.CONFIGS.",var[i],".xml")
-      settings <- read.settings(conf_file)
-      SA_file <- sprintf("/fs/data2/output/PEcAn_%s/sensitivity.results.%s.%s.%s.%s.Rdata",
-                         settings$workflow$id,
-                         settings$sensitivity.analysis$ensemble.id,
-                         settings$sensitivity.analysis$variable,
-                         settings$sensitivity.analysis$start.year,
-                         settings$sensitivity.analysis$end.year)
+      conf_file <- paste0(path_to_config,model$wf_id[j],"/pecan.CONFIGS.",var[i],".xml")
+      settings <- PEcAn.settings::read.settings(conf_file)
+      SA_file <- paste0(path_to_config,
+                        sprintf("%s/sensitivity.results.%s.%s.%s.%s.Rdata",
+                                model$wf_id[j],
+                                settings$sensitivity.analysis$ensemble.id,
+                                settings$sensitivity.analysis$variable,
+                                settings$sensitivity.analysis$start.year,
+                                settings$sensitivity.analysis$end.year))
       load(SA_file)
 
       pft <- names(sensitivity.results) # Assuming there is only one
@@ -40,7 +49,7 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
       units <- as.character(trait.lookup(traits)$units)
       trait.labels <- as.character(trait.lookup(traits)$figid)
 
-      plot_data[[var[i]]][[settings$workflow$id]] <-
+      plot_data[[var[i]]][[as.character(model$wf_id[j])]] <-
         data.frame(
           trait.labels = ifelse(!is.na(trait.labels),
                                 trait.labels,
@@ -85,7 +94,25 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
       plot.data <- left_join(plot.data, points.df)
       plot.data <- plot.data %>% group_by(points) %>% arrange(model.type) # %>% select(one_of("points", "model.type")) %>% head()
 
-      plot.data$coef.vars <- log(abs(plot.data$coef.vars))
+      plot.data$model.type <- as.character(plot.data$model.type)
+
+      plot.data$coef.vars <- ((plot.data$coef.vars))
+      plot.data$std <- sqrt(plot.data$variances)
+
+      ord <- sort(plot.data$variances[plot.data$model.type == plot.data$model.type[length(plot.data$model.type)]],index.return=TRUE,decreasing = FALSE)
+      plot.data$points[sort(rep(seq(0,1)*length(ord$x),length(ord$x)))+rep(ord$ix,length(unique(plot.data$model.type)))]=
+        rep(seq_along(unique(plot.data$new.labels)),length(unique(plot.data$model.type)))
+
+
+      #plot.data$points <- plot.data$points[order(plot.data$variances[plot.data$model.type == plot.data$model.type[length(plot.data$model.type)]])]
+
+
+
+      df <- plot.data %>%
+        group_by(model.type) %>% mutate_each(funs(normalize),c(std,variances))
+
+      plot.data <- plot.data %>%  mutate(varNor = df$std, varNor2 = df$variances)
+
 
       base.plot <- ggplot(plot.data) +
         coord_flip() + scale_color_brewer(palette="Set1") +
@@ -96,13 +123,13 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
           panel.grid.minor = element_blank(),
           panel.border = element_blank())
 
-      cv.plot <-  base.plot + ggtitle("Coefficient of Variance (log(abs(x)))") +
+      cv.plot <-  base.plot + ggtitle("Coefficient of Variance") +
         geom_hline(yintercept = 0) +
         geom_pointrange(aes(x = points, y = coef.vars, ymin = 0,
                             ymax = coef.vars, color = cv_color),
                         alpha = .7, size = 1.25) +
         scale_y_continuous(labels = function(x) sprintf("%.2e", x)) +
-        xlim(1, max(plot.data$points)) +
+        xlim(1, max(plot.data$points)) + ylim(0, 1.25*max(plot.data$coef.vars)) +
         theme(legend.position="none") +
         scale_color_manual("cv_color", values = namedcolors)
 
@@ -111,27 +138,38 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
         geom_pointrange(aes(x = points, y = elasticities, ymin = 0,
                             ymax = elasticities, color = el_color),
                         alpha = .7, size = 1.25) +
-        xlim(1, max(plot.data$points)) +
+        xlim(1, max(plot.data$points)) + ylim(ifelse(min(plot.data$elasticities)>0,0.75,1.25)*min(plot.data$elasticities), 1.25*max(plot.data$elasticities)) +
         theme(legend.position="none") +
         scale_color_manual("el_color", values = namedcolors)
 
-      pv.plot <- base.plot + ggtitle("Variance") +
-        geom_hline(yintercept = 0) +
-        geom_pointrange(aes(x = points, variances, ymin = 0,
-                            ymax = variances, color = pv_color),
-                        alpha = .7, size = 1.25) +
-        xlim(1, max(plot.data$points)) +
-        scale_color_manual("pv_color", values = namedcolors) +
-        theme(legend.justification=c(1,0), legend.position=c(1,0))
-
       trait.plot <- base.plot + ggtitle("Parameter")  +
         geom_text(aes(y = 1, x = points, label = new.labels, hjust = 1,
-                      color = label_color)) +
+                      colour = "black")) +
         scale_y_continuous(breaks = c(0, 0), limits = c(0, 1)) +
         xlim(0, max(plot.data$points)) +
         theme(axis.text.x = element_blank()) +
-        scale_color_manual("label_color", values = namedcolors) +
+        scale_color_manual("label_color", values = "black") +
         theme(legend.position="none")
+
+      pv.plot <- base.plot + ggtitle("Standard deviation") +
+        geom_hline(yintercept = 0) +
+        geom_pointrange(aes(x = points, std, ymin = 0,
+                            ymax = std, color = pv_color),
+                        alpha = .7, size = 1.25) +
+        xlim(1, max(plot.data$points)) + ylim(0, 1.25*max(plot.data$std)) +
+        scale_color_manual("pv_color", values = namedcolors) +
+        theme(legend.position="none") + scale_y_continuous(labels = scientific)
+
+      zoom.plot <- base.plot + ggtitle("Normalized standard deviation") +
+        geom_hline(yintercept = 0) +
+        geom_pointrange(aes(x = points, y = varNor, ymin = 0,
+                            ymax = varNor, color = el_color),
+                        alpha = .7, size = 1.25) +
+        xlim(1, max(plot.data$points)) + ylim(0, 1.25) +
+        theme(legend.justification=c(1,0), legend.position=c(1,0)) +
+        scale_color_manual("el_color", values = namedcolors) +
+        theme(legend.title = element_blank())
+
 
       title1=textGrob(var[i], gp=gpar(fontsize=24, fontface="bold"))
 
@@ -140,14 +178,14 @@ plot_VDC <- function(model, var, keep.traits, plot, PDF,
         # pdf(file.path(fpath,fname), width = 11, height = 8)
         # dev.off()
         ggsave(filename = file.path(fpath,fname),
-               plot = grid.arrange(trait.plot, cv.plot, el.plot, pv.plot, ncol = 4, top = title1),
-               width = 9.7, height = 7, units = "in")
+               plot = grid.arrange(trait.plot, cv.plot, el.plot, pv.plot,zoom.plot, ncol = 5, top = title1),
+               width = 18, height = 8, units = "in")
       }else{
-        grid.arrange(trait.plot, cv.plot, el.plot, pv.plot, ncol = 4, top = title1)
+        grid.arrange(trait.plot, cv.plot, el.plot,pv.plot,zoom.plot, ncol = 5, top = title1)
       }
     }
   }
   PD <- do.call(rbind.data.frame, PD) %>%
-    select(one_of("model.type", "var", "variances", "trait.labels", "wf_id", "met.type"))
-  return(PD)
+    dplyr::select(one_of("model.type", "var", "variances", "trait.labels", "wf_id", "met.type"))
+  return(list(PD,plot.data))
 }

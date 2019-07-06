@@ -27,6 +27,11 @@ prep_VDC <- function(wf_id, var, path_to_config = NA, REDO = FALSE){
       tx2  <- gsub(pattern = "NPP", replace = var[i], x = tx)
       writeLines(tx2, con=new_file)
       settings <- read.settings(new_file)
+      if (grepl("*pft",var[i])){
+        settings$sensitivity.analysis$perpft=TRUE
+      }
+
+
       runModule.get.results(settings)
       runModule.run.ensemble.analysis(settings, TRUE)
       runModule.run.sensitivity.analysis(settings)
